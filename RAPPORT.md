@@ -4,15 +4,20 @@
     </b>
 </h1>
 
+## Développeurs
+
+<img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> | <img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> 
+--- | --- |
+CORNEJO, Oscar, 22305517, 40 | CORNEJO, Oscar, 22305517, 40 |
 
 # Description
 
 <p align="justify">Projet dans lequel on veut implémenter un site web permettant de partager ses recettes de cuisines avec les autres utlisateurs. De nombreux paramètres de recherches sont disponibles pour ffectuer des recherches précises (prix, quantité, temps, allergie) . Le site aura aussi un espace commentaire permettant de partager ses differents avis sur les differentes espaces disponibles aux utilisateurs . Chaque semaine le site affichera une recette de la semaine permettant de faire decouvrir de nouvelles recettes aux utilisateurs.</p>
 
-# Table of Contents
+# Table de contenu
 
 - [Description](#description)
-- [Table of Contents](#table-of-contents)
+- [Table de contenu](#table-de-contenu)
   - [Description de l'aplication](#description-de-laplication)
   - [Progrès réalisés à ce jour](#progrès-réalisés-à-ce-jour)
   - [Références](#références)
