@@ -8,7 +8,7 @@
 
 <img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Hedi" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Iness" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Thomas" width="80" height="80"> |
 --- | --- | --- | --- |
-CORNEJO, Oscar, 22305517, 40 | KASHI, Mohand-Hedi, 220051070 | MOUSSSAOUI, Iness, 22006171 | JOLY, Thomas, 21916099 |
+CORNEJO, Oscar, 22305517 | KASHI, Mohand-Hedi, 220051070 | MOUSSSAOUI, Iness, 22006171 | JOLY, Thomas, 21916099 |
 
 # Description
 
