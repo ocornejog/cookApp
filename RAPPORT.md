@@ -33,7 +33,7 @@ Nous avons d’abord commencé par choisir une palette de couleurs, une police d
 
 Lien vers le site de design en Figma:
 
-[Figma design ](#https://www.figma.com/file/3tYEf26leCO5v0TsYompBH/CookApp?type=design&node-id=0-1&mode=design&t=hq0dGaHQoiCk5l1P-0)
+https://www.figma.com/file/3tYEf26leCO5v0TsYompBH/CookApp?type=design&node-id=0-1&mode=design&t=hq0dGaHQoiCk5l1P-0/ 
 
 ## Références
 
