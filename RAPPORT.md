@@ -4,7 +4,7 @@
     </b>
 </h1>
 
-## Développeurs
+# Développeurs
 
 <img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> | <img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> 
 --- | --- |
@@ -16,6 +16,7 @@ CORNEJO, Oscar, 22305517, 40 | CORNEJO, Oscar, 22305517, 40 |
 
 # Table de contenu
 
+- [Développeurs](#développeurs)
 - [Description](#description)
 - [Table de contenu](#table-de-contenu)
   - [Description de l'aplication](#description-de-laplication)
