@@ -25,7 +25,7 @@ CORNEJO, Oscar, 22305517 | KASHI, Mohand-Hedi, 220051070 | MOUSSSAOUI, Iness, 22
   - [Références](#références)
   - [Problèmes rencontrées/solutions trouvées](#problèmes-rencontréessolutions-trouvées)
   - [Mise à jour du calendrier](#mise-à-jour-du-calendrier)
-  - [Rôles](#rôles)
+  - [Rôles pour le prochain sprint](#rôles-pour-le-prochain-sprint)
 
 ## Description de l'aplication
 
@@ -71,7 +71,7 @@ Ces problèmes ont été résolus en réutilisant des components fabriqués par 
 
 <img src="./src/controllers/assets/Calendar.png" alt="Calendar" width="100%">
 
-## Rôles
+## Rôles pour le prochain sprint
 
 Chef de projet: MOUSSSAOUI Iness 
 
