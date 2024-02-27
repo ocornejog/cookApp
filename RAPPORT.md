@@ -6,8 +6,9 @@
 
 # Développeurs
 
-<img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Hedi" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Iness" width="80" height="80"> | <img src="./src/controllers/assets/person1.png" alt="Thomas" width="80" height="80"> |
+<img src="./src/controllers/assets/Oscar.jpg" alt="Oscar" width="80" height="80"> | <img src="./src/controllers/assets/Hedi.jpg" alt="Hedi" width="80" height="80"> | <img src="./src/controllers/assets/Iness.png" alt="Iness" width="65" height="80"> | <img src="./src/controllers/assets/Thomas.jpg" alt="Thomas" width="80" height="80"> |
 --- | --- | --- | --- |
+Chef de projet | Codeur | Chercheur | Codeur |
 CORNEJO, Oscar, 22305517 | KASHI, Mohand-Hedi, 220051070 | MOUSSSAOUI, Iness, 22006171 | JOLY, Thomas, 21916099 |
 
 # Description
@@ -23,6 +24,8 @@ CORNEJO, Oscar, 22305517 | KASHI, Mohand-Hedi, 220051070 | MOUSSSAOUI, Iness, 22
   - [Progrès réalisés à ce jour](#progrès-réalisés-à-ce-jour)
   - [Références](#références)
   - [Problèmes rencontrées/solutions trouvées](#problèmes-rencontréessolutions-trouvées)
+  - [Mise à jour du calendrier](#mise-à-jour-du-calendrier)
+  - [Rôles](#rôles)
 
 ## Description de l'aplication
 
@@ -63,3 +66,15 @@ Il y avait des problèmes de cohérence des designs entre les tabs de chaque mem
 - Mise en page générale
 
 Ces problèmes ont été résolus en réutilisant des components fabriqués par d'autres membres du groupe et lors d'une réunion où la conception du design et la définition des tables et des attributs de la base de données, ainsi que son diagramme UML, ont été standardisés.
+
+## Mise à jour du calendrier
+
+<img src="./src/controllers/assets/Calendar.png" alt="Calendar" width="100%">
+
+## Rôles
+
+Chef de projet: Iness
+
+Codeurs :  Thomas, Oscar 
+
+Chercheur : Hedi
