@@ -73,8 +73,8 @@ Ces problèmes ont été résolus en réutilisant des components fabriqués par 
 
 ## Rôles
 
-Chef de projet: Iness
+Chef de projet: MOUSSSAOUI Iness 
 
-Codeurs :  Thomas, Oscar 
+Codeurs :  JOLY Thomas, CORNEJO Oscar 
 
-Chercheur : Hedi
+Chercheur : KASHI Mohand-Hedi
