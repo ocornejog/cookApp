@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+//import {TestComponent} from './TestComponent';
+import {TestComponent2} from './TestComponent2';
 
 function App() {
+  const [name, setName] = useState('');
+  useEffect(() => {
+    setName('Hedi');
+  }, []);
+
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
+  
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TestComponent2 name={'Hedi'} onChange={(e) => console.log('My name is', e)} />
+
     </div>
   );
 }
