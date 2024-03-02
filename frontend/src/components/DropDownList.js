@@ -60,9 +60,9 @@ const DropDownList = (props) => {
                     </div>
                 </div>
                 {open ?
-                <ion-icon name="chevron-up-outline" size={24} style={{color: C.green, marginRight: 8}} className="active"></ion-icon>
+                <ion-icon name="chevron-up-outline" size={24} style={{color: C.green, marginRight: 8, fontSize: '24px'}}></ion-icon>
                 :
-                <ion-icon name="chevron-down-outline" size={24} style={{color: C.green, marginRight: 8}} className="active"></ion-icon>
+                <ion-icon name="chevron-down-outline" size={24} style={{color: C.green, marginRight: 8, fontSize: '24px'}}></ion-icon>
                 }
             </div>
             {(open) &&
