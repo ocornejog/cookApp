@@ -1,23 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { TextInputComp, getCred } from './TextInput';
 
 function App() {
-  return (
+  return (  
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className = "userinput">
+        <TextInputComp placeholder="type your email here" pass={false}/>
+        <TextInputComp id = "userpass" placeholder="type your password here" pass={true}/>
+        <button onClick={getCred}>Connection</button>
+      </div>
     </div>
   );
 }
