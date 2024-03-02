@@ -5,6 +5,7 @@ import './App.css';
 //import {TestComponent} from './TestComponent';
 import {TestComponent2} from './TestComponent2';
 import ListItem from './components/ListItem';
+import DropDownList from './components/DropDownList';
 
 function App() {
   const [name, setName] = useState('');
@@ -21,8 +22,9 @@ function App() {
   return (
     <div className="App">
       <TestComponent2 name={'Hedi'} onChange={(e) => console.log('My name is', e)} />
-
-      <ListItem/>
+      <div style={{width: '50%', marginTop: 16, display: 'flex', alignItems: 'center'}}>
+        <DropDownList onSelect={(t, i) => console.log(t, i)}/>
+      </div>
 
     </div>
   );

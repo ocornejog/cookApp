@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import C from '../constants/colors';
 import Img from '../constants/dropDownListImages';
 
-
 const ListItem = (props) => {
 //---------------------------------------------------
+    const [hover, setHover] = useState(false);
+
+    const handleMouseEnter = () => {
+        setHover(true);
+    };
+    
+    const handleMouseLeave = () => {
+        setHover(false);
+    };
 // Rendering the component ...
     return (
-        <div style={{width: '100%', height: 40, display: 'flex', flexDirection: 'row', backgroundColor: C.white, alignItems: 'center'}}>
+        <div style={{width: '100%', height: 40, display: 'flex', flexDirection: 'row', backgroundColor: hover? C.greenLight: C.white, 
+        alignItems: 'center'}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div style={{display: 'flex'}}>
                 {props.label !== '' ? 
                 <img alt="" draggable="false" src={Img[props.image]} style={{ marginLeft: 8, marginRight: 8, height: 32, width: 32, 
