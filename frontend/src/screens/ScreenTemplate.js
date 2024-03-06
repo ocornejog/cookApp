@@ -3,11 +3,12 @@ import { useEffect, useState, useContext } from 'react';
 
 import C from '../constants/colors';
 import { APIuri } from '../constants/Api';
-//import {AuthContext } from '../constants/Context'; Context to be created
+//import { AuthContext } from '../constants/Context'; Context to be created
 
 /*
 Import your components and constants here
 */
+import DropDownList from '../components/DropDownList';
 
 /*
 Import your used redux here
@@ -45,7 +46,7 @@ function ScreenTemplate() {
       <div className='screen-view-1' style={{ width: '95%', backgroundColor: C.white }}>
         {/* put your content here */}
 
-
+        <DropDownList/>
 
       </div>
     </div>
