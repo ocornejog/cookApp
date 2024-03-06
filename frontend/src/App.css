@@ -37,9 +37,11 @@
   }
 }
 
-input {
+#userpass, #usermail {
   width: 50%;
   padding: 12px 20px;
   margin: 0.5%;
   box-sizing: border-box;
 }
+
+
