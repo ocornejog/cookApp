@@ -1,59 +1,50 @@
-// import React from "react";
-// //import "./style.css/recipeCard.css";
-// import RecipeCard from "./recipeCard.js";
+//import logo from './logo.svg';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import './App.css';
+//import {TestComponent} from './TestComponent';
+import {TestComponent2} from './TestComponent2';
+import ListItem from './components/ListItem';
+import DropDownList from './components/DropDownList';
+import Tabs from "./components/Tabs";
+import ScreenTemplate from './screens/ScreenTemplate';
 
-// class App extends React.Component {
-//   render() {
-//     const title = "Coquiles Saint-jacques";
-//     const description = `Ces délicieuses coquilles sont servies de nuit et sont préparées avec des champignons dans une sauce à base de crème fraîche.
-//     Le tout est ensuite gratiné au four pour obtenir une croûte raffinée et savoureuse, une entrée idéale et joliment épaisse!`;
-//     return (
-//       <div className="App">
-//         <RecipeCard title={title} description={description} />
-//       </div>
-//     );
-//   }
-// }
+function App() {
+  const [name, setName] = useState('');
+  useEffect(() => {
+    setName('Hedi');
+  }, []);
 
-// export default App;
+  useEffect(() => {
+    console.log(name);
+  }, [name]);
 
-//App.js
-import React from "react";
-import "./style.css/ButtonComponent.css";
-import ButtonComponent from "./Components.js/ButtonComponent";
-import "./App.css";
 
-const App = () => {
-  const handleButtonClick = () => {
-    console.log("Bouton cliqué !");
-  };
 
   return (
-    <div className="btn">
-      <div className="button_container_1">
-        <ButtonComponent
-          type="primary"
-          text="Cliquez-moi !"
-          onClick={handleButtonClick}
-        />
+    <div className="App">
+      {/*
+      <TestComponent2 name={'Hedi'} onChange={(e) => console.log('My name is', e)} />
+      <div style={{width: '50%', marginTop: 16, display: 'flex', alignItems: 'center'}}>
+        <DropDownList onSelect={(t, i) => console.log(t, i)}/>
       </div>
-      <div className="button_container_2">
-        <ButtonComponent
-          type="secondary"
-          text="Cliquez-moi aussi !"
-          onClick={handleButtonClick}
-        />
-      </div>
-      <div className="button_container_3">
-        <ButtonComponent
-          type="tertiary"
-          text="Et moi aussi !"
-          onClick={handleButtonClick}
-          className="underline_text"
-        />
-      </div>
+      /}
+      <Tabs>
+        <div label="Chercher">
+          {/
+          Welcome to the tab, <em>Chercher</em>!
+          */}
+          <ScreenTemplate/>
+        </div>
+        <div label="Recettes">
+          After a while, <em>Recettes</em>!
+        </div>
+        <div label="Profil" icon="person-circle">
+          Nothing to see here, this tab is <em>Profil</em>!
+        </div>
+      </Tabs>
     </div>
   );
-};
+}
 
 export default App;
