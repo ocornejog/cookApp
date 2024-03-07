@@ -28,7 +28,7 @@ function App() {
       <div style={{width: '50%', marginTop: 16, display: 'flex', alignItems: 'center'}}>
         <DropDownList onSelect={(t, i) => console.log(t, i)}/>
       </div>
-      /}
+      */}
       <Tabs>
         <div label="Chercher">
           {/
