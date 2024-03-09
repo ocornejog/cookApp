@@ -3,6 +3,13 @@ import L from "../constants/listLabels";
 
 export const CheckBox = (props) => {
 
+    /*  props
+        input
+        listLabels: string[]
+        output
+        onSelect: (boolean[]) => {}
+    */
+
     const [checkedItems, setCheckedItems] = React.useState(new Array(props.listLabels.length).fill(false));
 
     const updateElement = (index, lastValue) => {
