@@ -48,5 +48,14 @@
   box-sizing: border-box;
 }
 
-
+.popuptext {
+  display: inline-block;
+  width: 65px;
+  height: 20px;
+  padding: 60px 11px;
+  background-color:#DFFF00;
+}
+.boxtext {
+  text-align: center;
+}
 

@@ -34,7 +34,6 @@ function App() {
           After a while, <em>Recettes</em>!
         </div>
         <div label="Profil" icon="person-circle">
-          Nothing to see here, this tab is <em>Profil</em>!
         </div>
       </Tabs>
     </div>
