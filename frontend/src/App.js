@@ -80,7 +80,7 @@ export default App;
 // App.js
 import React from 'react';
 import './photo.css'; // Importez également photo.css ici
-import Photo from './Photo';
+import Photo from './Photo.js';
 
 
 function App() {
