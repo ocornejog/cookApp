@@ -11,16 +11,19 @@
 
 .button {
     display: block;
-    margin: 50px auto 0 auto;
+    margin: 0px auto 0 auto;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 44px;
     width: 382px;
     text-align: center;
     height: 60px;
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
 
 }
+
 
 .button_container_1 {
     display: flex;
@@ -55,23 +58,27 @@
 .primary {
     background-color: #337D74;
     color: #FFFFFF;
-
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .secondary {
     background-color: #FFFFFF;
     color: #337D74;
     border: 1px solid #337D74;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .tertiary {
     background-color: #FFFFFF;
     color: #337D74;
     border: none;
-
-
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 
