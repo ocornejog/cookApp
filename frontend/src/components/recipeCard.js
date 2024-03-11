@@ -1,5 +1,5 @@
 import React from "react";
-import "../recipeCard.css";
+import "../styles/recipeCard.css";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 
 class RecipeCard extends React.Component {
@@ -11,10 +11,12 @@ class RecipeCard extends React.Component {
   toggleFavorite = (event) => {
     event.stopPropagation(); // Pour empêcher le déclenchement de l'événement onClick du parent
     this.setState({ isFavorited: !this.state.isFavorited });
+    this.props.onClickFavorite(!this.state.isFavorited);
   };
 
   handleClick = () => {
     console.log("Le composant a été cliqué!");
+    this.props.onClick();
   };
 
   render() {
@@ -26,7 +28,7 @@ class RecipeCard extends React.Component {
       <div className="recipe-card" onClick={this.handleClick}>
         <button className="title-button">{title}</button>
         <img src={image} alt={title} />
-        <p>
+        <p className="description-button">
           {description.split("\n").map((line, i) => (
             <span key={i}>
               {line}
