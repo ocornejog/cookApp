@@ -1,0 +1,48 @@
+.comment-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    width: 311px; /* Ajustez cette valeur selon vos besoins */
+    height: auto;
+    text-align: left;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+
+}
+
+
+.name {
+    margin-left: 10px;
+}
+
+.date {
+    margin-left: 140px;
+
+}
+
+.stars2 ion-icon {
+    margin-right: 10px;
+    color: #337D74;
+    text-align: left;
+
+}
+
+.large-icon {
+    font-size: 30px;
+    color: #337D74;
+   
+}
+
+.comment-card p {
+    /* margin-top: 10px; */
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    /* margin: 30px 25px 1px 25px; */
+    margin-top: 10px;
+} 

@@ -1,0 +1,64 @@
+.comment-component {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    margin-top: 100px;
+    margin-bottom: -100px;
+
+}
+
+.comment_flexbox {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.text-1,
+.text-2 {
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    color: #337D74;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+}
+
+
+.comment-component button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+
+
+}
+
+.comment-component textarea {
+    resize: none;
+    width: 331px;
+    /* Définir la largeur à 331px */
+    height: 60px;
+    /* Définir la hauteur à 60px */
+}
+
+.button.primary {
+
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.stars ion-icon {
+    margin-right: 10px;
+    /* Ajoute un espace à droite de chaque étoile */
+    flex-direction: column;
+    justify-content: center;
+    color: #337D74;
+
+
+}
