@@ -39,8 +39,6 @@ function App() {
           After a while, <em>Recettes</em>!
         </div>
         <div label="Profil" icon="person-circle">
-          <UserCard name="Thomas"/>
-          <ConfirmationModal/>
         </div>
       </Tabs>
     </div>
