@@ -10,7 +10,6 @@ import DropDownList from './components/DropDownList';
 import UserCard from './components/UserCard'
 import Tabs from "./components/Tabs";
 import ScreenTemplate from './screens/ScreenTemplate';
-import ConfirmationModal from './components/ConfirmationModal.js'
 
 function App() {
   const [name, setName] = useState('');
