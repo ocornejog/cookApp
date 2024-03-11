@@ -19,6 +19,9 @@ import RecipeCard from '../components/recipeCard';
 import PreparationSteps from '../components/PreparationSteps';
 import IngredientsList from '../components/IngredientsList';
 import PhotoSelection from '../components/PhotoSelection';
+import CommentCard2 from '../components/CommentCard2';
+import { CommentCard1 } from '../components/CommentCards';
+import ConfirmationModal from '../components/ConfirmationModal';
 
 /*
 Import your used redux here
@@ -75,6 +78,8 @@ function ScreenTemplate() {
         style={{ width: "95%", backgroundColor: C.white }}
       >
         {/* put your content here */}
+
+    
 
     
         <div className="montserrat_700" style={{ width: '100%', marginBottom: '8px', fontSize: '14px', 
@@ -160,6 +165,28 @@ function ScreenTemplate() {
         </div>
         <div style={{width: '50%', marginBottom: '20px'}}>
           <PhotoSelection text={'Choisir une photo'} onClick={() => console.log('Trying to upload a photo')}/>
+        </div>
+        <div className="montserrat_700" style={{ width: '100%', marginBottom: '8px', fontSize: '14px', 
+        color: C.green, textAlign: 'left', textAlignVertical: 'center', justifyContent: 'center' }}>
+          {`CommentCard1`}
+        </div>
+        <div style={{width: '30%', marginBottom: '20px'}}>
+          <CommentCard1 onSubmit={(comment, starRaiting) => console.log('My comment values are: ', comment, starRaiting)}/>
+        </div>
+        <div className="montserrat_700" style={{ width: '100%', marginBottom: '8px', fontSize: '14px', 
+        color: C.green, textAlign: 'left', textAlignVertical: 'center', justifyContent: 'center' }}>
+          {`CommentCard2`}
+        </div>
+        <div style={{width: '30%', marginBottom: '20px'}}>
+          <CommentCard2 name={"Thomas Joly"} date={new Date()} comment={"Test comment"} starRating={3}/>
+        </div>
+        <div className="montserrat_700" style={{ width: '100%', marginBottom: '8px', fontSize: '14px', 
+        color: C.green, textAlign: 'left', textAlignVertical: 'center', justifyContent: 'center' }}>
+          {`ConfirmationModal`}
+        </div>
+        <div style={{width: '30%', marginBottom: '20px'}}>
+          <ConfirmationModal visible={true} onClickButton1={() => console.log('Pressed Non!')} 
+          onClickButton2={() => console.log('Pressed Oui!')}/>
         </div>
 
         

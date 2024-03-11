@@ -13,24 +13,24 @@
 .header {
     display: flex;
     align-items: center;
-
 }
 
 
 .name {
     margin-left: 10px;
+    flex: 1;
 }
 
 .date {
-    margin-left: 140px;
-
+    margin-left: 16px;
 }
 
-.stars2 ion-icon {
+.stars2 {
     margin-right: 10px;
     color: #337D74;
     text-align: left;
-
+    flex-direction: row;
+    display: flex;
 }
 
 .large-icon {

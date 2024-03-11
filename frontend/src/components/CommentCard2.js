@@ -1,7 +1,10 @@
 import React from "react";
-import "../style.css/CommentCard2.css";
+import "../styles/CommentCard2.css";
 
 const CommentCard2 = ({ name, date, starRating, comment }) => {
+
+  const starValues = new Array(5).fill(false);
+
   return (
     <div className="comment-card">
       <div className="header">
@@ -12,11 +15,11 @@ const CommentCard2 = ({ name, date, starRating, comment }) => {
         <span className="date">{date.toLocaleDateString()}</span>
       </div>
       <div class="stars2">
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
+        {starValues.map((data, index) =>
+          <div key={index} style={{cursor: 'pointer', marginRight: '10px'}}>
+            <ion-icon name={(index >= starRating)? "star-outline" : "star"}></ion-icon>
+          </div>
+        )}
       </div>
       <p>{comment}</p>
     </div>
