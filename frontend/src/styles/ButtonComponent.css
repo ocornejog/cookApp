@@ -18,9 +18,12 @@
     width: 382px;
     text-align: center;
     height: 60px;
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
 
 }
+
 
 .button_container_1 {
     display: flex;

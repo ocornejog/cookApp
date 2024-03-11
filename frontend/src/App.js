@@ -4,24 +4,31 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import './styles/ButtonComponent.css'
 import Tabs from "./components/Tabs";
-import ScreenTemplate from './screens/ScreenTemplate';
+import ScreenTemplate from "./screens/ScreenTemplate";
 
 function App() {
-  
   return (
     <div className="App">
-      {/*
-      <TestComponent2 name={'Hedi'} onChange={(e) => console.log('My name is', e)} />
-      <div style={{width: '50%', marginTop: 16, display: 'flex', alignItems: 'center'}}>
-        <DropDownList onSelect={(t, i) => console.log(t, i)}/>
+      {/* <TestComponent2
+        name={"Hedi"}
+        onChange={(e) => console.log("My name is", e)}
+      /> */}
+      <div
+        style={{
+          width: "50%",
+          marginTop: 16,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {/* <DropDownList onSelect={(t, i) => console.log(t, i)} /> */}
       </div>
-      */}
       <Tabs>
         <div label="Chercher">
           {/*
           Welcome to the tab, <em>Chercher</em>!
           */}
-          <ScreenTemplate/>
+          <ScreenTemplate />
         </div>
         <div label="Recettes">
           After a while, <em>Recettes</em>!

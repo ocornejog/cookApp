@@ -27,7 +27,6 @@ Import your used redux here
 //---------------------------------------------------------------------
 
 function ScreenTemplate() {
-
   // put here your constants
 
   const testConstant = "I am a constant";
@@ -49,11 +48,15 @@ function ScreenTemplate() {
   // put here your states
 
   const [testState, setTestState] = useState("I am a state variable");
-  const [advancedSearch, setAdvancedSearch] = React.useState(false);
+  const [advancedSearch, setAdvancedSearch] = useState(false);
+
+  const title = "Coquiles Saint-jacques";
+  const description = `Ces délicieuses coquilles sont servies de nuit et sont préparées avec des champignons dans une sauce à base de crème fraîche.
+   Le tout est ensuite gratiné au four pour obtenir une croûte raffinée et savoureuse, une entrée idéale et joliment épaisse!`;
 
   // put here your functions and handlers
 
-  const testFunction = async() => {
+  const testFunction = async () => {
     console.log(`My current state variable value is : ${testState}`);
   };
 
@@ -61,13 +64,16 @@ function ScreenTemplate() {
 
   useEffect(() => {
     testFunction();
-  },[testState]);
+  }, [testState]);
 
   //---------------------------------------------------------
   // Render your screen here
   return (
-    <div className='screen-view-1' style={{backgroundColor: C.white}}>
-      <div className='screen-view-1' style={{ width: '95%', backgroundColor: C.white }}>
+    <div className="screen-view-1" style={{ backgroundColor: C.white }}>
+      <div
+        className="screen-view-1"
+        style={{ width: "95%", backgroundColor: C.white }}
+      >
         {/* put your content here */}
 
     
