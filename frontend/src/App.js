@@ -47,7 +47,7 @@ function App() {
 }
 
 export default App; 
-*/
+
 
 import React from 'react';
 import PreparationStepsList from './PreparationStepsList'; // Assurez-vous d'ajuster le chemin du fichier
@@ -74,4 +74,24 @@ function App() {
 
 export default App;
 
+
+*/
+
+// App.js
+import React from 'react';
+import './photo.css'; // Importez également photo.css ici
+import Photo from './Photo';
+
+
+function App() {
+    // Votre code pour les fonctions et le carré gris ici
+
+    return (
+        <div className="App">
+          <Photo/>
+        </div>
+    );
+}
+
+export default App;
 
