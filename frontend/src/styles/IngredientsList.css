@@ -1,31 +1,25 @@
 /* Ajoutez 'Montserrat' à votre classe .list-container et autres sélecteurs */
 
 .list-container {
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  font-size: 15px;
-  margin-left: 15px; /* Ajuster la marge à gauche du conteneur */
-  font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
-  /* Ajouter d'autres styles personnalisés si nécessaire */
+  width: 100%;
 }
 
 .ingredients-title {
   text-decoration: underline;
   color: black;
-  font-size: 24px; /* Ajuster la taille du titre selon vos besoins */
-  top: -30px; /* Ajuster la position verticale du titre par rapport au conteneur */
-  margin-left: 200px;
-  font-weight: normal !important; /* Ajuster la marge à gauche du titre */
+  font-size: 32px; /* Ajuster la taille du titre selon vos besoins */
+  font-weight: 400; /* Ajuster la marge à gauche du titre */
   font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+  text-align: left;
+  padding-left: 30px; /* Ajouter un padding à gauche pour l'écart avec le point */
   /* Ajouter d'autres styles personnalisés si nécessaire */
 }
 
 .ingredients-list {
-  margin-top: 100px; /* Ajouter un espacement en haut de la liste si nécessaire */
+  margin-top: 48px; /* Ajouter un espacement en haut de la liste si nécessaire */
   padding-left: 30px; /* Ajouter un padding à gauche pour l'écart avec le point */
   font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+  font-weight: 400; /* Ajuster la marge à gauche du titre */
   /* Ajouter d'autres styles personnalisés si nécessaire */
 }
 
