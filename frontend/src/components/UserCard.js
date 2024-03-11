@@ -1,20 +1,21 @@
 import React from "react";
 import C from '../constants/colors';
-import ButtonComponent from "../Components.js/ButtonComponent";
+import ButtonComponent from "./ButtonComponent";
+import "../styles/ButtonComponent.css";
 
 //% que sur width
 const UserCard = (props) => {
     return (
-        <div style={{background:C.greenLight,width:'100%',height:'280px',display:'flex'}}>
-            <img alt="" src={props.imgsrc} style={{padding:'0px',height:'150px',marginTop:'50px',
-            marginLeft:'30px'}}/>
-            <div style={{textAlign:'left',marginLeft:'100px',marginTop:'50px',
-            fontSize:'120px',fontFamily:"Montserrat",
-            fontWeight:'330',textDecoration:'underline',textDecorationThickness:'1.5px',
-            textUnderlineOffset:'12px',flex:1}}>
+        <div style={{ background: C.greenLight, width:'100%', display:'flex', 
+        alignItems: 'center', justifyContent: 'center', padding: '32px 32px 32px 32px'}}>
+            <img alt="" src={props.imgsrc} style={{ height:'150px',
+            marginLeft:'30px' }}/>
+            <div style={{ textAlign:'left', marginLeft:'100px', fontSize: '48px', fontFamily:"Montserrat",
+            fontWeight:'330', textDecoration:'underline', textDecorationThickness:'1.5px', 
+            textUnderlineOffset:'12px', flex: 1}}>
                 {props.name}
             </div>
-            <div style={{fontSize:'65px',marginRight:'10px',marginTop:'50px'}}>
+            <div style={{marginRight: '10px'}}>
                 <ButtonComponent type="tertiary" text="paramètres du profil" onClick={() => {props.onClick()}}/>
             </div>
         </div>

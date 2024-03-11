@@ -22,6 +22,7 @@ import PhotoSelection from '../components/PhotoSelection';
 import CommentCard2 from '../components/CommentCard2';
 import { CommentCard1 } from '../components/CommentCards';
 import ConfirmationModal from '../components/ConfirmationModal';
+import UserCard from '../components/UserCard';
 
 /*
 Import your used redux here
@@ -81,7 +82,7 @@ function ScreenTemplate() {
 
     
 
-    
+
         <div className="montserrat_700" style={{ width: '100%', marginBottom: '8px', fontSize: '14px', 
         color: C.green, textAlign: 'left', textAlignVertical: 'center', justifyContent: 'center' }}>
           {`ButtonComponent`}
@@ -185,8 +186,11 @@ function ScreenTemplate() {
           {`ConfirmationModal`}
         </div>
         <div style={{width: '30%', marginBottom: '20px'}}>
-          <ConfirmationModal visible={true} onClickButton1={() => console.log('Pressed Non!')} 
+          <ConfirmationModal visible={false} onClickButton1={() => console.log('Pressed Non!')} 
           onClickButton2={() => console.log('Pressed Oui!')}/>
+        </div>
+        <div style={{width: '90%', marginBottom: '20px'}}>
+          <UserCard/>
         </div>
 
         

@@ -14,7 +14,7 @@ const CommentCard2 = ({ name, date, starRating, comment }) => {
         <span className="name">{name}</span>
         <span className="date">{date.toLocaleDateString()}</span>
       </div>
-      <div class="stars2">
+      <div className="stars2">
         {starValues.map((data, index) =>
           <div key={index} style={{cursor: 'pointer', marginRight: '10px'}}>
             <ion-icon name={(index >= starRating)? "star-outline" : "star"}></ion-icon>
