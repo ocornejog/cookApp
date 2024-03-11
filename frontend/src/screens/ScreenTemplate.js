@@ -33,9 +33,9 @@ function ScreenTemplate() {
 
   const [testState, setTestState] = useState("I am a state variable");
 
-  // const title = "Coquiles Saint-jacques";
-  // const description = `Ces délicieuses coquilles sont servies de nuit et sont préparées avec des champignons dans une sauce à base de crème fraîche.
-  //  Le tout est ensuite gratiné au four pour obtenir une croûte raffinée et savoureuse, une entrée idéale et joliment épaisse!`;
+  const title = "Coquiles Saint-jacques";
+  const description = `Ces délicieuses coquilles sont servies de nuit et sont préparées avec des champignons dans une sauce à base de crème fraîche.
+   Le tout est ensuite gratiné au four pour obtenir une croûte raffinée et savoureuse, une entrée idéale et joliment épaisse!`;
 
   // put here your functions and handlers
 
@@ -77,10 +77,9 @@ function ScreenTemplate() {
         />
       </div>
 
-      {/* <div className="app">
-         <RecipeCard title={title} description={description} />
-        {" "}
-      </div> */}
+      <div className="app">
+        <RecipeCard title={title} description={description} />{" "}
+      </div>
     </div>
   );
 }
