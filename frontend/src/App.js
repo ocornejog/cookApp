@@ -10,17 +10,7 @@ import Tabs from "./components/Tabs";
 import ScreenTemplate from './screens/ScreenTemplate';
 
 function App() {
-  const [name, setName] = useState('');
-  useEffect(() => {
-    setName('Hedi');
-  }, []);
-
-  useEffect(() => {
-    console.log(name);
-  }, [name]);
-
-
-
+  
   return (
     <div className="App">
       {/*
@@ -31,7 +21,7 @@ function App() {
       */}
       <Tabs>
         <div label="Chercher">
-          {/
+          {/*
           Welcome to the tab, <em>Chercher</em>!
           */}
           <ScreenTemplate/>

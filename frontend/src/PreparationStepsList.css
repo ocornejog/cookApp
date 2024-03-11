@@ -1,0 +1,44 @@
+.list-container {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    margin-left: 15px; /* Ajuster la marge à gauche du conteneur */
+    font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+    /* Ajouter d'autres styles personnalisés si nécessaire */
+  }
+  
+  .steps-title {
+    text-decoration: underline;
+    color: black;
+    font-size: 24px; /* Ajuster la taille du titre selon vos besoins */
+    top: -30px; /* Ajuster la position verticale du titre par rapport au conteneur */
+    margin-left: 30px; /* Ajuster la marge à gauche du titre */
+    font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+    /* Ajouter d'autres styles personnalisés si nécessaire */
+  }
+  
+  .steps-list {
+    margin-top: 4px; /* Ajouter un espacement en haut de la liste si nécessaire */
+    padding-left: 30px; /* Ajouter un padding à gauche pour l'écart avec le point */
+    list-style-type: none; /* Supprimer les numéros de liste */
+    /* Ajouter d'autres styles personnalisés si nécessaire */
+  }
+  
+  .step-item {
+    margin-bottom: 30px; /* Augmenter l'espacement entre chaque étape */
+    /* Ajouter d'autres styles personnalisés si nécessaire */
+  }
+  
+  .step-title {
+    text-align: center; /* Centrer le texte du titre de l'étape */
+    text-transform: uppercase; /* Mettre le texte en majuscules */
+  }
+  
+  .step-description {
+    text-align: center; /* Centrer le texte à l'intérieur de chaque étape */
+    font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+    margin-top: 10px; /* Ajuster l'espace entre le titre de l'étape et le contenu */
+  }
+  
