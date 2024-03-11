@@ -1,5 +1,5 @@
 import React from "react";
-import "./recipeCard.css";
+import "../styles/recipeCard.css";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 
 class RecipeCard extends React.Component {
