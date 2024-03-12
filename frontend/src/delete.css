@@ -1,0 +1,69 @@
+/* delete.css */
+
+.delete-container {
+    position: relative;
+  }
+  
+  .trash-icon {
+    cursor: pointer;
+    width: 24px; /* Ajustez la taille selon vos besoins */
+    height: 24px;
+    position: absolute;
+    top: 250px; /* Ajustez la position verticale du logo */
+    left: 600px; /* Ajustez la position horizontale du logo */
+
+  }
+  
+ /* delete.css */
+
+/* delete.css */
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0; /* Changer la couleur de fond selon vos préférences */
+    padding: 20px;
+    border-radius: 10px; /* Arrondir les coins du pop-up */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif; /* Appliquer la police Montserrat */
+  }
+  
+  .popup p {
+    color: #333; /* Changer la couleur du texte selon vos préférences */
+  }
+  
+  .popup button {
+    background-color: #337D74; /* Changer la couleur de fond des boutons selon vos préférences */
+    color: #fff; /* Changer la couleur du texte des boutons selon vos préférences */
+    border: none;
+    border-radius: 5px; /* Arrondir les coins des boutons */
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif; /* Appliquer la police Montserrat */
+  }
+  
+  .popup button:last-child {
+    margin-left: 20px; /* Ajuster la marge du dernier bouton pour éviter l'espacement excessif */
+  }
+  
+  /* delete.css */
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ajustez la largeur selon vos besoins */
+  }
+  
+  .popup button {
+    background-color: #337D74;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 13px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%; /* Ajustez la largeur selon vos besoins */
+  }
+  
