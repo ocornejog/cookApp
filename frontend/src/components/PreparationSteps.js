@@ -1,9 +1,9 @@
 import React from 'react';
-import './PreparationStepsList.css';
+import '../styles/PreparationSteps.css';
 
-const PreparationStepsList = ({ stepList }) => {
+const PreparationSteps = ({ stepList }) => {
   return (
-    <div className="list-container">
+    <div style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
       <h2 className="steps-title">Préparation</h2>
       <ol className="steps-list">
         {stepList.map((step, index) => (
@@ -19,5 +19,5 @@ const PreparationStepsList = ({ stepList }) => {
   );
 };
 
-export default PreparationStepsList;
+export default PreparationSteps;
 

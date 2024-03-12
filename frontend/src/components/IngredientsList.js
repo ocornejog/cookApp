@@ -1,7 +1,7 @@
 import React from 'react';
-import './IngredientList.css';
+import '../styles/IngredientsList.css';
 
-const IngredientList = ({ ingredientsList }) => {
+const IngredientsList = ({ ingredientsList }) => {
   return (
     <div className="list-container">
       <h2 className="ingredients-title">Ingrédients</h2>
@@ -16,4 +16,4 @@ const IngredientList = ({ ingredientsList }) => {
   );
 };
 
-export default IngredientList;
+export default IngredientsList;
