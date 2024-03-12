@@ -22,5 +22,9 @@ app.get('/api/', (req, res) => {
 
 //routes
 app.use('/api/users', require('./routes/UsersRoute'));
+app.use('/api/recipes', require('./routes/RecipesRoute'));
+app.use('/api/appRecipes', require('./routes/AppRecipesRoute'));
+app.use('/api/comments', require('./routes/CommentsRoute'));
+app.use('/api/favoritesRecipes', require('./routes/FavoritesRecipesRoute'));
 
 module.exports = app;
