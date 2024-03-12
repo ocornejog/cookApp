@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+/*import logo from './logo.svg';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import './App.css';
@@ -13,17 +13,17 @@ function App() {
   
   return (
     <div className="App">
-      {/*
+      {
       <TestComponent2 name={'Hedi'} onChange={(e) => console.log('My name is', e)} />
       <div style={{width: '50%', marginTop: 16, display: 'flex', alignItems: 'center'}}>
         <DropDownList onSelect={(t, i) => console.log(t, i)}/>
       </div>
-      */}
+      }
       <Tabs>
         <div label="Chercher">
-          {/*
+          {
           Welcome to the tab, <em>Chercher</em>!
-          */}
+          }
           <ScreenTemplate/>
         </div>
         <div label="Recettes">
@@ -33,6 +33,24 @@ function App() {
           Nothing to see here, this tab is <em>Profil</em>!
         </div>
       </Tabs>
+    </div>
+  );
+}
+
+export default App;
+*/
+
+// App.js
+// App.js
+// app.js
+
+import React from 'react';
+import Delete from './delete';  // Assurez-vous d'ajuster le chemin du fichier
+
+function App() {
+  return (
+    <div className="App">
+      <Delete />
     </div>
   );
 }
