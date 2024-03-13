@@ -1,7 +1,7 @@
 // delete.js
 
 import React, { useState } from 'react';
-import './delete.css'; // Assurez-vous d'ajuster le chemin du fichier CSS
+import '../styles/delete.css'; // Assurez-vous d'ajuster le chemin du fichier CSS
 
 const Delete = () => {
   const [popupVisible, setPopupVisible] = useState(false);
