@@ -5,13 +5,11 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 class RecipeCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isFavorited: false };
   }
 
   toggleFavorite = (event) => {
     event.stopPropagation(); // Pour empêcher le déclenchement de l'événement onClick du parent
-    this.setState({ isFavorited: !this.state.isFavorited });
-    this.props.onClickFavorite(!this.state.isFavorited);
+    this.props.onClickFavorite();
   };
 
   handleClick = () => {
@@ -20,8 +18,7 @@ class RecipeCard extends React.Component {
   };
 
   render() {
-    const { title, description } = this.props;
-    const { isFavorited } = this.state;
+    const { title, description, favorite } = this.props;
     const image = process.env.PUBLIC_URL + "/Coquille.png";
 
     return (
@@ -40,7 +37,7 @@ class RecipeCard extends React.Component {
           <IoMdHeartEmpty className="heart-icon" color="#337D74" />
           <IoMdHeart
             className="heart-icon"
-            style={{ opacity: isFavorited ? 1 : 0 }}
+            style={{ opacity: favorite ? 1 : 0 }}
             color="#337D74"
           />
         </div>
