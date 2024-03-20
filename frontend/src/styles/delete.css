@@ -8,7 +8,6 @@
     cursor: pointer;
     width: 24px; /* Ajustez la taille selon vos besoins */
     height: 24px;
-    position: absolute;
     top: 250px; /* Ajustez la position verticale du logo */
     left: 600px; /* Ajustez la position horizontale du logo */
 

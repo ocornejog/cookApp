@@ -1,0 +1,146 @@
+/* fiche.css */
+
+
+.fiche-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px; /* Ajout de bordures arrondies */
+  background-color: #f0f0f0; /* Couleur de fond grise */
+}
+
+.fiche-content {
+  display: flex;
+  align-items: center; /* Aligner verticalement les éléments */
+}
+
+.recipe-wrapper {
+  flex: 1;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 10px; /* Espace entre les boutons */
+  align-items: center; /* Aligner verticalement les boutons */
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  /* Affiche les éléments en colonne */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+
+.button {
+  display: block;
+  margin: 0px auto 0 auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 44px;
+  width: 382px;
+  text-align: center;
+  height: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+
+}
+
+
+.button_container_1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 20% 0% 0% 5%;
+  margin: 30% 5% 0% 5%;
+
+
+}
+
+.button_container_2 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0% 0% 0% 5%;
+  margin: 0% 5% 0% 5%;
+
+
+}
+
+.button_container_3 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0% 0% 0% 5%;
+  margin: 0% 5% 0% 5%;
+
+
+}
+
+
+/* fiche.css */
+/* fiche.css */
+
+.recipe-card {
+ 
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* card.css */
+
+/* card.css */
+
+.recipe-card {
+  display: flex; /* Utiliser flexbox */
+  flex-direction: column; /* Afficher les éléments en colonne */
+  align-items: center; /* Aligner horizontalement les éléments */
+}
+
+.recipe-image {
+  width: 100px; /* Ajustez la largeur de l'image selon vos besoins */
+  height: auto; /* Garantir que la hauteur est ajustée proportionnellement */
+  margin-bottom: 10px; /* Ajouter de l'espace sous l'image */
+}
+
+.recipe-details {
+  display: flex; /* Utiliser flexbox */
+}
+
+.recipe-description {
+  margin-left: 20px; /* Ajouter de l'espace à gauche de la description */
+}
+
+.primary {
+  background-color: #337D74;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  width: 120px; /* Ajustez la largeur selon vos besoins */
+  height: 40px; /* Ajustez la hauteur selon vos besoins */
+  display: flex; /* Permet d'utiliser les propriétés flexbox */
+  justify-content: center; /* Centre le contenu horizontalement */
+  align-items: center; /* Centre le contenu verticalement */
+}
+
+
+.secondary {
+  background-color: #FFFFFF;
+  color: #337D74;
+  border: 1px solid #337D74;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.tertiary {
+  background-color: #FFFFFF;
+  color: #337D74;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
