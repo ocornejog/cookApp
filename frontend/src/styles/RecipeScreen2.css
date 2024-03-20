@@ -1,0 +1,19 @@
+.titre {
+    font-size: 12px;
+    font-family: 'Montaga', sans-serif;
+    text-align: center;
+}
+
+.recipe-screen2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.rectangle2 {
+    width: 18px;
+    height: 476.7px;
+    background-color: #ABD8D5;
+    margin: 0 0px;
+}

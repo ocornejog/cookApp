@@ -3,6 +3,8 @@ import './App.css';
 import './styles/ButtonComponent.css';
 import Tabs from "./components/Tabs";
 import ScreenTemplate from "./screens/ScreenTemplate";
+import RecipeScreen1 from './screens/RecipeScreen1';
+import RecipeScreen2 from './screens/RecipeScreen2';
 
 function App() {
   return (
@@ -15,7 +17,8 @@ function App() {
           <ScreenTemplate/>
         </div>
         <div label="Recettes">
-          After a while, <em>Recettes</em>!
+          <RecipeScreen1/>
+          {/* <RecipeScreen2/> */}
         </div>
         <div label="Profil" icon="person-circle">
         </div>
