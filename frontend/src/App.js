@@ -1,27 +1,18 @@
 import React from 'react';
 import './App.css';
-import './styles/ButtonComponent.css';
-import Tabs from "./components/Tabs";
-import ScreenTemplate from "./screens/ScreenTemplate";
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp'; // Importez la page d'inscription
 
 function App() {
   return (
     <div className="App">
-      <Tabs>
-        <div label="Chercher">
-          {/*
-          Welcome to the tab, <em>Chercher</em>!
-          */}
-          <ScreenTemplate/>
-        </div>
-        <div label="Recettes">
-          After a while, <em>Recettes</em>!
-        </div>
-        <div label="Profil" icon="person-circle">
-        </div>
-      </Tabs>
+      <main>
+        {/* Incluez les composants SignIn et SignUp */}
+        <SignUp />
+      </main>
     </div>
   );
 }
 
 export default App;
+

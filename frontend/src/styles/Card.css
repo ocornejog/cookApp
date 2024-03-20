@@ -1,0 +1,15 @@
+
+.recipe-card {
+  display: flex; /* Utiliser flexbox */
+  align-items: center; /* Aligner verticalement les éléments */
+}
+
+.recipe-image {
+  width: 100px; /* Ajuster la largeur de l'image selon vos besoins */
+  height: auto; /* Garantir que la hauteur est ajustée proportionnellement */
+  margin-right: 20px; /* Ajouter de l'espace à droite de l'image */
+}
+
+.recipe-description {
+  flex: 1; /* La description occupe tout l'espace restant */
+}
