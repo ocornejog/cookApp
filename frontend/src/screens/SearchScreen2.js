@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from 'react';
 //import { CheckBoxComp } from '../components/CheckBox';
 
 import C from '../constants/colors';
-import L from '../constants/listLabels';
 import { APIuri } from '../constants/Api';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
@@ -38,11 +37,7 @@ function SearchScreen2() {
 
     // put here your states
 
-    const [advancedSearch, setAdvancedSearch] = useState(false);
-    const [searchText, setSearchText] = useState("");
-    const [annotation, setAnnotation] = useState({});
     const [recipesData, setRecipesData] = useState([]);
-
     
 
     // put here your functions and handlers

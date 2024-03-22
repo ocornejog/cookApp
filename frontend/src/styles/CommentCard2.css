@@ -1,13 +1,10 @@
 .comment-card {
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-    width: 311px; /* Ajustez cette valeur selon vos besoins */
     height: auto;
     text-align: left;
-
 }
 
 .header {

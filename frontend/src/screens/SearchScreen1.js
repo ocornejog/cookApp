@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from 'react';
 //import { CheckBoxComp } from '../components/CheckBox';
 
 import C from '../constants/colors';
-import L from '../constants/listLabels';
 import { APIuri } from '../constants/Api';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
@@ -54,7 +53,7 @@ function SearchScreen1() {
     //---------------------------------------------------------
     // Render your screen here
     return (
-        <div className="screen-view-1" style={{ backgroundColor: C.white }}>
+    <div className="screen-view-1" style={{ backgroundColor: C.white }}>
         <div
             className="screen-view-1"
             style={{ width: "95%", backgroundColor: C.white }}
@@ -88,7 +87,7 @@ function SearchScreen1() {
             
 
         </div>
-        </div>
+    </div>
     );
 }
 

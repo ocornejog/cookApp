@@ -5,14 +5,16 @@ import Tabs from "./components/Tabs";
 import ScreenTemplate from "./screens/ScreenTemplate";
 import SearchScreen1 from './screens/SearchScreen1';
 import SearchScreen2 from './screens/SearchScreen2';
+import SearchScreen3 from './screens/SearchScreen3';
 
 function App() {
   return (
     <div className="App">
       <Tabs>
         <div label="Chercher">
-          <SearchScreen2/>
+          {/*<SearchScreen2/>*/}
           {/*<SearchScreen1/>*/}
+          {<SearchScreen3/>}
         </div>
         <div label="Recettes">
           <ScreenTemplate/>
