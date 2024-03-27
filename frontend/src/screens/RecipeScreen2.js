@@ -134,6 +134,19 @@ function RecipeScreen2() {
         "Fêtez Pâques avec nos recettes gourmandes"
       </span>
     ),
+    "Saint-Valentin": (
+      <span
+        style={{
+          fontFamily: "Montaga",
+          fontSize: "32px",
+          color: "black",
+          fontWeight: "normal",
+        }}
+      >
+        "Célébrez la Saint-Valentin avec nos recettes romantiques"
+      </span>
+    ),
+
     "Recettes pas chères": (
       <span
         style={{

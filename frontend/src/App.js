@@ -19,8 +19,8 @@ function App() {
         <Tabs>
           <div label="Chercher">
             {/*<SearchScreen2/>*/}
-            {/*<SearchScreen1/>*/}
-            {<SearchScreen3 />}
+            <SearchScreen1/>
+            {/* {<SearchScreen3 />} */}
           </div>
           <div label="Recettes">
             <Routes>
