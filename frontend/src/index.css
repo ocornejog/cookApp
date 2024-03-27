@@ -76,3 +76,12 @@ code {
   flex-direction: column;
   align-self: center;
 }
+
+.backgroundTemplateImage {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-image: url('./assets/images/food1.png');
+  background-size: cover;
+  background-position: center;
+}
