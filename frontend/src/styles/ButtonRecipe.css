@@ -20,7 +20,7 @@
     height: 100%;
     width: 192px;
     margin: 0 10px;
-    font-size: 'PX';
+    font-size: 15px;
 }
 
 
@@ -33,8 +33,9 @@
 
 @media only screen and (max-width: 997px) {
     .rectangle {
+        height: auto;
         width: 100%;
-        height: 18px;
+        margin: 0;
     }
 
     .button-catégorie,
@@ -44,4 +45,7 @@
     .button-Favoris {
         width: 100%;
     }
+
+   
+
 }
