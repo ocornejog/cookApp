@@ -23,11 +23,9 @@
 
 .button-2 {
     display: block;
-    margin: 0px auto 0 auto;
-    padding: 10px 20px;
     cursor: pointer;
     border-radius: 40px;
-    width: 382px;
+    width: 100%;
     text-align: center;
     height: 37px;
     font-family: 'Montserrat', sans-serif;
