@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 
 import C from '../constants/colors';
 import { APIuri } from '../constants/Api';
+import { useNavigate } from 'react-router-dom';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
 /*
@@ -33,6 +34,8 @@ function SearchScreen2() {
         { id: 10, title: "Coquiles Saint-jacques", description: `Ces délicieuses coquilles sont servies de nuit et sont préparées avec des champignons dans une sauce à base de crème fraîche. Le tout est ensuite gratiné au four pour obtenir une croûte raffinée et savoureuse, une entrée idéale et joliment épaisse!`, favorite: false },
     ];
 
+    const navigate = useNavigate();
+
     //const auth_context = useContext(AuthContext); Constant to be used later
 
     // put here your states
@@ -44,6 +47,7 @@ function SearchScreen2() {
 
     const onClickCard = async(e) => {
         console.log('Trying to do something after clicking a card with id: ', e);
+        navigate('/SearchScreen3');
     };
 
     const onClickFavorite = async(e) => {

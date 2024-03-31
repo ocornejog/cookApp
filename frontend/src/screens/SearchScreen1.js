@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState, useContext } from 'react';
-//import { CheckBoxComp } from '../components/CheckBox';
+import { useNavigate } from 'react-router-dom';
 
 import C from '../constants/colors';
 import { APIuri } from '../constants/Api';
@@ -10,6 +10,11 @@ import { APIuri } from '../constants/Api';
 Import your components and constants here
 */
 import { ExploreCard } from '../components/ExploreCard';
+import { useDispatch, Provider, useSelector } from 'react-redux';
+import { setCuisine, selectCuisine, setCuisineComplement, selectCuisineComplement, setDish, selectDish, setDiet, selectDiet, 
+setPreparationTime, selectPreparationTime, setCulinaryProficiency, selectCulinaryProficiency, setPopularity, selectPopularity, 
+setIngredients, selectIngredients, setNutritionalValue, selectNutritionalValue, setAmountPeople, selectAmountPeople, setSearchText,
+selectSearchText, setSpecificRecipe, selectSpecificRecipe } from '../constants/searchConfig/slices/navSlice';
 
 /*
 Import your used redux here
@@ -20,27 +25,64 @@ Import your used redux here
 function SearchScreen1() {
     // put here your constants
 
-    
+    const dispatch = useDispatch();
+    const selectedCuisine = useSelector(selectCuisine);
+    const selectedCuisineComplement = useSelector(selectCuisineComplement);
+    const selectedDish = useSelector(selectDish);
+    const selectedDiet = useSelector(selectDiet);
+    const selectedPreparationTime = useSelector(selectPreparationTime);
+    const selectedCulinaryProficiency = useSelector(selectCulinaryProficiency);
+    const selectedPopularity = useSelector(selectPopularity);
+    const selectedIngredients = useSelector(selectIngredients);
+    const selectedNutritionalValue = useSelector(selectNutritionalValue);
+    const selectedAmountPeople = useSelector(selectAmountPeople);
+    const selectedSearchText = useSelector(selectSearchText);
+    const selectedSpecificRecipe = useSelector(selectSpecificRecipe);
+    const navigate = useNavigate();
 
     //const auth_context = useContext(AuthContext); Constant to be used later
 
     // put here your states
 
     const [advancedSearch, setAdvancedSearch] = useState(false);
-    const [searchText, setSearchText] = useState("");
-    const [annotation, setAnnotation] = useState({});
-
-    
+    const [searchingText, setSearchingText] = useState("");
+    const [annotation, setAnnotation] = useState({});    
 
     // put here your functions and handlers
 
     const onSearchByText = async(e) => {
         console.log(`I want to search`, e);
-        setSearchText(e)
+        setSearchingText(e);
+        dispatch(setCuisine(null));
+        dispatch(setCuisineComplement(null));
+        dispatch(setDish(null));
+        dispatch(setDiet(null));
+        dispatch(setPreparationTime(null));
+        dispatch(setCulinaryProficiency(null));
+        dispatch(setPopularity(null));
+        dispatch(setIngredients(null));
+        dispatch(setNutritionalValue(null));
+        dispatch(setAmountPeople(null));
+        dispatch(setSearchText(e));
+        dispatch(setSpecificRecipe(null));
+        navigate('/SearchScreen2');
     };
 
     const onSubmitForm = async() => {
         console.log('Submitting form');
+        dispatch(setCuisine(annotation.cuisine));
+        dispatch(setCuisineComplement(annotation.cuisineComplement));
+        dispatch(setDish(annotation.dish));
+        dispatch(setDiet(annotation.diet));
+        dispatch(setPreparationTime(annotation.preparationTime));
+        dispatch(setCulinaryProficiency(annotation.culinaryProficiency));
+        dispatch(setPopularity(annotation.popularity));
+        dispatch(setIngredients(annotation.ingredients));
+        dispatch(setNutritionalValue(annotation.nutritionalValue));
+        dispatch(setAmountPeople(annotation.amountPeople));
+        dispatch(setSearchText(null));
+        dispatch(setSpecificRecipe(null));
+        navigate('/SearchScreen2');
     };
 
     //put here your permanent operations
