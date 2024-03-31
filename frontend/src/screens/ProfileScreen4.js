@@ -8,13 +8,61 @@ import L from '../constants/listLabels';
 import I from '../constants/listImages';
 import PhotoSelection from '../components/PhotoSelection';
 import DropDownList from '../components/DropDownList';
+import { CheckBox } from '../components/CheckBox';
 
 function ProfileScreen4() {
+  const [titre, setTitre] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [cuisine, setCuisine] = React.useState(0);
   const [dish, setDish] = React.useState(0);
   const [diet, setDiet] = React.useState(0);
   const [time, setTime] = React.useState(0);
   const [level, setLevel] = React.useState(0);
+  const [listLabels1, setListLabels1] = React.useState([]);
+  const [listLabels2, setListLabels2] = React.useState([]);
+  const [etapes, setEtapes] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([]);
+
+  const handleAddIngredients = () => {
+    setIngredients([...ingredients, ""]);
+  };
+
+  const handleChangeIngredients = (e,index) => {
+    let newData = ingredients;
+    newData[index] = e;
+    setIngredients(newData);
+  };
+
+  const handleDelIngredients = (index) => {
+    let newData = [];
+    for (let i=0;i<ingredients.length;i++) {
+      if (i !== index) {
+        newData[i] = ingredients[i];
+      };
+    };
+    setIngredients(newData);
+  };
+
+  const handleAddEtapes = () => {
+    setEtapes([...etapes, ""]);
+  };
+
+  const handleChangeEtapes = (e,index) => {
+    let newData = etapes;
+    newData[index] = e;
+    setEtapes(newData);
+  };
+
+  const handleDelEtapes = (index) => {
+    let newData = [];
+    for (let i=0;i<etapes.length;i++) {
+      if (i !== index) {
+        newData[i] = etapes[i];
+      };
+    };
+    setEtapes(newData);
+  }
+
   return (
     <div>
       <div style={{display:'flex', flexDirection:'row', maxWidth:'100%', gap:'1rem', margin: '2rem auto', alignItems:'center'}}>
@@ -22,12 +70,12 @@ function ProfileScreen4() {
         fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginTop:'-140px', marginLeft:'14px'}}>
           * Intitulé de la recette
           <div style={{marginLeft:'264px', width:'40%',marginTop:'-40px'}}>
-            <StyledTextInput placeholder="" />
+            <StyledTextInput placeholder="" text={e => {setTitre(e)}}/>
           </div>
           <div style={{marginTop:'50px', marginLeft:'10px'}}>
             Description de la recette
             <div style={{marginLeft:'305px', width:'70%',marginTop:'-40px'}}>
-              <StyledTextInput placeholder="" />
+              <StyledTextInput placeholder="" text={e => {setDescription(e)}}/>
             </div>
           </div>
         </div>
@@ -58,7 +106,7 @@ function ProfileScreen4() {
                           onSelect={(value, index) => setDiet(index)}/>
         </div>
       </div>
-      <div style={{display:'flex', flexWrap:'wrap', maxWidth:'60%', gap:'178px', margin: '2rem auto', marginTop:'59px',
+      <div style={{display:'flex', flexWrap:'wrap', maxWidth:'60%', gap:'178px', margin:'auto', marginTop:'59px',
         marginLeft:'329px'}}>
         <div style={{flex:1}}>
           <div style={{color:C.green, fontFamily:"Montserrat", fontWeight:'330', textAlign:'left', marginBottom:'10px'}}>
@@ -73,6 +121,69 @@ function ProfileScreen4() {
           </div>
           <DropDownList optionsList={L.level} optionsImages={I.level} label={'Niveau de compétence culinaire'} 
           onSelect={(value, index) => setLevel(index)}/>
+        </div>
+      </div>
+      <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', gap:'178px', marginTop:'78px',
+        marginLeft:'26px'}}>
+        <div style={{flex:1}}>
+          <div style ={{color:C.green, textAlign: 'left',
+            fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px'}}>
+              Valeur nutritionelle
+          </div>
+          <CheckBox listLabels={['Equilibré','Faible en calories','Riche en protéines','Faible en gras']} onSelect={(e) => setListLabels1(e)}/>
+          <div style={{marginLeft:'343px', marginTop:'-142px'}}>
+            <CheckBox listLabels={['Faible en sucre','Riche en fibres','Riche en vitamines','Riche en minéraux']} onSelect={(e) => setListLabels2(e)}/>
+          </div>
+        </div>
+        <div style={{flex:1}}>
+          <div style ={{color:C.green, textAlign: 'left',
+              fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px',  marginLeft:'159px'}}>
+                *Ingrédients nécessaires
+            </div>
+            {ingredients.length === 0 ? <p></p>
+            : ingredients.map((ingredients,index) => 
+              <div key={index} style={{marginBottom:'11px',display:'flex', flexWrap:'wrap', gap:'29px', maxWidth:'100%', marginLeft:'100px'}}>
+                <div style={{flex:1}}>
+                  <StyledTextInput text={e => handleChangeIngredients(e,index)}/>
+                </div>
+                <div style={{flex:1, marginRight:'-200px'}}>
+                  <ButtonComponent type={'secondary'} text={'Supprimer'} onClick={() => handleDelIngredients(index)}/>
+                </div>
+              </div>)}
+            <div style={{marginLeft:'300px'}}>
+              <ButtonComponent type={'secondary'} text={'Ajouter un ingédient'} onClick={() => handleAddIngredients()}/>
+            </div>
+        </div>
+      </div>
+      <div style ={{display:'flex',color:C.green, textAlign: 'left',
+              fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginTop:'73px', marginLeft:'13px'}}>
+                *Etapes de préparation
+      </div>
+      {etapes.length == 0 ? <p></p>
+      : etapes.map((etapes,index) => 
+      <div key={index} style={{marginBottom:'11px',display:'flex', flexWrap:'wrap', gap:'20px'}}>
+        <div style={{marginLeft:'28px', marginTop:'10px', paddingRight:'26px', fontSize: '20px', fontFamily:"Montserrat", fontWeight:'330'}}>
+          Etape {index+1}
+        </div>
+        <div style={{flex:1}}>
+          <StyledTextInput text={e => handleChangeEtapes(e,index)}/>
+        </div>
+        <div style={{flex:1}}>
+          <ButtonComponent type={'secondary'} text={'Supprimer'} onClick={() => handleDelEtapes(index)}/>
+        </div>
+      </div>)}
+      <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', margin:'auto', marginTop:'34px'}}>
+          <ButtonComponent type={'secondary'} text={'Ajouter une étape'} onClick={() => handleAddEtapes()}/>
+      </div>
+      <div style={{color:C.grey, marginTop:'46px', textAlign:'center',fontSize:'19px', fontFamily:'Montserrat', fontWeight:'330'}}>
+        * Champs obligatoires
+      </div>
+      <div style={{display:'flex', flexWrap:'wrap', maxWidth:'40%', gap:'178px', margin:'auto', marginBottom:'32px'}}>
+        <div style={{flex:1}}>
+          <ButtonComponent type={'primary'} text={'Annuler'} onClick={() => console.log('Pressed cancel')}/>
+        </div>
+        <div style={{flex:1}}>
+          <ButtonComponent type={'primary'} text={'Publier la recette'} onClick={() => console.log(listLabels1,listLabels2)}/>
         </div>
       </div>
     </div>

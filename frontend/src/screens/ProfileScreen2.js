@@ -45,9 +45,9 @@ function ProfileScreen2() {
           <StyledTextInput placeholder="??/??/????"/>
         </div>
       </div>
-      <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'10px', fontSize: '20px', fontFamily:"Montserrat",
+      <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'34px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
-        Date de naissance
+        Mot de passe
         <div style={{marginLeft:'33px', width:'41%',marginTop:'-20px'}}>
           <ButtonComponent type="secondary" text="Modifier" onClick={() => {console.log("Button Modifier clicked !")}}/>
         </div>
