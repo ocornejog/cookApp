@@ -261,19 +261,14 @@ function RecipeScreen2() {
         return (
           <React.Fragment key={index}>
             <>
-              <Link
-                to={`/detail/${category}/${buttonText}/recipe/${item.title}`}
-                style={{ textDecoration: "none" }}
-              >
-                <RecipeCard
-                  title={item.title}
-                  description={item.description}
-                  onClick={() => handleClick(item.title)}
-                  onClickFavorite={(e) =>
-                    console.log("My favorite status is: ", e)
-                  }
-                />
-              </Link>
+              <RecipeCard
+                title={item.title}
+                description={item.description}
+                onClick={() => handleClick(item.title)}
+                onClickFavorite={(e) =>
+                  console.log("My favorite status is: ", e)
+                }
+              />
             </>
           </React.Fragment>
         );
