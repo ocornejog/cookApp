@@ -16,10 +16,12 @@
 .name {
     margin-left: 10px;
     flex: 1;
+    font-family: "Montserrat", sans-serif;
 }
 
 .date {
     margin-left: 16px;
+    font-family: "Montserrat", sans-serif;
 }
 
 .stars2 {

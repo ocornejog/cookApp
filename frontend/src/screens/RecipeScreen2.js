@@ -190,51 +190,61 @@ function RecipeScreen2() {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg",  
     },
     {
       title: "Coquilles Saint-Jacques gratinées 2",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
     {
       title: "Coquilles Saint-Jacques gratinées",
       description:
         "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
+      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
     },
   ];
 
@@ -264,6 +274,7 @@ function RecipeScreen2() {
               <RecipeCard
                 title={item.title}
                 description={item.description}
+                image={item.image}
                 onClick={() => handleClick(item.title)}
                 onClickFavorite={(e) =>
                   console.log("My favorite status is: ", e)

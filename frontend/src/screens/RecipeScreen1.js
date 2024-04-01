@@ -41,7 +41,7 @@ function RecipeScreen1() {
           />
         </div>
       </div>
-      <div class="rectangle"></div>
+      <div className="rectangle"></div>
       <div className="button-ingrédient" style={{ textAlign: "center" }}>
         <h3 style={{ textDecoration: "underline" }}>INGREDIENT</h3>
         <div>
@@ -77,7 +77,7 @@ function RecipeScreen1() {
           />
         </div>
       </div>
-      <div class="rectangle"></div>
+      <div className="rectangle"></div>
       <div className="button-classique" style={{ textAlign: "center" }}>
         <h3 style={{ textDecoration: "underline" }}>LES CLASSIQUES </h3>
         <div>
@@ -109,7 +109,7 @@ function RecipeScreen1() {
           />
         </div>
       </div>
-      <div class="rectangle"></div>
+      <div className="rectangle"></div>
       <div className="button-fête" style={{ textAlign: "center" }}>
         <h3 style={{ textDecoration: "underline" }}> SPECIALE FÊTE</h3>
         <div>
@@ -145,7 +145,7 @@ function RecipeScreen1() {
           />
         </div>
       </div>
-      <div class="rectangle"></div>
+      <div className="rectangle"></div>
       <div className="button-Favoris" style={{ textAlign: "center" }}>
         <h3 style={{ textDecoration: "underline" }}>FAVORIS</h3>
         <div 
