@@ -1,0 +1,18 @@
+.image-container {
+    width: 100%;
+    height: 50vh; /* Vous pouvez ajuster cette valeur selon vos besoins */
+    margin-top: 20px;
+}
+
+.responsive-image {
+    width: 100%;
+    height: 100%; /* L'image prendra toute la hauteur du conteneur */
+    object-fit: cover; /* L'image couvrira toute la largeur et la hauteur du conteneur */
+}
+
+/* Media Query pour les appareils avec une largeur maximale de 600px (typiquement des téléphones) */
+@media only screen and (max-width: 992px) {
+    .image-container {
+        height: 20vh; /* Ajustez la hauteur pour les petits écrans */
+    }
+}
