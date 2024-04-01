@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import C from '../constants/colors';
-import { APIuri } from '../constants/Api';
+import API from '../constants/Api';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
 /*

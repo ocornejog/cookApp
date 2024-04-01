@@ -18,8 +18,7 @@ class RecipeCard extends React.Component {
   };
 
   render() {
-    const { title, description, favorite } = this.props;
-    const image = process.env.PUBLIC_URL + "/Coquille.png";
+    const { title, description, favorite, image } = this.props;
 
     return (
       <div className="recipe-card" onClick={this.handleClick}>

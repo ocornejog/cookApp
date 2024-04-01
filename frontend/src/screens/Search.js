@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-ro
 //import { CheckBoxComp } from '../components/CheckBox';
 
 import C from '../constants/colors';
-import { APIuri } from '../constants/Api';
+import API from '../constants/Api';
 import {Provider} from 'react-redux';
 import {store} from '../constants/searchConfig/store';
 import SearchScreen1 from "./SearchScreen1";

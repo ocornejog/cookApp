@@ -46,7 +46,7 @@ function App() {
         </div>
         <div label="Profil" icon="person-circle">
           {/* Incluez les composants SignIn et SignUp */}
-          <SignUp />
+          <SignIn />
         </div>
       </Tabs>
     </div>
