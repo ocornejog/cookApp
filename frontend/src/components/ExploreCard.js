@@ -22,6 +22,7 @@ export const ExploreCard = (props) => {
     const [popularity, setPopularity] = React.useState(0);
     const [nutritionalValue, setNutritionalValue] = React.useState([]);
     const [ingredients, setIngredients] = React.useState('');
+    const [amountPeople, setAmountPeople] = React.useState('');
 
     // Function to handle the operations and output props
     const handleClickLupe = () => {
@@ -42,7 +43,8 @@ export const ExploreCard = (props) => {
             culinaryProficiency: level,
             popularity,
             ingredients,
-            nutritionalValue
+            nutritionalValue,
+            amountPeople
         };
         props.annotation(myAnnotation);
     };
@@ -53,7 +55,7 @@ export const ExploreCard = (props) => {
 
     React.useEffect(() => {
         submitAnnotation();
-    }, [cuisine, complementCuisine, dish, diet, time, level, popularity, nutritionalValue, ingredients])
+    }, [cuisine, complementCuisine, dish, diet, time, level, popularity, nutritionalValue, ingredients, amountPeople])
 
     //---------------------------------------------------
     // Rendering the component ...
@@ -63,7 +65,7 @@ export const ExploreCard = (props) => {
                 <StyledTextInput passwordInput={false} placeholder={props.placeholder} text={e => setSearchText(e)}/>
                 <ion-icon
                     name={'search-outline'}
-                    style={{ position: 'absolute', top: '50%', right: '4px', transform: 'translateY(-50%)',
+                    style={{ position: 'absolute', top: '40%', right: '4px', transform: 'translateY(-50%)',
                     cursor: 'pointer', color: '#337D74', fontSize: '24px' }}
                     onClick={() => handleClickLupe()}
                 ></ion-icon>
@@ -133,6 +135,11 @@ export const ExploreCard = (props) => {
                                 onChange={(e) => setIngredients(e.target.value)} 
                                 />
                             </div>
+                            <div className="montserrat_700" style={{ fontSize: '14px', color: C.green, textAlign: 'left',
+                            textAlignVertical: 'center', justifyContent: 'center', marginTop: '16px', marginBottom: '16px' }}>
+                                {"Quantité de personnes"}
+                            </div>
+                            <StyledTextInput passwordInput={false} placeholder={""} text={e => setAmountPeople(e)}/>
                         </div>
                     </div>
                     <div className="item">

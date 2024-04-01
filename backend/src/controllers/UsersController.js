@@ -32,4 +32,9 @@ userCtrl.findByEmail = async (req, res) => {
     res.json(foundUser);
 };
 
+userCtrl.findById = async (req, res) => {
+    const foundUser = await User.findOne({ '_id': req.params.id });
+    res.json(foundUser);
+};
+
 module.exports = userCtrl;

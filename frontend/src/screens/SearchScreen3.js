@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState, useContext } from 'react';
 
 import C from '../constants/colors';
-import { APIuri } from '../constants/Api';
+import API from '../constants/Api';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
 /*
@@ -13,6 +13,9 @@ import IngredientsList from '../components/IngredientsList';
 import { CommentCard1 } from '../components/CommentCards';
 import CommentCard2 from '../components/CommentCard2';
 
+import { useDispatch, Provider, useSelector } from 'react-redux';
+import { setSpecificRecipe, selectSpecificRecipe } from '../constants/searchConfig/slices/navSlice';
+
 /*
 Import your used redux here
 */
@@ -22,21 +25,8 @@ Import your used redux here
 function SearchScreen3() {
 
     // put here your constants
-    const stepList1 = [
-        'Préparez un court-bouillon avec 2 verres d’eau, le bouquet garni, l’oignon émincé, du gros sel et du poivre. Ajoutez le vin et faites pocher les noix et le corail de Saint-Jacques pendant 3 minutes.',
-        'Égouttez-les et réservez-les. Laissez réduire le court-bouillon pendant que vous émincez les champignons. Faites-les sauter doucement dans 30 g de beurre.',
-        'Ajoutez le corail et les noix aux champignons, faites dorer quelques instants, salez, poivrez, couvrez et gardez au chaud.',
-        'Préparez une sauce veloutée : faites chauffer 50 g de beurre, ajoutez la farine, mélangez et mouillez avec le court-bouillon filtré. Laissez mijoter tout en tournant jusqu’à obtenir une sauce onctueuse.',
-        'Battez le jaune d’œuf avec la crème fraîche, puis ajoutez cette liaison à la sauce veloutée (hors du feu pour éviter que le jaune d’œuf ne cuise).',
-        'Garnissez les coquilles avec les noix, le corail et les champignons.',
-        'Nappez de velouté, saupoudrez d’un peu de chapelure et arrosez avec le reste du beurre fondu.',
-        'Mettez à gratiner au four pendant environ 10 minutes à 220°C (thermostat 7-8).'
-    ];
 
-    const ingredientsList1 = ['8 coquilles Saint-Jacques', '125 g de champignons de Paris', '1 oignon', '1 verre de vin blanc sec', 
-    '1 petit pot de crème fraîche (20 cl)', '150 g de beurre', '1 cuillère à soupe de farine', 'Sel et poivre', 'Chapelure'];
-
-    const image = process.env.PUBLIC_URL + "/Coquille.png";
+    const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
 
     const data = [
         { id: 1, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
@@ -51,6 +41,9 @@ function SearchScreen3() {
         { id: 10, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
     ];
 
+    const dispatch = useDispatch();
+    const selectedSpecificRecipe = useSelector(selectSpecificRecipe);
+
     //const auth_context = useContext(AuthContext); Constant to be used later
 
     // put here your states
@@ -61,6 +54,7 @@ function SearchScreen3() {
     const [stepList, setStepList] = useState([]);
     const [ingredientsList, setIngredientsList] = useState([]);
     const [commentsData, setCommentsData] = useState([]);
+    const [image, setImage] = useState("");
 
 
     // put here your functions and handlers
@@ -68,16 +62,72 @@ function SearchScreen3() {
     const onSubmitComment = async(myComment, myStarRaiting) => {
         setComment(myComment);
         setStarRaiting(myStarRaiting);
+        if(myComment.length !== 0){
+            await fetch(`${API.APIuri}/api/comments/create`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: default_user_id, 
+                    recipe_id: selectedSpecificRecipe, 
+                    comment: myComment, 
+                    raiting: myStarRaiting, 
+                    date_of_publication: (new Date(Date.now()).toDateString()).toString()
+                })
+            });
+        }
+    };
+
+    const settingCommentsData = async(comment, index) => {
+        const response3 = await fetch(`${API.APIuri}/api/users/userID/${comment.user_id}`);
+        const foundUser = await response3.json();
+
+        const newItem = {
+            name: `${foundUser.name} ${foundUser.lastname}`, 
+            date: new Date(comment.date_of_publication),
+            comment: comment.comment, 
+            starRaiting: comment.raiting
+        }
+        if(index === 0) {
+            setCommentsData([newItem]);
+        } else {
+            setCommentsData(prevComments => [...prevComments, newItem]);
+        } 
+    };
+
+    const fetchingRecipe = async() => {
+        if((selectedSpecificRecipe !== null) && (selectedSpecificRecipe !== "")){
+            const response = await fetch(`${API.APIuri}/api/recipes/recipe/${selectedSpecificRecipe}`);
+            const recipe = await response.json();
+            const recipeData = recipe[0];
+            setTitle(recipeData.name);
+            setStepList(recipeData.preparation_steps);
+            setImage(recipeData.photo);
+            const newIngredients = recipeData.ingredients.map((element, index) => {
+                return `${recipeData.quantity_ingredients[index]} ${element} `;
+            });
+            setIngredientsList(newIngredients);
+        }
+    };
+
+    const fetchingComments = async() => {
+        if((selectedSpecificRecipe !== null) && (selectedSpecificRecipe !== "")){
+            const response2 = await fetch(`${API.APIuri}/api/comments/recipe/${selectedSpecificRecipe}`);
+            const comments = await response2.json();
+            comments.map((comment, index) => {
+                settingCommentsData(comment, index);
+            });
+        }
     };
 
     //put here your permanent operations
 
     useEffect(() => {
-        setTitle("Les Coquilles Saint Jacques gratinés");
-        setStepList(stepList1);
-        setIngredientsList(ingredientsList1);
-        setCommentsData(data);
-    }, []);
+        setCommentsData([]);
+        fetchingRecipe();
+        fetchingComments();
+    }, [selectedSpecificRecipe]);
 
     useEffect(() => {
         console.log('My creative comment is:', comment, 'and my raiting of this dish is:', starRaiting);
@@ -95,7 +145,7 @@ function SearchScreen3() {
 
 
             <div className='montserrat_700' style={{fontSize: '11px', color: C.grey, textAlign: 'left', width: '100%'}}>
-                {`Chercher > Résultats de votre recherche > Les Coquilles Saint Jaques gratinés`}
+                {`Chercher > Résultats de votre recherche > ${title}`}
             </div>
             <div className='montserrat_700' style={{fontSize: '28px', color: C.black, textAlign: 'center', 
             width: '100%', textDecoration:'underline', marginTop: '24px'}}>
@@ -113,9 +163,11 @@ function SearchScreen3() {
                             <div style={{ width: '50%' }}>
                                 <IngredientsList ingredientsList={ingredientsList} />
                             </div>
+                            {(image.length !== 0) &&
                             <div style={{ width: '50%', marginLeft: '8px', alignSelf: 'center' }}>
                                 <img style={{ width: '90%', height: 'auto', objectFit: 'cover' }} src={image} alt={title} />
                             </div>
+                            }
                         </div>
                         <div style={{ width: '50%', alignSelf: 'center', marginTop: '16px' }}>
                             <CommentCard1 
@@ -125,14 +177,21 @@ function SearchScreen3() {
                         marginTop: '16px', width: '100%'}}>
                             {`Commentaires`}
                         </div>
+                        {(commentsData.length !== 0)?
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', 
                         marginTop: '16px', marginBottom: '16px', width: '100%' }}>
-                        {commentsData.map((item, index) => (
-                            <div key={index} style={{ width: '311px' }}>
-                                <CommentCard2 name={item.name} date={item.date} comment={item.comment} starRating={item.starRaiting}/>
-                            </div>
-                        ))}
+                            {commentsData.map((item, index) => (
+                                <div key={index} style={{ width: '311px' }}>
+                                    <CommentCard2 name={item.name} date={item.date} comment={item.comment} starRating={item.starRaiting}/>
+                                </div>
+                            ))}
                         </div>
+                        :
+                        <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '16px', textAlign: 'center', 
+                        width: '60%', marginTop: '16px', marginBottom: '16px', alignSelf: 'center' }}>
+                            {`Il n'y a aucun commentaire sur la recette pour le moment`}
+                        </div>  
+                        }
                     </div>
                 </div>
             </div>   
