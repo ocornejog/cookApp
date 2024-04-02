@@ -12,4 +12,6 @@ router.route("/create").post(userCtrl.createUser);
 
 router.route("/:email").get(userCtrl.findByEmail);
 
+router.route("/userID/:id").get(userCtrl.findById);
+
 module.exports = router;

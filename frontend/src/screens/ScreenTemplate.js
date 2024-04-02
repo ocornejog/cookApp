@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 
 import C from '../constants/colors';
 import L from '../constants/listLabels';
-import { APIuri } from '../constants/Api';
+import API from '../constants/Api';
 //import { AuthContext } from '../constants/Context'; Context to be created
 
 /*

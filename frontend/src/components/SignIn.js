@@ -24,8 +24,8 @@ function SignIn() {
 
   return (
     <div className="sign-in-container">
-      <img src={logo} alt="Logo de votre site" />
-      <form onSubmit={handleSubmit}>
+      <img src={logo} alt="Logo de votre site" style={{ width: '50%', objectFit: 'contain' }} />
+      <form onSubmit={handleSubmit} style={{marginTop: '32px'}}>
         <div className="input-group">
           <label htmlFor="email">Email:</label>
           <input

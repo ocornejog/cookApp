@@ -26,10 +26,6 @@ const recipesSchema = new Schema({
         type: Number,
         default: 0
     },
-    ingredients: {
-        type: [String],
-        default: []
-    },
     culinary_skill_level: {
         type: Number,
         default: 0
@@ -45,6 +41,18 @@ const recipesSchema = new Schema({
         type: String,
         trim: true,
         default: "data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAUFBQUFBQUGBgUICAcICAsKCQkKCxEMDQwNDBEaEBMQEBMQGhcbFhUWGxcpIBwcICkvJyUnLzkzMzlHREddXX0BBQUFBQUFBQYGBQgIBwgICwoJCQoLEQwNDA0MERoQExAQExAaFxsWFRYbFykgHBwgKS8nJScvOTMzOUdER11dff/AABEIACsAQAMBIgACEQEDEQH/xABgAAACAwEBAAAAAAAAAAAAAAADBAECBQAHEAACAgICAwADAAAAAAAAAAAAAQIDEZIhUxMxchIjggEBAQEAAAAAAAAAAAAAAAAAAAIBEQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEQMRAD8A9dpsuxH9095D1dl3ZPaQlSuIjsSSGo2Wdk9pBVZZ2T2kBQVGKF8lnZPaR3ks7J7SKokCHZZ2T2kDcrOye0i7KP3H6KgxqvUR2AhU+IjkWSk4gqF4sKmAYkHknIUlg37j9FmCzz/RsGDU+Ij1cjJqbxEerbMQ0IsMmJxbCxbDTWSfyA5ZOWBdsE5cx+irbAtvMfqIH//Z"
+    },
+    ingredients: {
+        type: [String],
+        default: []
+    },
+    quantity_ingredients: {
+        type: [String],
+        default: []
+    },
+    tags: {
+        type: [String], 
+        default: []
     }
 });
 

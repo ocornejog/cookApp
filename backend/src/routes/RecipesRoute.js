@@ -4,4 +4,10 @@ const recipeCtrl = require('../controllers/RecipesController');
 
 router.route("/recipes").get(recipeCtrl.getRecipes);
 
+router.route("/create").post(recipeCtrl.createRecipe);
+
+router.route("/recipe/:recipeID").get(recipeCtrl.getSpecificRecipe);
+
+router.route("/searchByTags/:searchString").get(recipeCtrl.searchingTags);
+
 module.exports = router;

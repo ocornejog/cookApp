@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Montserrat',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Montserrat','Montaga'
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,4 +75,13 @@ code {
   align-items: center;
   flex-direction: column;
   align-self: center;
+}
+
+.backgroundTemplateImage {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-image: url('./assets/images/food1.png');
+  background-size: cover;
+  background-position: center;
 }

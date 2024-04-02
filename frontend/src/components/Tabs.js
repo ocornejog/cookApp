@@ -26,7 +26,7 @@ const Tabs = ({ children }) => {
                     key={label}
                     label={label}
                     icon={child.props.icon}
-                    onClick={onClickTabItem}
+                    onClick={() => onClickTabItem(label)}
                 />
                 );
             })}
@@ -34,8 +34,8 @@ const Tabs = ({ children }) => {
         </div>
         <div className="tab-content">
             {children.map((child) => {
-            if (child.props.label !== activeTab) return undefined;
-            return child.props.children;
+              if (child.props.label !== activeTab) return undefined;
+              return child.props.children;
             })}
         </div>
     </div>
