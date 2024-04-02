@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import '../styles/ForgotPassword.css';
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
 
   const handleEmailChange = (event) => {
@@ -33,7 +37,7 @@ function ForgotPassword() {
         </div>
         <ButtonComponent type="primary" onClick={handleSubmit} text="Réinitialiser le mot de passe" />
       </form>
-      <p>Vous n'avez pas de compte ? <a href="/inscription">Créer un compte</a></p>
+      <p>Vous n'avez pas de compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/SignUp")}>Créer un compte</a></p>
     </div>
   );
 }

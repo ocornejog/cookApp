@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import '../styles/SignUp.css';
+import { useNavigate } from 'react-router-dom';  
 
 function SignUp() {
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -105,7 +109,7 @@ function SignUp() {
         </div>
         <ButtonComponent type="primary" onClick={handleSubmit} text="Inscription" />
       </form>
-      <p>Déjà un compte ? <a href="/connexion">Connexion</a></p>
+      <p>Déjà un compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/")}>Connexion</a></p>
     </div>
   );
 }

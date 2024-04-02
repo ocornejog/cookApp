@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import logo from '../logo/CookAppLogo 3.png'; // Importez votre logo ici
 import '../styles/SignIn.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,7 +50,7 @@ function SignIn() {
         </div>
         <ButtonComponent type="primary" onClick={handleSubmit} text="Connexion" />
       </form>
-      <p>Vous n'avez pas de compte ? <a href="/inscription">Créer un compte</a></p>
+      <p>Vous n'avez pas de compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/SignUp")}>Créer un compte</a></p>
     </div>
   );
 }

@@ -51,7 +51,7 @@ function Profile( {recettes} ) {
     // Render your screen here
     return (
         <BrowserRouter>
-            <Navigation/>
+            {/*<Navigation/>*/}
             <Routes>
                 <Route index element={<ProfileScreen1 recettes={recettes}/>} />
                 <Route path="/ProfileScreen2" element={<ProfileScreen2/>} />

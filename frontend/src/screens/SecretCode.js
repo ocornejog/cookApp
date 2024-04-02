@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import '../styles/SecretCode.css'; // Assurez-vous d'importer le CSS approprié
+import { useNavigate } from 'react-router-dom';
 
 function SecretCode() {
+
+  const navigate = useNavigate();
+
   const [code, setCode] = useState('');
 
   const handleCodeChange = (event) => {
@@ -34,7 +38,7 @@ function SecretCode() {
         </div>
         <ButtonComponent className="confirm-secret-code-button" type="primary" onClick={handleSubmit} text="Valider le code secret" />
       </form>
-      <p>Vous n'avez pas de compte ? <a href="/inscription">Créer un compte</a></p>
+      <p>Vous n'avez pas de compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/SignUp")}>Créer un compte</a></p>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import "../styles/ImageComponent.css";
 import ButtonComponent from "../components/ButtonComponent";
 import "../styles/ButtonRecipe.css";
 import { useNavigate } from "react-router-dom";
+import C from "../constants/colors";
 
 function RecipeScreen1() {
   const navigate = useNavigate();
@@ -14,8 +15,10 @@ function RecipeScreen1() {
   return (
     <div className="recipe-screen">
       <ImageComponent />
-      <div className="button-catégorie" style={{ textAlign: "center" }}>
-        <h3 style={{ textDecoration: "underline" }}>CATEGORIES</h3>
+      <div className="button-catégorie" style={{ textAlign: "center", marginTop: '8px' }}>
+        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+          {`CATEGORIES`}
+        </div>
         <div>
           <ButtonComponent
             type="primary"
@@ -42,8 +45,10 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-ingrédient" style={{ textAlign: "center" }}>
-        <h3 style={{ textDecoration: "underline" }}>INGREDIENT</h3>
+      <div className="button-ingrédient" style={{ textAlign: "center", marginTop: '8px' }}>
+        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+          {`INGREDIENT`}
+        </div>
         <div>
           <ButtonComponent
             type="primary"
@@ -78,8 +83,10 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-classique" style={{ textAlign: "center" }}>
-        <h3 style={{ textDecoration: "underline" }}>LES CLASSIQUES </h3>
+      <div className="button-classique" style={{ textAlign: "center", marginTop: '8px' }}>
+        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+          {`LES CLASSIQUES`}
+        </div>
         <div>
           <ButtonComponent
             type="primary"
@@ -110,8 +117,10 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-fête" style={{ textAlign: "center" }}>
-        <h3 style={{ textDecoration: "underline" }}> SPECIALE FÊTE</h3>
+      <div className="button-fête" style={{ textAlign: "center", marginTop: '8px' }}>
+        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+          {`SPECIALE FÊTE`}
+        </div>
         <div>
           <ButtonComponent
             type="primary"
@@ -146,8 +155,10 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-Favoris" style={{ textAlign: "center" }}>
-        <h3 style={{ textDecoration: "underline" }}>FAVORIS</h3>
+      <div className="button-Favoris" style={{ textAlign: "center", marginTop: '8px' }}>
+        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+          {`FAVORIS`}
+        </div>
         <div 
           style={{
             display: "flex",
@@ -160,6 +171,7 @@ function RecipeScreen1() {
             type="primary"
             text="Voir mes favoris"
             // onClick={() => handleClick()}
+            onClick={() => console.log("My favorites button was pressed")}
             fontSize={"15px"}
           />
         </div>

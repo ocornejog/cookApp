@@ -23,7 +23,8 @@ function ProfileScreen1({ recettes }) {
     navigate('/ProfileScreen4');
   }
   return (
-    <div>
+    <div style={{width:'100%', display:'flex', alignContent: 'center',
+    alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
       <UserCard onClick={handleClickParametres}/>
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>
@@ -42,7 +43,7 @@ function ProfileScreen1({ recettes }) {
             Vous n'avez publié aucune <br></br>recette.
           </div>)
         : (recettes.map((recette,index) => (
-          <div key={index} style={{width:'95%', marginLeft:'43px'}}>
+          <div key={index} style={{width:'95%'}}>
             <MyRecipie title={recette[0]} description={recette[1]} photo={recette[2]} onClick={handleClickModifyRecipie}/>
           </div>
           )))

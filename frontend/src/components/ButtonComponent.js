@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import "../styles/ButtonComponent.css";
 
 const ButtonComponent = ({ type, text, onClick, fontSize }) => {
   return (

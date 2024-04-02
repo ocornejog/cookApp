@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from '../components/ButtonComponent';
 import '../styles/ResetPassword.css';
+import { useNavigate } from 'react-router-dom';
 
 function ResetPassword() {
+
+  const navigate = useNavigate();
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -48,7 +52,7 @@ function ResetPassword() {
         </div>
         <ButtonComponent type="primary" onClick={handleSubmit} text="Confirmer le mot de passe" />
       </form>
-      <p>Vous avez déjà un compte ? <a href="/connexion">Connexion</a></p>
+      <p>Vous avez déjà un compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/")}>Connexion</a></p>
     </div>
   );
 }

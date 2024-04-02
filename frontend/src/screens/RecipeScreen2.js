@@ -3,6 +3,7 @@ import "../styles/RecipeScreen2.css";
 import RecipeCard from "../components/recipeCard";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import C from "../constants/colors";
 
 function RecipeScreen2() {
   const navigate = useNavigate();
@@ -260,30 +261,40 @@ function RecipeScreen2() {
           marginTop: "24px",
         }}
       >
-        <h1>
+        <div className='montserrat_700' style={{fontSize: '11px', color: C.grey, textAlign: 'left', width: '100%'}}>
           {category} {">"} {buttonText}
-        </h1>
+        </div>
         <h2 style={{ textAlign: "center", fontSize: 20, marginTop: "24px" }}>
           {textMap[buttonText]}
         </h2>
       </div>
-      {data.map((item, index) => {
-        return (
-          <React.Fragment key={index}>
-            <>
-              <RecipeCard
-                title={item.title}
-                description={item.description}
-                image={item.image}
-                onClick={() => handleClick(item.title)}
-                onClickFavorite={(e) =>
-                  console.log("My favorite status is: ", e)
-                }
-              />
-            </>
-          </React.Fragment>
-        );
-      })}
+      {(data.length !== 0)?
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
+      marginTop: '16px', marginBottom: '16px' }}>
+        {data.map((item, index) => {
+          return (
+            <React.Fragment key={index}>
+              <>
+                <RecipeCard
+                  title={item.title}
+                  description={item.description}
+                  image={item.image}
+                  onClick={() => handleClick(item.title)}
+                  onClickFavorite={(e) =>
+                    console.log("My favorite status is: ", e)
+                  }
+                />
+              </>
+            </React.Fragment>
+          );
+        })}
+      </div>
+      :
+      <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
+        marginTop: '56px', marginBottom: '16px' }}>
+        {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+      </div>  
+      }
     </div>
   );
 }
