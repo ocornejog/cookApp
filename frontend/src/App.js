@@ -11,6 +11,8 @@ import ProfileScreen2 from './screens/ProfileScreen2';
 import ProfileScreen3 from './screens/ProfileScreen3';
 import ProfileScreen4 from './screens/ProfileScreen4';
 import MyRecipie from './components/MyRecipie'
+import Profile from './screens/Profile';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 
 function App() {
   return (
@@ -31,9 +33,14 @@ function App() {
               ["Cheese naan","Cette recette de la pâte à naan est excellente. L'amélioration consistant à y inclure du gruyère pour obtenir le cheese naan indien m'a été confiée par une relation indienne : je ne l'ai personnellement pas encore testée !! NDChef : Il est fréquent de voir utiliser de la pâte de gruyère de type Vache qui rit.",
               "https://www.papillesetpupilles.fr/wp-content/uploads/2006/11/Cheese-naans.jpg"]]}/>
         */}
+          {/*<ProfileScreen1/>*/}
           {/*<ProfileScreen2/>*/}
           {/*<ProfileScreen3 currentPassword={"lourd"}/>*/}
-          <ProfileScreen4/>
+          {/*<ProfileScreen4/>*/}
+          <Profile recettes={[["Cheese naan","Cette recette de la pâte à naan est excellente. L'amélioration consistant à y inclure du gruyère pour obtenir le cheese naan indien m'a été confiée par une relation indienne : je ne l'ai personnellement pas encore testée !! NDChef : Il est fréquent de voir utiliser de la pâte de gruyère de type Vache qui rit.",
+              "https://www.papillesetpupilles.fr/wp-content/uploads/2006/11/Cheese-naans.jpg"],
+              ["Cheese naan","Cette recette de la pâte à naan est excellente. L'amélioration consistant à y inclure du gruyère pour obtenir le cheese naan indien m'a été confiée par une relation indienne : je ne l'ai personnellement pas encore testée !! NDChef : Il est fréquent de voir utiliser de la pâte de gruyère de type Vache qui rit.",
+              "https://www.papillesetpupilles.fr/wp-content/uploads/2006/11/Cheese-naans.jpg"]]}/>
         </div>
       </Tabs>
     </div>

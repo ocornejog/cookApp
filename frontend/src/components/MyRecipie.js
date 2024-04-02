@@ -4,9 +4,11 @@ import UserCard from './UserCard';
 import ButtonComponent from './ButtonComponent';
 import { IoTrashOutline } from "react-icons/io5";
 import ConfirmationModal from './ConfirmationModal';
+import { useNavigate } from "react-router-dom";
 
-const MyRecipie = ({title, description, photo}) => {
+const MyRecipie = ({title, description, photo, onClick}) => {
     const [visible, setVisible] = useState(false); 
+
     return(
         <div>
             <ConfirmationModal message={"Voulez vous supprimer la recette définitivement ?" 
@@ -33,7 +35,7 @@ const MyRecipie = ({title, description, photo}) => {
                         <IoTrashOutline onClick={() => {console.log("poubelle cliquée");{setVisible(true)}}}/>
                     </div>
                     <div style={{flex:1}}>
-                        <ButtonComponent type='secondary' text={'Modifier'} onClick={() => console.log('Pressed modify button')}/>
+                        <ButtonComponent type='secondary' text={'Modifier'} onClick={onClick}/>
                     </div>
                  </div>
                 

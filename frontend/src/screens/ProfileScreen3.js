@@ -4,14 +4,22 @@ import ButtonComponent from "../components/ButtonComponent";
 import { StyledTextInput } from '../components/StyledTextInput';
 import "../styles/ButtonComponent.css";
 import C from "../constants/colors"
+import { useNavigate, useLocation } from "react-router-dom";
 
-function ProfileScreen3({ currentPassword }) {
+function ProfileScreen3() {
+  const location = useLocation();
+  const data = location.state;
+  const currentPassword = data.currentPassword;
   const [newPassword1, setNewPassword1] = React.useState('');
   const [newPassword2, setNewPassword2] = React.useState('');
 
   const [passwordFormat, setPasswordFormat] = React.useState(false);
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
   const [oldPasswordMatch, setOldPasswordMatch] = React.useState(false);
+
+  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
+
+  const navigate = useNavigate();
 
   const checkOldPasword = (e) => {
     setOldPasswordMatch(currentPassword===e);
@@ -22,11 +30,10 @@ function ProfileScreen3({ currentPassword }) {
   };
 
   React.useEffect(() => {
-    console.log("Voici newpassword1 dans use effect : "+newPassword1)
-    let numbers = ['1','2','3','4','5','6','7','8','9','0']
+    let numbers = ['1','2','3','4','5','6','7','8','9','0'];
     let special = ['&','~','"','#',"'",'{','(','[','-','|','`','_','\\','^','@',')','°',']','=','+','}',
-    '¨','$','£','¤','%','*','µ',',','?',';','.',':','/','!','§','²','€']
-    let maj = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    '¨','$','£','¤','%','*','µ',',','?',';','.',':','/','!','§','²','€'];
+    let maj = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     let containsNumber = false;
     let containsSpecial = false;
     let containsMaj = false;
@@ -53,9 +60,13 @@ function ProfileScreen3({ currentPassword }) {
     setPasswordsMatch(newPassword1===newPassword2);
   }, [newPassword1,newPassword2]);
 
+  const handleClickParametres = () => {
+    navigate(`/ProfileScreen2`, {state:datasend});
+  };
+
   return (
     <div>
-      <UserCard/>
+      <UserCard onClick={handleClickParametres}/>
       {oldPasswordMatch ? <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',marginTop:'113px',
       color:C.white}}>
         &zwnj;
