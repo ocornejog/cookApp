@@ -7,7 +7,7 @@ export const StyledTextInput = (props) => {
         passwordInput : boolean
         placeholder : text
         output
-        text: text 
+        text: text
     */
 
     const [outputText, setOutputText] = React.useState('');

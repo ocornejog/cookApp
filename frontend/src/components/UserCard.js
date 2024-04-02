@@ -2,21 +2,22 @@ import React from "react";
 import C from '../constants/colors';
 import ButtonComponent from "./ButtonComponent";
 import "../styles/ButtonComponent.css";
+import { useNavigate } from "react-router-dom";
 
 //% que sur width
-const UserCard = (props) => {
+const UserCard = ({imgsrc, name, onClick}) => {
     return (
         <div style={{ background: C.greenLight, width:'100%', display:'flex', 
-        alignItems: 'center', justifyContent: 'center', padding: '32px 32px 32px 32px'}}>
-            <img alt="" src={props.imgsrc} style={{ height:'150px',
+        alignItems: 'center', justifyContent: 'center', padding: '32px 0px 32px 0px'}}>
+            <img alt="" src={imgsrc} style={{ height:'150px',
             marginLeft:'30px' }}/>
             <div style={{ textAlign:'left', marginLeft:'100px', fontSize: '48px', fontFamily:"Montserrat",
             fontWeight:'330', textDecoration:'underline', textDecorationThickness:'1.5px', 
             textUnderlineOffset:'12px', flex: 1}}>
-                {props.name}
+                {name}
             </div>
-            <div style={{marginRight: '10px'}}>
-                <ButtonComponent type="tertiary" text="paramètres du profil" onClick={() => {props.onClick()}}/>
+            <div style={{marginRight: '50px'}}>
+                <ButtonComponent type="tertiary" text="paramètres du profil" onClick={onClick}/>
             </div>
         </div>
     )
