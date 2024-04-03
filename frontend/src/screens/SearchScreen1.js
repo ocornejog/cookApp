@@ -98,7 +98,7 @@ function SearchScreen1() {
     <div className="screen-view-1" style={{ backgroundColor: C.white }}>
         <div
             className="screen-view-1"
-            style={{ width: "95%", backgroundColor: C.white }}
+            style={{ width: "100%", backgroundColor: C.white }}
         >
             {/* put your content here */}
 

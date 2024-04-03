@@ -76,15 +76,21 @@ function ProfileScreen4({recette}) {
   return (
     <div>
       <div style={{display:'flex', flexDirection:'row', maxWidth:'100%', gap:'1rem', margin: '2rem auto', alignItems:'center'}}>
-        <div style ={{color:C.green, textAlign: 'left', flex: 1,
-        fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginTop:'-140px', marginLeft:'14px'}}>
-          * Intitulé de la recette
-          <div style={{marginLeft:'264px', width:'40%',marginTop:'-40px'}}>
-            <StyledTextInput placeholder="" text={e => {setTitre(e)}}/>
+        <div style ={{color:C.green, textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column',
+        fontSize: '24px', fontFamily: "Montserrat", fontWeight:'330', marginTop:'-40px', marginLeft:'14px'}}>
+          <div style={{marginTop:'50px', marginLeft:'10px', display: 'flex', flexDirection: 'row', marginRight: '32px'}}>
+            <div style={{width:'25%'}}>
+              * Intitulé de la recette
+            </div>
+            <div style={{width:'40%', marginLeft: '16px'}}>
+              <StyledTextInput placeholder="" text={e => {setTitre(e)}}/>
+            </div>
           </div>
-          <div style={{marginTop:'50px', marginLeft:'10px'}}>
-            Description de la recette
-            <div style={{marginLeft:'305px', width:'70%',marginTop:'-40px'}}>
+          <div style={{marginTop:'50px', marginLeft:'10px', display: 'flex', flexDirection: 'row', marginRight: '32px'}}>
+            <div style={{width:'25%'}}>
+              Description de la recette
+            </div>
+            <div style={{width:'70%', marginLeft: '16px'}}>
               <StyledTextInput placeholder="" text={e => {setDescription(e)}}/>
             </div>
           </div>
