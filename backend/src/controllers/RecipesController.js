@@ -27,6 +27,16 @@ recipeCtrl.getSpecificRecipe = async (req, res) => {
     res.json(foundRecipe);
 };
 
+recipeCtrl.getRecipesByTag = async (req, res) => {
+    try {
+        const recipes = await Recipe.find({ tags: req.params.tag });
+        res.json(recipes);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+
 recipeCtrl.createRecipe = async (req, res) => {
     const _id = new mongoose.Types.ObjectId;
     const { name, description, type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, 
