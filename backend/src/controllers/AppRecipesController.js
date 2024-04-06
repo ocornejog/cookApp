@@ -8,4 +8,30 @@ appRecipeCtrl.getAppRecipes = async (req, res) => {
     res.json(foundAppRecipes);
 };
 
+appRecipeCtrl.addRecipeUser = async (req, res) => {
+  const _id = new mongoose.Types.ObjectId;
+  const {user_id, recipe_id} = req.body;
+  const addedRecipe = new AppRecipe ({
+    _id:_id,
+    user_id:user_id,
+    recipe_id:recipe_id
+  });
+  await newComment.save()
+    .then(() => {
+        res.json('Recipe added');
+    })
+    .catch(err=>{
+        res.status(500).json({
+            error:err
+        })
+    });
+};
+
+appRecipeCtrl.getAppRecipesUser = async (req, res) => {
+  const user_id = req.body;
+  const foundRecipeUser = await AppRecipe.find({"user_id":user_id});
+  const recipesUser = await foundRecipeUser.json();
+
+};
+
 module.exports = appRecipeCtrl;

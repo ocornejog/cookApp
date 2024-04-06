@@ -1,5 +1,4 @@
 import * as React from 'react';
-import UserCard from "../components/UserCard";
 import ButtonComponent from "../components/ButtonComponent";
 import { StyledTextInput } from '../components/StyledTextInput';
 import "../styles/ButtonComponent.css";
@@ -9,6 +8,7 @@ import I from '../constants/listImages';
 import PhotoSelection from '../components/PhotoSelection';
 import DropDownList from '../components/DropDownList';
 import { CheckBox } from '../components/CheckBox';
+import API from '../constants/Api';
 
 function ProfileScreen4({recette}) {
   const [titre, setTitre] = React.useState("");
@@ -22,6 +22,10 @@ function ProfileScreen4({recette}) {
   const [listLabels2, setListLabels2] = React.useState([]);
   const [etapes, setEtapes] = React.useState([]);
   const [ingredients, setIngredients] = React.useState([]);
+  const [photo, setPhoto] = React.useState("");
+
+  //récupérer l'id de l'utilisateur actuellement connecté
+  const testUserid = "65e31cf769050ff9bab2a6c1";
 
   const [checkComplete, setCheckComplet] = React.useState(true);
 
@@ -73,6 +77,49 @@ function ProfileScreen4({recette}) {
     };
   };
 
+  const getPhoto = (imgsrc) => {
+    setPhoto(imgsrc);
+  };
+
+  const handlePublish = async() => {
+    let res = await fetch(`${API.APIuri}/api/recipes/create`, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name:titre,
+        description:description, 
+        type_of_cuisine:cuisine, 
+        type_of_dishes:dish,
+        specific_regime:diet,
+        preparation_time:time,
+        culinary_skill_level:level,
+        nutritional_value:listLabels1.concat(listLabels2),
+        preparation_steps:etapes,
+        photo:photo,
+        ingredients:ingredients,
+        quantity_ingredients:ingredients,
+        tags:[]
+      })
+    });
+    let newRecipe = await res.json();
+    let res2 = await fetch('${API.APIuri}/api/appRecipes/addAppRecipe', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id:testUserid,
+        
+      })
+    });
+  };
+
+  const photoTest = (img) => {
+    console.log(img.name);
+  }
+
   return (
     <div>
       <div style={{display:'flex', flexDirection:'row', maxWidth:'100%', gap:'1rem', margin: '2rem auto', alignItems:'center'}}>
@@ -96,7 +143,7 @@ function ProfileScreen4({recette}) {
           </div>
         </div>
         <div style={{width:'23%', marginRight:'73px'}}>
-          <PhotoSelection text="*Choisir une photo"/>
+          <PhotoSelection text="*Choisir une photo" callback={photoTest}/>
         </div>
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', gap:'8rem', margin: '2rem auto', marginTop:'51px'}}>

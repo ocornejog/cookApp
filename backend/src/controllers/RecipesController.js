@@ -50,7 +50,7 @@ recipeCtrl.createRecipe = async (req, res) => {
     });
     await newRecipe.save()
     .then(() => {
-        res.json('Recipe created')
+        res.json(_id)
     })
     .catch(err=>{
         res.status(500).json({
