@@ -14,7 +14,7 @@ import { CommentCard1 } from '../components/CommentCards';
 import CommentCard2 from '../components/CommentCard2';
 
 import { useDispatch, Provider, useSelector } from 'react-redux';
-import { setSpecificRecipe, selectSpecificRecipe } from '../constants/searchConfig/slices/navSlice';
+import { setSpecificRecipe, selectSpecificRecipe, setAmountPeople, selectAmountPeople } from '../constants/searchConfig/slices/navSlice';
 
 /*
 Import your used redux here
@@ -28,21 +28,10 @@ function SearchScreen3() {
 
     const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
 
-    const data = [
-        { id: 1, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 2, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },  
-        { id: 3, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 4, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 5, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 6, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 7, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 8, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 9, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 10, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-    ];
 
     const dispatch = useDispatch();
     const selectedSpecificRecipe = useSelector(selectSpecificRecipe);
+    const selectedAmountPeople = useSelector(selectAmountPeople);
 
     //const auth_context = useContext(AuthContext); Constant to be used later
 
@@ -105,7 +94,17 @@ function SearchScreen3() {
             setStepList(recipeData.preparation_steps);
             setImage(recipeData.photo);
             const newIngredients = recipeData.ingredients.map((element, index) => {
-                return `${recipeData.quantity_ingredients[index]} ${element} `;
+                const matches = recipeData.quantity_ingredients[index].match(/\d+/);
+                if (matches && (selectedAmountPeople.length !== 0) && !isNaN(selectedAmountPeople)) {
+                    const number = parseInt(matches[0]);
+                    const result = number * parseInt(selectedAmountPeople);
+                    
+                    const newQuantity = recipeData.quantity_ingredients[index].replace(/\d+/, result);
+                    
+                    return `${newQuantity} ${element}`;
+                } else {
+                    return `${recipeData.quantity_ingredients[index]} ${element}`;
+                }
             });
             setIngredientsList(newIngredients);
         }
@@ -161,7 +160,7 @@ function SearchScreen3() {
                     <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                         <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                             <div style={{ width: '50%' }}>
-                                <IngredientsList ingredientsList={ingredientsList} />
+                                <IngredientsList ingredientsList={ingredientsList} amountPeople={selectedAmountPeople}/>
                             </div>
                             {(image.length !== 0) &&
                             <div style={{ width: '50%', marginLeft: '8px', alignSelf: 'center' }}>
