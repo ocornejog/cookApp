@@ -72,6 +72,8 @@ function ProfileScreen1() {
     recipeFectch();
   }, [])
 
+  
+
   return (
     <div style={{width:'100%', display:'flex', alignContent: 'center',
     alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
