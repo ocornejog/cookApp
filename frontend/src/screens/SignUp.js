@@ -38,15 +38,34 @@ function SignUp() {
     setConfirmPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Logique d'inscription à implémenter ici
-    console.log('Email:', email);
-    console.log('Nom:', name);
-    console.log('Prénom:', surname);
-    console.log('Date de naissance:', birthdate);
-    console.log('Mot de passe:', password);
-    console.log('Confirmation mot de passe:', confirmPassword);
+    try {
+      const response = await fetch('../../backend/controllers/UsersController.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          lastname: surname, // Renommé en lastname pour correspondre à votre modèle utilisateur
+          birthdate,
+          password,
+        }),
+      });
+      if (response.ok) {
+        // Traitement réussi
+        console.log('Utilisateur créé avec succès');
+        // Rediriger l'utilisateur vers une autre page si nécessaire
+      } else {
+        // Gestion des erreurs si la requête échoue
+        console.error('Échec de la création de l\'utilisateur');
+      }
+    } catch (error) {
+      // Gestion des erreurs en cas de problème avec la requête
+      console.error('Erreur lors de la création de l\'utilisateur :', error);
+    }
   };
 
   return (
