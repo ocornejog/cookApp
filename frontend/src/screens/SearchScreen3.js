@@ -28,19 +28,6 @@ function SearchScreen3() {
 
     const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
 
-    const data = [
-        { id: 1, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 2, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },  
-        { id: 3, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 4, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 5, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 6, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 7, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 8, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 9, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-        { id: 10, name: "Thomas Joly", date: new Date(), comment: "Test comment", starRating: 3 },
-    ];
-
     const dispatch = useDispatch();
     const selectedSpecificRecipe = useSelector(selectSpecificRecipe);
 

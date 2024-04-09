@@ -48,7 +48,7 @@ function RecipeScreen2() {
   }, [buttonText]);
 
   const handleClick = (title, recipeID) => {
-    navigate(`/detail/${category}/${buttonText}/recipe/${title}/${recipeID}`);
+    navigate(`/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`);
   };
 
   const onClickFavorite = async(e, favorite) => {
