@@ -6,4 +6,6 @@ router.route("/appRecipes").get(appRecipeCtrl.getAppRecipes);
 
 router.route("/addAppRecipe").post(appRecipeCtrl.addRecipeUser);
 
+router.route("/getRecipeUser/:userID").get(appRecipeCtrl.getAppRecipesUser);
+
 module.exports = router;

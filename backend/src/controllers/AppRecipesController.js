@@ -16,7 +16,7 @@ appRecipeCtrl.addRecipeUser = async (req, res) => {
     user_id:user_id,
     recipe_id:recipe_id
   });
-  await newComment.save()
+  await addedRecipe.save()
     .then(() => {
         res.json('Recipe added');
     })
@@ -28,10 +28,9 @@ appRecipeCtrl.addRecipeUser = async (req, res) => {
 };
 
 appRecipeCtrl.getAppRecipesUser = async (req, res) => {
-  const user_id = req.body;
-  const foundRecipeUser = await AppRecipe.find({"user_id":user_id});
-  const recipesUser = await foundRecipeUser.json();
-
+  console.log(req.params.userID);
+  const foundRecipeUser = await AppRecipe.find({"user_id":req.params.userID});
+  res.json(foundRecipeUser);
 };
 
 module.exports = appRecipeCtrl;

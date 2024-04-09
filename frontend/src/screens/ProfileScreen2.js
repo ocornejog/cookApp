@@ -14,6 +14,7 @@ function ProfileScreen2() {
   const testBirthDate = "22/12/2001";
   const testName = "Thomas";
   const testLastName = "Joly";
+  const testMail = "thomasjoly04@gmail.com";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,28 +84,28 @@ function ProfileScreen2() {
           fontWeight:'330',display:'flex'}}>
         Nom
         <div style={{marginLeft:'100px', width:'42.5%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={data.nom} text={e => setLastName(e)}/>
+          <StyledTextInput placeholder={testName} text={e => setLastName(e)}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'53px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Prénom
         <div style={{marginLeft:'90px', width:'42%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={data.prenom} text={e => setName(e)}/>
+          <StyledTextInput placeholder={testLastName} text={e => setName(e)}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'73px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Mail
         <div style={{marginLeft:'110px', width:'42.5%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={data.mail}/>
+          <StyledTextInput placeholder={testMail}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'10px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Date de naissance
         <div style={{marginLeft:'33px', width:'41%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={data.date} text={e => setBirthDate(e)}/>
+          <StyledTextInput placeholder={testBirthDate} text={e => setBirthDate(e)}/>
           {validFormat ? <p></p>
           : <p style={{marginBottom:'0px', marginTop:'0px', fontSize:'16px', fontFamily:"Montserrat",
             color:C.red}}>Format invalide (DD/MM/YYYY)</p>}

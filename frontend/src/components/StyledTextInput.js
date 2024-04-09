@@ -10,7 +10,12 @@ export const StyledTextInput = (props) => {
         text: text
     */
 
-    const [outputText, setOutputText] = React.useState('');
+    let t = "";
+    if (props.fill !== undefined) {
+      t = props.fill;
+    } 
+
+    const [outputText, setOutputText] = React.useState(t);
     const [displayText, setDisplayText] = React.useState(false);
 
     React.useEffect(() => {

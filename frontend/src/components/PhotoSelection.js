@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import '../styles/PhotoSelection.css';
 
-const PhotoSelection = ({ text, onClick, callback }) => {
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+const PhotoSelection = (props) => {
+
+  let d = null;
+
+  if (props.photo !== undefined) {
+    d = props.photo;
+  }
+
+  const [selectedPhoto, setSelectedPhoto] = useState(d);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedPhoto(file);
-    callback(file);
+    setSelectedPhoto(URL.createObjectURL(file));
+    if (props.callback !== undefined) {
+      props.callback(file);
+    }
 
     // Vous pouvez effectuer d'autres actions ici avec le fichier sélectionné
     //console.log('Fichier sélectionné:', file);
@@ -19,13 +28,13 @@ const PhotoSelection = ({ text, onClick, callback }) => {
         {/* Affichez la photo sélectionnée si elle existe */}
         {selectedPhoto && (
           <img
-            src={URL.createObjectURL(selectedPhoto)}
-            alt="Selected"
-            className="selected-photo"
-          />
+              src={selectedPhoto}
+              alt="Selected"
+              className="selected-photo"
+            />
         )}
       </div>  
-      <ButtonComponent text={text} onChange={handleFileChange} />
+      <ButtonComponent text={props.text} onChange={handleFileChange} />
     </div>
   );
 };

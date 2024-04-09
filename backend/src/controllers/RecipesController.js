@@ -21,9 +21,7 @@ recipeCtrl.getRecipes = async (req, res) => {
 };
 
 recipeCtrl.getSpecificRecipe = async (req, res) => {
-    const foundRecipe = await Recipe.find({ '_id': req.params.recipeID }, { "description": false, "type_of_cuisine": false, 
-    "type_of_dishes": false, "specific_regime": false, "preparation_time": false, "culinary_skill_level": false, 
-    "nutritional_value": false, "tags": false });
+    const foundRecipe = await Recipe.find({ '_id': req.params.recipeID }, {"tags": false });
     res.json(foundRecipe);
 };
 
@@ -31,7 +29,6 @@ recipeCtrl.createRecipe = async (req, res) => {
     const _id = new mongoose.Types.ObjectId;
     const { name, description, type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, 
     nutritional_value, preparation_steps, photo, ingredients, quantity_ingredients, tags } = req.body;
-
     const newRecipe = new Recipe({
         _id,
         name,

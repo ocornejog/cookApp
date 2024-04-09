@@ -9,20 +9,55 @@ import PhotoSelection from '../components/PhotoSelection';
 import DropDownList from '../components/DropDownList';
 import { CheckBox } from '../components/CheckBox';
 import API from '../constants/Api';
+import { useNavigate, useLocation } from "react-router-dom";
 
-function ProfileScreen4({recette}) {
-  const [titre, setTitre] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [cuisine, setCuisine] = React.useState(0);
-  const [dish, setDish] = React.useState(0);
-  const [diet, setDiet] = React.useState(0);
-  const [time, setTime] = React.useState(0);
-  const [level, setLevel] = React.useState(0);
-  const [listLabels1, setListLabels1] = React.useState([]);
-  const [listLabels2, setListLabels2] = React.useState([]);
-  const [etapes, setEtapes] = React.useState([]);
-  const [ingredients, setIngredients] = React.useState([]);
-  const [photo, setPhoto] = React.useState("");
+function ProfileScreen4() {
+  let titreD = "";
+  let descriptionD = "";
+  let cuisineD = 0;
+  let dishD = 0;
+  let dietD = 0;
+  let timeD = 0;
+  let levelD = 0;
+  let listLabels1D = [false,false,false,false];
+  let listLabels2D = [false,false,false,false];
+  let etapesD = [];
+  let ingredientsD = [];
+  let quantiteD = [];
+  let photoD = "";
+
+  const location = useLocation();
+
+  if (location.state !== null){
+    const recette = location.state[0];
+    titreD = recette.name;
+    descriptionD = recette.description;
+    cuisineD = recette.type_of_cuisine;
+    dishD = recette.type_of_dishes;
+    dietD = recette.specific_regime;
+    timeD = recette.preparation_time;
+    levelD = recette.culinary_skill_level;
+    listLabels1D = recette.nutritional_value.slice(0,4);
+    listLabels2D = recette.nutritional_value.slice(4,8);
+    etapesD = recette.preparation_steps;
+    photoD = recette.photo;
+    ingredientsD = recette.ingredients;
+    quantiteD = recette.quantity_ingredients;
+  }
+
+  const [titre, setTitre] = React.useState(titreD);
+  const [description, setDescription] = React.useState(descriptionD);
+  const [cuisine, setCuisine] = React.useState(cuisineD);
+  const [dish, setDish] = React.useState(dishD);
+  const [diet, setDiet] = React.useState(dietD);
+  const [time, setTime] = React.useState(timeD);
+  const [level, setLevel] = React.useState(levelD);
+  const [listLabels1, setListLabels1] = React.useState(listLabels1D);
+  const [listLabels2, setListLabels2] = React.useState(listLabels2D);
+  const [etapes, setEtapes] = React.useState(etapesD);
+  const [ingredients, setIngredients] = React.useState(ingredientsD);
+  const [quantite, setQuantite] = React.useState(quantiteD);
+  const [photo, setPhoto] = React.useState(photoD);
 
   //récupérer l'id de l'utilisateur actuellement connecté
   const testUserid = "65e31cf769050ff9bab2a6c1";
@@ -70,15 +105,16 @@ function ProfileScreen4({recette}) {
   };
 
   const handleSubmit = () => {
-    if ((titre !== "") & (cuisine !== dish !== diet !== time !== level) & (listLabels1.length > 0) & (listLabels2.length > 0) & (etapes.length > 0) & (ingredients.length > 0)) {
+    if ((titre !== "") & (cuisine !== dish !== diet !== time !== level) & (etapes.length > 0) & (ingredients.length > 0)) {
       setCheckComplet(true);
+      handlePublish();
     } else {
       setCheckComplet(false);
     };
   };
 
   const getPhoto = (imgsrc) => {
-    setPhoto(imgsrc);
+    setPhoto(imgsrc.name);
   };
 
   const handlePublish = async() => {
@@ -103,15 +139,15 @@ function ProfileScreen4({recette}) {
         tags:[]
       })
     });
-    let newRecipe = await res.json();
-    let res2 = await fetch('${API.APIuri}/api/appRecipes/addAppRecipe', {
+    let newRecipeId = await res.json();
+    let res2 = await fetch(`${API.APIuri}/api/appRecipes/addAppRecipe`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         user_id:testUserid,
-        
+        recipe_id:newRecipeId
       })
     });
   };
@@ -130,7 +166,7 @@ function ProfileScreen4({recette}) {
               * Intitulé de la recette
             </div>
             <div style={{width:'40%', marginLeft: '16px'}}>
-              <StyledTextInput placeholder="" text={e => {setTitre(e)}}/>
+              <StyledTextInput placeholder="" text={e => {setTitre(e)}} fill={titre}/>
             </div>
           </div>
           <div style={{marginTop:'50px', marginLeft:'10px', display: 'flex', flexDirection: 'row', marginRight: '32px'}}>
@@ -138,12 +174,12 @@ function ProfileScreen4({recette}) {
               Description de la recette
             </div>
             <div style={{width:'70%', marginLeft: '16px'}}>
-              <StyledTextInput placeholder="" text={e => {setDescription(e)}}/>
+              <StyledTextInput placeholder="" text={e => {setDescription(e)}} fill={description}/>
             </div>
           </div>
         </div>
         <div style={{width:'23%', marginRight:'73px'}}>
-          <PhotoSelection text="*Choisir une photo" callback={photoTest}/>
+          <PhotoSelection photo={photo} text="*Choisir une photo" callback={(e) => setPhoto(e.name)} />
         </div>
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', gap:'8rem', margin: '2rem auto', marginTop:'51px'}}>
@@ -152,21 +188,24 @@ function ProfileScreen4({recette}) {
             *Type de cuisine
           </div>
           <DropDownList optionsList={L.cuisine} optionsImages={I.cuisine} label={''} 
-                              onSelect={(value, index) => setCuisine(index)}/>
+                              onSelect={(value, index) => setCuisine(index)}
+                              defaultValue={cuisine}/>
         </div>
         <div style={{flex:1}} >
           <div style={{color:C.green, fontFamily:"Montserrat", fontWeight:'330', textAlign:'left', marginBottom:'10px'}}>
             *Type de plat
           </div>
           <DropDownList optionsList={L.dish} optionsImages={I.dish} label={''} 
-                          onSelect={(value, index) => setDish(index)}/>
+                          onSelect={(value, index) => setDish(index)}
+                          defaultValue={dish}/>
         </div>
         <div style={{flex:1}}>
           <div style={{color:C.green, fontFamily:"Montserrat", fontWeight:'330', textAlign:'left', marginBottom:'10px'}}>
             *Régimes spécifiques
           </div>
           <DropDownList optionsList={L.diets} optionsImages={I.diets} label={''} 
-                          onSelect={(value, index) => setDiet(index)}/>
+                          onSelect={(value, index) => setDiet(index)}
+                          defaultValue={diet}/>
         </div>
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'60%', gap:'178px', margin:'auto', marginTop:'59px',
@@ -176,14 +215,16 @@ function ProfileScreen4({recette}) {
             *Temps de préparation
           </div>
           <DropDownList optionsList={L.time} optionsImages={I.time} label={''} 
-          onSelect={(value, index) => setTime(index)}/>
+          onSelect={(value, index) => setTime(index)}
+          defaultValue={time}/>
         </div>
         <div style={{flex:1}}>
           <div style={{color:C.green, fontFamily:"Montserrat", fontWeight:'330', textAlign:'left', marginBottom:'10px'}}>
             *Niveau de compétence culinaire
           </div>
           <DropDownList optionsList={L.level} optionsImages={I.level} label={''} 
-          onSelect={(value, index) => setLevel(index)}/>
+          onSelect={(value, index) => setLevel(index)}
+          defaultValue={level}/>
         </div>
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', gap:'178px', marginTop:'78px',
@@ -193,9 +234,11 @@ function ProfileScreen4({recette}) {
             fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px'}}>
               Valeur nutritionelle
           </div>
-          <CheckBox listLabels={['Equilibré','Faible en calories','Riche en protéines','Faible en gras']} onSelect={(e) => setListLabels1(e)}/>
+          <CheckBox listLabels={['Equilibré','Faible en calories','Riche en protéines','Faible en gras']} onSelect={(e) => setListLabels1(e)}
+            fill={listLabels1}/>
           <div style={{marginLeft:'343px', marginTop:'-142px'}}>
-            <CheckBox listLabels={['Faible en sucre','Riche en fibres','Riche en vitamines','Riche en minéraux']} onSelect={(e) => setListLabels2(e)}/>
+            <CheckBox listLabels={['Faible en sucre','Riche en fibres','Riche en vitamines','Riche en minéraux']} onSelect={(e) => setListLabels2(e)}
+            fill={listLabels2}/>
           </div>
         </div>
         <div style={{flex:1}}>
@@ -204,10 +247,10 @@ function ProfileScreen4({recette}) {
                 *Ingrédients nécessaires
             </div>
             {ingredients.length === 0 ? <p></p>
-            : ingredients.map((ingredients,index) => 
+            : ingredients.map((ingredient,index) => 
               <div key={index} style={{marginBottom:'11px',display:'flex', flexWrap:'wrap', gap:'29px', maxWidth:'100%', marginLeft:'100px'}}>
                 <div style={{flex:1}}>
-                  <StyledTextInput text={e => handleChangeIngredients(e,index)}/>
+                  <StyledTextInput placeholder="" fill={ingredient} text={e => handleChangeIngredients(e,index)}/>
                 </div>
                 <div style={{flex:1, marginRight:'-200px'}}>
                   <ButtonComponent type={'secondary'} text={'Supprimer'} onClick={() => handleDelIngredients(index)}/>
@@ -223,13 +266,13 @@ function ProfileScreen4({recette}) {
                 *Etapes de préparation
       </div>
       {etapes.length === 0 ? <p></p>
-      : etapes.map((etapes,index) => 
+      : etapes.map((etape,index) => 
       <div key={index} style={{marginBottom:'11px',display:'flex', flexWrap:'wrap', gap:'20px'}}>
         <div style={{marginLeft:'28px', marginTop:'10px', paddingRight:'26px', fontSize: '20px', fontFamily:"Montserrat", fontWeight:'330'}}>
           Etape {index+1}
         </div>
         <div style={{flex:1}}>
-          <StyledTextInput text={e => handleChangeEtapes(e,index)}/>
+          <StyledTextInput text={e => handleChangeEtapes(e,index)} fill={etape}/>
         </div>
         <div style={{flex:1}}>
           <ButtonComponent type={'secondary'} text={'Supprimer'} onClick={() => handleDelEtapes(index)}/>
