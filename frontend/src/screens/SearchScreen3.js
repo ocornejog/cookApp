@@ -95,7 +95,8 @@ function SearchScreen3() {
             setImage(recipeData.photo);
             const newIngredients = recipeData.ingredients.map((element, index) => {
                 const matches = recipeData.quantity_ingredients[index].match(/\d+/);
-                if (matches && (selectedAmountPeople.length !== 0) && !isNaN(selectedAmountPeople)) {
+                if (matches && (selectedAmountPeople !== null) && 
+                (selectedAmountPeople.length !== 0) && !isNaN(selectedAmountPeople)) {
                     const number = parseInt(matches[0]);
                     const result = number * parseInt(selectedAmountPeople);
                     
@@ -160,7 +161,9 @@ function SearchScreen3() {
                     <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                         <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                             <div style={{ width: '50%' }}>
-                                <IngredientsList ingredientsList={ingredientsList} amountPeople={selectedAmountPeople}/>
+                                <IngredientsList ingredientsList={ingredientsList} 
+                                amountPeople={(selectedAmountPeople !== null) && 
+                                (selectedAmountPeople.length !== 0) && !isNaN(selectedAmountPeople)? selectedAmountPeople : 1}/>
                             </div>
                             {(image.length !== 0) &&
                             <div style={{ width: '50%', marginLeft: '8px', alignSelf: 'center' }}>
