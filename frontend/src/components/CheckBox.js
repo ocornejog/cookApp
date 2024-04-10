@@ -10,7 +10,14 @@ export const CheckBox = (props) => {
         onSelect: (boolean[]) => {}
     */
 
-    const [checkedItems, setCheckedItems] = React.useState(new Array(props.listLabels.length).fill(false));
+    let d = new Array(props.listLabels.length).fill(false);
+
+    if (props.fill !== undefined) {
+      d = props.fill;
+    }
+
+
+    const [checkedItems, setCheckedItems] = React.useState(d);
 
     const updateElement = (index, lastValue) => {
         setCheckedItems(prevArrayState => {

@@ -13,7 +13,7 @@ Import your components and constants here
 
 
 
-function Profile( {recettes} ) {
+function Profile() {
     // put here your constants
 
 
@@ -53,7 +53,7 @@ function Profile( {recettes} ) {
         <BrowserRouter>
             {/*<Navigation/>*/}
             <Routes>
-                <Route index element={<ProfileScreen1 recettes={recettes}/>} />
+                <Route index element={<ProfileScreen1/>} />
                 <Route path="/ProfileScreen2" element={<ProfileScreen2/>} />
                 <Route path="/ProfileScreen3" element={<ProfileScreen3/>} />
                 <Route path="/ProfileScreen4" element={<ProfileScreen4/>} />

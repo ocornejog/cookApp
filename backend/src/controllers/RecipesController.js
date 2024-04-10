@@ -64,9 +64,7 @@ recipeCtrl.getRecipes = async (req, res) => {
 };
 
 recipeCtrl.getSpecificRecipe = async (req, res) => {
-    const foundRecipe = await Recipe.find({ '_id': req.params.recipeID }, { "description": false, "type_of_cuisine": false, 
-    "type_of_dishes": false, "specific_regime": false, "preparation_time": false, "culinary_skill_level": false, 
-    "nutritional_value": false, "tags": false });
+    const foundRecipe = await Recipe.find({ '_id': req.params.recipeID }, {"tags": false });
     res.json(foundRecipe);
 };
 
@@ -83,7 +81,6 @@ recipeCtrl.createRecipe = async (req, res) => {
     const _id = new mongoose.Types.ObjectId;
     const { name, description, type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, 
     nutritional_value, preparation_steps, photo, ingredients, quantity_ingredients, tags } = req.body;
-
     const newRecipe = new Recipe({
         _id,
         name,
@@ -102,7 +99,7 @@ recipeCtrl.createRecipe = async (req, res) => {
     });
     await newRecipe.save()
     .then(() => {
-        res.json('Recipe created')
+        res.json(_id)
     })
     .catch(err=>{
         res.status(500).json({
@@ -126,6 +123,34 @@ recipeCtrl.searchingTags = async (req, res) => {
     });
 };
 
+recipeCtrl.updateRecipe = async (req, res) => {
+  const {_id, name, description, type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, 
+    nutritional_value, preparation_steps, photo, ingredients, quantity_ingredients, tags } = req.body;
+  const updateRecipe = await Recipe.updateOne({'_id':_id}, 
+  {$set:{
+    name,
+    description, 
+    type_of_cuisine, 
+    type_of_dishes, 
+    specific_regime, 
+    preparation_time, 
+    culinary_skill_level, 
+    nutritional_value, 
+    preparation_steps, 
+    photo, 
+    ingredients, 
+    quantity_ingredients, 
+    tags
+  }});
+  res.json('Recipe updated');
+}
+
+recipeCtrl.deleteRecipe = async(req,res) => {
+  const id = req.body;
+  const deleteRecipe = await Recipe.findOneAndDelete({'_id':id});
+  res.json('Recipe Deleted');
+}
+
 recipeCtrl.advancedSearching = async (req, res) => {
 
     const { type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, nutritional_value } = req.body;
@@ -140,5 +165,6 @@ recipeCtrl.advancedSearching = async (req, res) => {
         })
     });
 };
+
 
 module.exports = recipeCtrl;

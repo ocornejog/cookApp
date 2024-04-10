@@ -14,4 +14,8 @@ router.route("/:email").get(userCtrl.findByEmail);
 
 router.route("/userID/:id").get(userCtrl.findById);
 
+router.route("/update").post(userCtrl.updateUser);
+
+router.route("/password").post(userCtrl.updatePass);
+
 module.exports = router;
