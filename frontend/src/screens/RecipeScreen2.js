@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import API from "../constants/Api";
 import "../styles/RecipeScreen2.css";
 import RecipeCard from "../components/recipeCard";
-import { useParams, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
 
 function RecipeScreen2() {
+  const [data, setData] = React.useState([]);
+  const { category, buttonText } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error(err));
+  }, [buttonText]);
 
   const handleClick = (title) => {
     navigate(`/detail/${category}/${buttonText}/recipe/${title}`);
   };
 
-  const { category, buttonText } = useParams();
   const textMap = {
     Entrée: (
       <span
@@ -186,69 +194,6 @@ function RecipeScreen2() {
     ),
   };
 
-  const data = [
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg",  
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées 2",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-    {
-      title: "Coquilles Saint-Jacques gratinées",
-      description:
-        "Ces délicieuses coquilles sont garnies de noix et de corail de Saint-Jacques, sautées avec des champignons dans une sauce veloutée à base de crème fraîche. Le tout est ensuite gratiné au four jusqu'à obtenir une croûte dorée et savoureuse. Une entrée raffinée et joliment présentée !",
-      image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9282-st-jacques1.jpg", 
-    },
-  ];
-
   return (
     <div className="recipe-screen2">
       <div
@@ -261,40 +206,66 @@ function RecipeScreen2() {
           marginTop: "24px",
         }}
       >
-        <div className='montserrat_700' style={{fontSize: '11px', color: C.grey, textAlign: 'left', width: '100%'}}>
+        <div
+          className="montserrat_700"
+          style={{
+            fontSize: "11px",
+            color: C.grey,
+            textAlign: "left",
+            width: "100%",
+          }}
+        >
           {category} {">"} {buttonText}
         </div>
         <h2 style={{ textAlign: "center", fontSize: 20, marginTop: "24px" }}>
           {textMap[buttonText]}
         </h2>
       </div>
-      {(data.length !== 0)?
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
-      marginTop: '16px', marginBottom: '16px' }}>
-        {data.map((item, index) => {
-          return (
-            <React.Fragment key={index}>
-              <>
-                <RecipeCard
-                  title={item.title}
-                  description={item.description}
-                  image={item.image}
-                  onClick={() => handleClick(item.title)}
-                  onClickFavorite={(e) =>
-                    console.log("My favorite status is: ", e)
-                  }
-                />
-              </>
-            </React.Fragment>
-          );
-        })}
-      </div>
-      :
-      <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
-        marginTop: '56px', marginBottom: '16px' }}>
-        {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
-      </div>  
-      }
+      {data.length !== 0 ? (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "10px",
+            padding: "10px",
+            marginTop: "16px",
+            marginBottom: "16px",
+          }}
+        >
+          {data.map((item, index) => {
+            return (
+              <React.Fragment key={index}>
+                <>
+                  <RecipeCard
+                    title={item.name}
+                    description={item.description}
+                    image={item.photo}
+                    onClick={() => handleClick(item.title)}
+                    onClickFavorite={(e) =>
+                      console.log("My favorite status is: ", e)
+                    }
+                  />
+                </>
+              </React.Fragment>
+            );
+          })}
+        </div>
+      ) : (
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.greenLight,
+            fontSize: "20px",
+            textAlign: "center",
+            width: "100%",
+            marginTop: "56px",
+            marginBottom: "16px",
+          }}
+        >
+          {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+        </div>
+      )}
     </div>
   );
 }

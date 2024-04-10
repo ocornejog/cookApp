@@ -15,8 +15,18 @@
   /* Ajouter d'autres styles personnalisés si nécessaire */
 }
 
+.ingredients-title-2 {
+  color: black;
+  font-size: 16px; /* Ajuster la taille du titre selon vos besoins */
+  font-weight: 400; /* Ajuster la marge à gauche du titre */
+  font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
+  text-align: left;
+  padding-left: 30px; /* Ajouter un padding à gauche pour l'écart avec le point */
+  /* Ajouter d'autres styles personnalisés si nécessaire */
+}
+
 .ingredients-list {
-  margin-top: 48px; /* Ajouter un espacement en haut de la liste si nécessaire */
+  margin-top: 32px; /* Ajouter un espacement en haut de la liste si nécessaire */
   padding-left: 30px; /* Ajouter un padding à gauche pour l'écart avec le point */
   font-family: 'Montserrat', sans-serif; /* Utiliser la police Montserrat */
   font-weight: 400; /* Ajuster la marge à gauche du titre */
