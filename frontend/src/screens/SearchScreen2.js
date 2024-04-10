@@ -48,6 +48,7 @@ function SearchScreen2() {
 
     const [recipesData, setRecipesData] = useState([]);
     const [searchText, setSearchText] = useState("");
+    const [annotation, setAnnotation] = useState({}); 
 
     // put here your functions and handlers
 
@@ -71,6 +72,7 @@ function SearchScreen2() {
                 })
             });
         } else {
+            // http://localhost:3000/api/favoritesRecipes/deleteFromFavorites/user/:userID/recipe/:recipeID
             await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${default_user_id}/recipe/${e}`, {
                 method: 'DELETE',
                 headers: {
@@ -137,12 +139,54 @@ function SearchScreen2() {
     }, [searchText]);
 
     useEffect(() => {
+        //setRecipesData(data);
+        if(Object.keys(annotation).length > 0) {
+            setRecipesData([]);
+            fetch(`${API.APIuri}/api/recipes/advancedSearch`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type_of_cuisine: annotation.type_of_cuisine, 
+                    type_of_dishes: annotation.type_of_dishes, 
+                    specific_regime: annotation.specific_regime, 
+                    preparation_time: annotation.preparation_time, 
+                    culinary_skill_level: annotation.culinary_skill_level, 
+                    nutritional_value: annotation.nutritional_value
+                })
+            })
+            .then(response => response.json())
+            .then(async (data) => {
+                console.log(data);
+                for (let index = 0; index < data.length; index++) {
+                    const recipe = data[index];
+                    await settingRecipesData(recipe, index);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }, [annotation]);
+
+    useEffect(() => {
         console.log(`My current vector data is: `, recipesData);
     }, [recipesData]);
 
     useEffect(() => {
         if((typeof(selectedSearchText) === 'string') && (selectedSearchText.length !== 0)){
             setSearchText(selectedSearchText);
+        } else if(typeof(selectedCuisine) === 'number'){
+            const newAnnotation = {
+                type_of_cuisine: selectedCuisine, 
+                type_of_dishes: selectedDish, 
+                specific_regime: selectedDiet, 
+                preparation_time: selectedPreparationTime, 
+                culinary_skill_level: selectedCulinaryProficiency, 
+                nutritional_value: selectedNutritionalValue 
+            };
+            setAnnotation(newAnnotation);
         }
     }, []);
 

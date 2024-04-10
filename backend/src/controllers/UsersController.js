@@ -37,4 +37,24 @@ userCtrl.findById = async (req, res) => {
     res.json(foundUser);
 };
 
+userCtrl.updateUser = async (req, res) => {
+    const {_id, name, lastName, birthDate} = req.body;
+    const updatedUser = await User.updateOne({ '_id': _id}, 
+      {$set: {
+        name:name,
+        lastname: lastName,
+        birthdate: birthDate
+      }});
+    res.json('User updated');
+};
+
+userCtrl.updatePass = async (req, res) => {
+  const {_id, password} = req.body;
+  const updatedUser = await User.updateOne({'_id':_id},
+    {$set: {
+      password: password
+    }});
+  res.json('User updated');
+}
+
 module.exports = userCtrl;

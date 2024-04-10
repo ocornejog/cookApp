@@ -5,11 +5,12 @@ import { StyledTextInput } from '../components/StyledTextInput';
 import "../styles/ButtonComponent.css";
 import C from "../constants/colors"
 import { useNavigate, useLocation } from "react-router-dom";
+import bcrypt from "bcryptjs-react";
+import API from '../constants/Api';
 
 function ProfileScreen3() {
   const location = useLocation();
-  const data = location.state;
-  const currentPassword = data.currentPassword;
+  const currentPassword = "motdepasse";
   const [newPassword1, setNewPassword1] = React.useState('');
   const [newPassword2, setNewPassword2] = React.useState('');
 
@@ -19,10 +20,23 @@ function ProfileScreen3() {
 
   const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
 
+  //récupérer l'id de l'utilisateur connecté actuellement
+  const testUserid = "65e31cf769050ff9bab2a6c1";
+
+  //récupérer le mot de passe dans la base de donnée associé a l'utilisateur conecté
+  const oldHash = bcrypt.hashSync(currentPassword, 10);
+
   const navigate = useNavigate();
 
   const checkOldPasword = (e) => {
-    setOldPasswordMatch(currentPassword===e);
+    bcrypt.compare(e, oldHash, function(err, isValid){
+      if (isValid) {
+        setOldPasswordMatch(true);
+      } else {
+        setOldPasswordMatch(false);
+      }
+    });
+    //setOldPasswordMatch(currentPassword===oldTest);
   };
 
   const handleOldPassChange = (e) => {
@@ -63,6 +77,21 @@ function ProfileScreen3() {
   const handleClickParametres = () => {
     navigate(`/ProfileScreen2`, {state:datasend});
   };
+
+  const handleSave = async() => {
+    if (passwordFormat && oldPasswordMatch) {
+      let res = await fetch(`${API.APIuri}/api/users/password`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            _id: testUserid,
+            password: bcrypt.hashSync(newPassword1, 10)
+        })
+      });
+    }
+  }
 
   return (
     <div>
@@ -114,7 +143,7 @@ function ProfileScreen3() {
         Les mots de passe ne correspondent pas
         </div>}
       <div style={{marginTop:'43px', width:'18%', marginLeft:'41%', marginBottom:'106px'}}>
-        <ButtonComponent type="primary" text="Enregistrer le nouveau mot de passe" onClick={() => {console.log(oldPasswordMatch)}}/>
+        <ButtonComponent type="primary" text="Enregistrer le nouveau mot de passe" onClick={() => handleSave()}/>
       </div>
     </div>
   );

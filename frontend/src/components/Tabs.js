@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Tab from "./Tab";
 import C from "../constants/colors";
 
-const Tabs = ({ children }) => {
-  const [activeTab, setActiveTab] = useState(children[0].props.label);
-
-  const onClickTabItem = (tab) => {
-    setActiveTab(tab);
-  };
-
+const Tabs = ({ activeTab, onTabChange, children }) => {
   return (
     <div className="tabs" style={{width: "100%"}}>
         <div className="tab-box" style={{ display: "flex", alignItems: "center", backgroundColor: C.white }}>
@@ -26,7 +20,7 @@ const Tabs = ({ children }) => {
                     key={label}
                     label={label}
                     icon={child.props.icon}
-                    onClick={() => onClickTabItem(label)}
+                    onClick={() => onTabChange(label)}
                 />
                 );
             })}
@@ -34,15 +28,21 @@ const Tabs = ({ children }) => {
         </div>
         <div className="tab-content">
             {children.map((child) => {
-              if (child.props.label !== activeTab) return undefined;
-              return child.props.children;
+              const { label } = child.props;
+              return (
+              <div key={label} style={{ display: label === activeTab ? 'block' : 'none' }}>
+                {child.props.children}
+              </div>
+              );
             })}
         </div>
     </div>
   );
-}
+};
 
 Tabs.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  onTabChange: PropTypes.func.isRequired,
   children: PropTypes.instanceOf(Array).isRequired,
 };
 
