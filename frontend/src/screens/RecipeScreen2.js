@@ -11,6 +11,7 @@ function RecipeScreen2() {
   // put here your constants
 
   const default_user_id = "65e31cf769050ff9bab2a6c1";
+  let firstDeploy = true;
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
@@ -34,7 +35,8 @@ function RecipeScreen2() {
   };
 
   useEffect(() => {
-    if((typeof(buttonText) === "string") && (buttonText.length !== 0)){
+    if((typeof(buttonText) === "string") && (buttonText.length !== 0) && (firstDeploy === true)){
+      firstDeploy = false;
       fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
         .then((response) => response.json())
         .then(async (data) => {
