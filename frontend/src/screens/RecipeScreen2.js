@@ -4,6 +4,7 @@ import "../styles/RecipeScreen2.css";
 import RecipeCard from "../components/recipeCard";
 import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
+import TextMap from "../constants/TextMap";
 
 function RecipeScreen2() {
 
@@ -82,179 +83,6 @@ function RecipeScreen2() {
     ));
   };
 
-  const textMap = {
-    Entrée: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Voyagez au cœur des saveurs : Découvrez nos délicieuses entrées pour
-        éveiller vos papilles"
-      </span>
-    ),
-    Plats: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Savourez la richesse de nos plats principaux"
-      </span>
-    ),
-    Desserts: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Plongez dans la douceur de nos desserts irrésistibles"
-      </span>
-    ),
-    Viandes: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Découvrez la tendresse de nos viandes sélectionnées"
-      </span>
-    ),
-    Poissons: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Explorez la fraîcheur de nos poissons du jour"
-      </span>
-    ),
-    Fruits: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Goûtez à la douceur de nos fruits juteux"
-      </span>
-    ),
-    Légumes: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Appréciez la saveur de nos légumes de saison"
-      </span>
-    ),
-    Ramadan: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Célébrez le Ramadan avec nos recettes traditionnelles"
-      </span>
-    ),
-    Noël: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Faites briller votre table de Noël avec nos recettes festives"
-      </span>
-    ),
-    Pâques: (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Fêtez Pâques avec nos recettes gourmandes"
-      </span>
-    ),
-    "Saint-Valentin": (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Célébrez la Saint-Valentin avec nos recettes romantiques"
-      </span>
-    ),
-
-    "Recettes pas chères": (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Cuisinez malin avec nos recettes économiques"
-      </span>
-    ),
-    "Recette facile et rapide": (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Cuisinez en un clin d'œil avec nos recettes express"
-      </span>
-    ),
-    "Recette anti-gaspillage": (
-      <span
-        style={{
-          fontFamily: "Montaga",
-          fontSize: "32px",
-          color: "black",
-          fontWeight: "normal",
-        }}
-      >
-        "Cuisinez malin avec nos recettes anti-gaspi"
-      </span>
-    ),
-  };
-
   return (
     <div className="recipe-screen2">
       <div
@@ -279,7 +107,7 @@ function RecipeScreen2() {
           {category} {">"} {buttonText}
         </div>
         <h2 style={{ textAlign: "center", fontSize: 20, marginTop: "24px" }}>
-          {textMap[buttonText]}
+          {TextMap[buttonText]}
         </h2>
       </div>
       {data.length !== 0 ? (
