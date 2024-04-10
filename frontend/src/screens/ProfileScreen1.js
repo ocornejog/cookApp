@@ -40,8 +40,31 @@ function ProfileScreen1() {
     getRecipeInfo(idRecette);
   }
 
-  const handelDelete = (idRecette) => {
-    console.log("delete recepe :"+idRecette);
+  const handelDelete = async(idRecette) => {
+    let res = await fetch(`${API.APIuri}/api/appRecipes/getAppRecipeID/${idRecette}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json'
+    }});
+    let appRecipeObject = await res.json();
+    let delAppR = await fetch(`${API.APIuri}/api/appRecipes/deleteRecipe`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        _id:appRecipeObject[0]._id
+      })
+    });
+    let delRecipe = await fetch(`${API.APIuri}/api/recipes/delete`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        _id:idRecette
+      })
+    })
   }
 
 
@@ -86,7 +109,7 @@ function ProfileScreen1() {
               Mes recettes
         </div>
         <div style={{marginRight:'80px', marginTop:'30px'}}>
-            <ButtonComponent type="primary" text="Publier une recette" onClick={handleClickPublish}/>
+            <ButtonComponent type="primary" text="Publier une recette" onClick={() => handleClickPublish()}/>
         </div>
       </div>
       {recettes.length === 0

@@ -12,15 +12,26 @@ const PhotoSelection = (props) => {
   const [selectedPhoto, setSelectedPhoto] = useState(d);
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedPhoto(URL.createObjectURL(file));
-    if (props.callback !== undefined) {
-      props.callback(file);
-    }
+    const data = new FileReader();
+    data.addEventListener('load', () => {
+      setSelectedPhoto(data.result);
+    });
+    data.readAsDataURL(event.target.files[0]);
+    //const file = event.target.files[0];
+    //setSelectedPhoto(URL.createObjectURL(file));
+    //if (props.callback !== undefined) {
+    //  props.callback(file);
+    //}
 
     // Vous pouvez effectuer d'autres actions ici avec le fichier sélectionné
     //console.log('Fichier sélectionné:', file);
   };
+
+  React.useEffect(() => {
+    if (props.callback !== undefined) {
+      props.callback(selectedPhoto);
+    }
+  }, [selectedPhoto]);
 
   return (
     <div className='pere'> 

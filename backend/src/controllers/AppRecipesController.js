@@ -33,4 +33,16 @@ appRecipeCtrl.getAppRecipesUser = async (req, res) => {
   res.json(foundRecipeUser);
 };
 
+appRecipeCtrl.getAppRecipeID = async (req, res) => {
+  const recipe_id = req.params.recipeID;
+  const foundRecipe = await AppRecipe.find({'recipe_id':recipe_id});
+  res.json(foundRecipe);
+}
+
+appRecipeCtrl.deleteRecipe = async (req, res) => {
+  const id = req.body;
+  const deleteRecipe = await AppRecipe.findOneAndDelete({'_id':id});
+  res.json('Recipe Deleted');
+}
+
 module.exports = appRecipeCtrl;

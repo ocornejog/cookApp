@@ -28,7 +28,10 @@ function ProfileScreen4() {
 
   const location = useLocation();
 
+  let recetteGiven = false;
+
   if (location.state !== null){
+    recetteGiven = true;
     const recette = location.state[0];
     titreD = recette.name;
     descriptionD = recette.description;
@@ -63,6 +66,10 @@ function ProfileScreen4() {
   const testUserid = "65e31cf769050ff9bab2a6c1";
 
   const [checkComplete, setCheckComplet] = React.useState(true);
+
+  const handleNewPhoto = (e) => {
+    setPhoto(e);
+  }
 
   const handleAddIngredients = () => {
     setIngredients([...ingredients, ""]);
@@ -113,9 +120,6 @@ function ProfileScreen4() {
     };
   };
 
-  const getPhoto = (imgsrc) => {
-    setPhoto(imgsrc.name);
-  };
 
   const handlePublish = async() => {
     let res = await fetch(`${API.APIuri}/api/recipes/create`, {
@@ -152,8 +156,29 @@ function ProfileScreen4() {
     });
   };
 
-  const photoTest = (img) => {
-    console.log(img.name);
+  const handelUpdate = async() => {
+    let res = await fetch(`${API.APIuri}/api/recipes/updateRecipe`, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        _id:location.state[0]._id,
+        name:titre,
+        description:description, 
+        type_of_cuisine:cuisine, 
+        type_of_dishes:dish,
+        specific_regime:diet,
+        preparation_time:time,
+        culinary_skill_level:level,
+        nutritional_value:listLabels1.concat(listLabels2),
+        preparation_steps:etapes,
+        photo:photo,
+        ingredients:ingredients,
+        quantity_ingredients:ingredients,
+        tags:[]
+      })
+    });
   }
 
   return (
@@ -179,7 +204,7 @@ function ProfileScreen4() {
           </div>
         </div>
         <div style={{width:'23%', marginRight:'73px'}}>
-          <PhotoSelection photo={photo} text="*Choisir une photo" callback={(e) => setPhoto(e.name)} />
+          <PhotoSelection photo={photo} text="*Choisir une photo" callback={(e) => handleNewPhoto(e)} />
         </div>
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'80%', gap:'8rem', margin: '2rem auto', marginTop:'51px'}}>
@@ -295,7 +320,8 @@ function ProfileScreen4() {
           <ButtonComponent type={'primary'} text={'Annuler'} onClick={() => console.log('Pressed cancel')}/>
         </div>
         <div style={{flex:1}}>
-          <ButtonComponent type={'primary'} text={'Publier la recette'} onClick={() => handleSubmit()}/>
+          <ButtonComponent type={'primary'} text={recetteGiven ? 'Enregistrer les modifications' : 'Publier la recette'}
+           onClick={recetteGiven ? () => handelUpdate() : () => handleSubmit()}/>
         </div>
       </div>
     </div>

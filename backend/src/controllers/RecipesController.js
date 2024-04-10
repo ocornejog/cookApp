@@ -93,4 +93,10 @@ recipeCtrl.updateRecipe = async (req, res) => {
   res.json('Recipe updated');
 }
 
+recipeCtrl.deleteRecipe = async(req,res) => {
+  const id = req.body;
+  const deleteRecipe = await Recipe.findOneAndDelete({'_id':id});
+  res.json('Recipe Deleted');
+}
+
 module.exports = recipeCtrl;
