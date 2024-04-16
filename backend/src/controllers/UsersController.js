@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const User = require('../models/UsersModel');
+const jwt = require('jsonwebtoken');
 
 const userCtrl = {};
 
@@ -25,6 +26,29 @@ userCtrl.createUser = async (req, res) => {
     });
     await newUser.save().catch(err => console.log(err));
     res.json('User created')
+};
+
+userCtrl.verifyUser = async (req, res) => {
+  const foundUser = await User.findOne({ 'email': req.params.email });
+  if (foundUser !== null) {
+    const myPassword = req.body.password;
+    if (bcrypt.compareSync(myPassword, foundUser.password)) {
+      const token = jwt.sign(
+        { userId: foundUser._id }, 
+        "myEncryptionKey",
+        { expiresIn: '24h' }
+      );
+      res.json({
+        user: foundUser, 
+        token: token
+      });
+    } else {
+      res.json("incorrect password");
+    }
+  } else {
+    res.json("user does not exist");
+  }
+
 };
 
 userCtrl.findByEmail = async (req, res) => {
