@@ -5,12 +5,12 @@ const userSchema = new Schema({
     _id: Schema.Types.ObjectId,
     name: {
         type: String,
-        required: true,
+        require: true,
         trim: true,
     },
     lastname: {
         type: String,
-        required: true,
+        require: true,
         trim: true
     },
     photo: {
@@ -30,7 +30,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        require: true
     }
 });
 
