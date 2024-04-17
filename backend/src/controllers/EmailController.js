@@ -10,6 +10,9 @@ const transporter = nodemailer.createTransport({
     user: "moncookapp@gmail.com",
     pass: "qzgc vnaj ysvb mhnz",
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 const sendEmail = async(req, res) => {

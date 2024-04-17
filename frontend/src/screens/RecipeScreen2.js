@@ -5,22 +5,24 @@ import RecipeCard from "../components/recipeCard";
 import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
+import { AuthContext } from "../constants/Context";
 
 function RecipeScreen2() {
 
   // put here your constants
 
-  const default_user_id = "65e31cf769050ff9bab2a6c1";
+  //const default_user_id = "65e31cf769050ff9bab2a6c1";
   let firstDeploy = true;
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
   const navigate = useNavigate();
+  const auth_context = React.useContext(AuthContext);
 
   const settingRecipesData = async(recipe, index) => {
 
     let response = 
-    await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${default_user_id}/recipe/${recipe._id}`);
+    await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`);
     let myFavorite = await response.json();
 
     const newItem = {
@@ -63,12 +65,12 @@ function RecipeScreen2() {
             'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                userID: default_user_id,
+                userID: auth_context.id,
                 recipeID: e
             })
         });
     } else {
-        await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${default_user_id}/recipe/${e}`, {
+        await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

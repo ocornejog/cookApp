@@ -11,12 +11,14 @@ import { AuthContext } from '../constants/Context';
 function ProfileScreen1() {
   const navigate = useNavigate();
   const {signOut} = React.useContext(AuthContext);
+  const auth_context = React.useContext(AuthContext);
 
   let firstDeploy = true;
 
   let retrieved = false;
 
   const [recettes, setRecettes] = React.useState([]);
+  const [name, setName] = React.useState("");
   
   //récupérer l'id de l'utilisateur actuellement connecté
   const testUserid = "65e31cf769050ff9bab2a6c1";
@@ -100,6 +102,12 @@ function ProfileScreen1() {
     }
   }, [])
 
+  React.useEffect(() => {
+    const myName = auth_context.name.toUpperCase();
+    const myLastname = auth_context.lastName.toUpperCase();
+    setName(`${myName} ${myLastname}`);
+  }, [])
+
 
   return (
     <div style={{width:'100%', display:'flex', alignContent: 'center',
@@ -111,7 +119,9 @@ function ProfileScreen1() {
       }}>
         <ion-icon name="log-out-outline"></ion-icon>
       </div>
-      <UserCard onClick={handleClickParametres}/>
+      {(name.length !== 0) &&
+        <UserCard name={name} onClick={handleClickParametres}/>
+      }
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>
         <div style={{ textAlign:'left', marginLeft:'16px', marginTop:'30px', fontSize: '32px', fontFamily:"Montserrat",
