@@ -12,6 +12,8 @@ function ProfileScreen1() {
   const navigate = useNavigate();
   const {signOut} = React.useContext(AuthContext);
 
+  let firstDeploy = true;
+
   let retrieved = false;
 
   const [recettes, setRecettes] = React.useState([]);
@@ -41,6 +43,7 @@ function ProfileScreen1() {
   const handleClickModifyRecipie = (idRecette) => {
     getRecipeInfo(idRecette);
   }
+
 
   const handelDelete = async(idRecette) => {
     let res = await fetch(`${API.APIuri}/api/appRecipes/getAppRecipeID/${idRecette}`, {
@@ -73,31 +76,30 @@ function ProfileScreen1() {
   //ici récupérer les recettes publiées par l'utilisateur et les garder en mémoire pour appeler
   //ProfileScreen4 avec le bon recette_id
   React.useEffect(() => {
-    const recipeFectch = async () => {
-      const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${testUserid}`,{
-      method: 'GET',
-      headers: {
-      'Content-Type': 'application/json'
-      }});
-      let l = await recipes.json();
-      for (let i=0; i<l.length; i++) {
-        const recipe = await fetch(`${API.APIuri}/api/recipes/recipe/${l[i].recipe_id}`,{
+    if (firstDeploy) {
+      const recipeFectch = async () => {
+        firstDeploy = false;
+        setRecettes([]);
+        const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${testUserid}`,{
         method: 'GET',
         headers: {
         'Content-Type': 'application/json'
         }});
-        let r = await recipe.json();
-        if (recettes.length === 0) {
-          setRecettes([r[0]]);
-        } else {
-          setRecettes(prevRecettes => [...prevRecettes, r[0]]);
+        let l = await recipes.json();
+        for (let i=0; i<l.length; i++) {
+          const recipe = await fetch(`${API.APIuri}/api/recipes/recipe/${l[i].recipe_id}`,{
+          method: 'GET',
+          headers: {
+          'Content-Type': 'application/json'
+          }});
+          let r = await recipe.json();
+          setRecettes(prev => [...prev, r[0]]);
         }
-      }
-    };
-    recipeFectch();
+      };
+      recipeFectch();
+    }
   }, [])
 
-  
 
   return (
     <div style={{width:'100%', display:'flex', alignContent: 'center',

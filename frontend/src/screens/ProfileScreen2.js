@@ -18,14 +18,12 @@ function ProfileScreen2() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
 
   const [name, setName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [birthDate, setBirthDate] = React.useState("");
   const [validFormat, setValidFormat] = React.useState(true);
 
-  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
 
   const checkDateFormat = () => {
     setValidFormat(regex.test(birthDate));
@@ -36,12 +34,12 @@ function ProfileScreen2() {
   };
 
   const handleClickParametres = () => {
-    navigate(`/ProfileScreen2`, {state:datasend});
+    navigate(`/ProfileScreen2`);
   };
 
   const handleSaveChanges = async() => {
     checkDateFormat();
-    if (validFormat) {
+    if ((validFormat) || (birthDate.length==0)) {
       let postName = testName;
       let postBirth = testBirthDate;
       let postLastName = testLastName;
