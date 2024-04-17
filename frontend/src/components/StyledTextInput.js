@@ -47,7 +47,7 @@ export const StyledTextInput = (props) => {
                     position: 'absolute',
                     top: '50%',
                     right: '4px',
-                    transform: 'translateY(-50%)',
+                    transform: 'translateY(-70%)',
                     cursor: 'pointer',
                     color: '#337D74',
                     fontSize: '30px',

@@ -6,9 +6,11 @@ import "../styles/ButtonComponent.css";
 import MyRecipie from '../components/MyRecipie';
 import { useNavigate } from "react-router-dom";
 import API from '../constants/Api';
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen1() {
   const navigate = useNavigate();
+  const {signOut} = React.useContext(AuthContext);
 
   let firstDeploy = true;
 
@@ -102,6 +104,13 @@ function ProfileScreen1() {
   return (
     <div style={{width:'100%', display:'flex', alignContent: 'center',
     alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+      <div style={{height: "30px", fontSize: "30px", color: C.green, cursor: 'pointer', 
+      marginBottom: '8px', marginRight: "16px", alignSelf: "flex-end"}} 
+      onClick={() => {
+        signOut();
+      }}>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </div>
       <UserCard onClick={handleClickParametres}/>
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>
