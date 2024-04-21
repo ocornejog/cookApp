@@ -10,6 +10,12 @@ router.route("/recipe/:recipeID").get(recipeCtrl.getSpecificRecipe);
 
 router.route("/searchByTags/:searchString").get(recipeCtrl.searchingTags);
 
+router.route("/updateRecipe").post(recipeCtrl.updateRecipe);
+
+router.route("/delete").post(recipeCtrl.deleteRecipe);
+
+router.route("/advancedSearch").post(recipeCtrl.advancedSearching);
+
 router.route("/recipesByTag/:tag").get(recipeCtrl.getRecipesByTag);
 
 module.exports = router;

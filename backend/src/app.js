@@ -26,5 +26,6 @@ app.use('/api/recipes', require('./routes/RecipesRoute'));
 app.use('/api/appRecipes', require('./routes/AppRecipesRoute'));
 app.use('/api/comments', require('./routes/CommentsRoute'));
 app.use('/api/favoritesRecipes', require('./routes/FavoritesRecipesRoute'));
+app.use('/api/email', require('./routes/EmailRoute'));
 
 module.exports = app;

@@ -117,10 +117,12 @@ export const ExploreCard = (props) => {
                         <DropDownList optionsList={L.level} optionsImages={I.level} label={'Niveau de compétence culinaire'} 
                         onSelect={(value, index) => setLevel(index)}/>
                     </div>
+                    {/*
                     <div className="item">
                         <DropDownList optionsList={L.popularity} optionsImages={I.popularity} 
                         label={'Popularité et avis des utilisateurs'} onSelect={(value, index) => setPopularity(index)}/>
                     </div>
+                    */}
                     <div className="item">
                         <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
                             <div className="montserrat_700" style={{ fontSize: '14px', color: C.green, textAlign: 'left',
@@ -135,12 +137,14 @@ export const ExploreCard = (props) => {
                                 onChange={(e) => setIngredients(e.target.value)} 
                                 />
                             </div>
-                            <div className="montserrat_700" style={{ fontSize: '14px', color: C.green, textAlign: 'left',
-                            textAlignVertical: 'center', justifyContent: 'center', marginTop: '16px', marginBottom: '16px' }}>
-                                {"Quantité de personnes"}
-                            </div>
-                            <StyledTextInput passwordInput={false} placeholder={""} text={e => setAmountPeople(e)}/>
                         </div>
+                    </div>
+                    <div className="item">
+                        <div className="montserrat_700" style={{ fontSize: '14px', color: C.green, textAlign: 'left',
+                        textAlignVertical: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                            {"Quantité de personnes"}
+                        </div>
+                        <StyledTextInput passwordInput={false} placeholder={""} text={e => setAmountPeople(e)}/>
                     </div>
                     <div className="item">
                         <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>

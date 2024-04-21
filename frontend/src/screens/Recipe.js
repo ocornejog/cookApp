@@ -69,7 +69,7 @@ function Recipe() {
           element={<RecipeScreen2 />}
         />
         <Route
-          path="/detail/:category/:buttonText/recipe/:title2"
+          path="/detail/:category/:buttonText/recipe/:title2/recipeID/:recipeID"
           element={<RecipeScreen3 />}
         />
       </Routes>

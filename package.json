@@ -1,5 +1,11 @@
 {
   "dependencies": {
-    "react-icons": "^5.0.1"
+    "bcryptjs-react": "^2.4.6",
+    "f": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "nodemailer": "^6.9.13",
+    "path": "^0.12.7",
+    "react-icons": "^5.0.1",
+    "stream": "^0.0.2"
   }
 }

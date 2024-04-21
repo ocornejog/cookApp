@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import C from "../constants/colors";
 import API from "../constants/Api";
+//import { AuthContext } from '../constants/Context'; Context to be created
 
 import PreparationSteps from "../components/PreparationSteps";
 import IngredientsList from "../components/IngredientsList";
@@ -11,31 +12,101 @@ import { CommentCard1 } from "../components/CommentCards";
 import CommentCard2 from "../components/CommentCard2";
 
 function RecipeScreen3() {
-  const [photo, setPhoto] = useState(null);
-  const { category, buttonText, title2 } = useParams();
+  const { category, buttonText, title, recipeID } = useParams();
+
+  // put here your constants
+
+  const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
+
+  //const auth_context = useContext(AuthContext); Constant to be used later
+
+  // put here your states
+
   const [comment, setComment] = useState("");
   const [starRaiting, setStarRaiting] = useState(0);
-  const [title, setTitle] = useState();
+  const [title2, setTitle2] = useState();
   const [stepList, setStepList] = useState([]);
   const [ingredientsList, setIngredientsList] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
+  const [image, setImage] = useState("");
+
+  // put here your functions and handlers
 
   const onSubmitComment = async (myComment, myStarRaiting) => {
     setComment(myComment);
     setStarRaiting(myStarRaiting);
+    if (myComment.length !== 0) {
+      await fetch(`${API.APIuri}/api/comments/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: default_user_id,
+          recipe_id: recipeID,
+          comment: myComment,
+          raiting: myStarRaiting,
+          date_of_publication: new Date(Date.now()).toDateString().toString(),
+        }),
+      });
+    }
   };
 
+  const settingCommentsData = async (comment, index) => {
+    const response3 = await fetch(
+      `${API.APIuri}/api/users/userID/${comment.user_id}`
+    );
+    const foundUser = await response3.json();
+
+    const newItem = {
+      name: `${foundUser.name} ${foundUser.lastname}`,
+      date: new Date(comment.date_of_publication),
+      comment: comment.comment,
+      starRaiting: comment.raiting,
+    };
+    if (index === 0) {
+      setCommentsData([newItem]);
+    } else {
+      setCommentsData((prevComments) => [...prevComments, newItem]);
+    }
+  };
+
+  const fetchingRecipe = async () => {
+    if (recipeID !== null && recipeID !== "") {
+      const response = await fetch(
+        `${API.APIuri}/api/recipes/recipe/${recipeID}`
+      );
+      const recipe = await response.json();
+      const recipeData = recipe[0];
+      setTitle2(recipeData.name);
+      setStepList(recipeData.preparation_steps);
+      setImage(recipeData.photo);
+      const newIngredients = recipeData.ingredients.map((element, index) => {
+        return `${recipeData.quantity_ingredients[index]} ${element} `;
+      });
+      setIngredientsList(newIngredients);
+    }
+  };
+
+  const fetchingComments = async () => {
+    if (recipeID !== null && recipeID !== "") {
+      const response2 = await fetch(
+        `${API.APIuri}/api/comments/recipe/${recipeID}`
+      );
+      const comments = await response2.json();
+      comments.map((comment, index) => {
+        settingCommentsData(comment, index);
+      });
+    }
+  };
+
+  //put here your permanent operations
+
   useEffect(() => {
-    fetch(`${API.APIuri}/api/recipe/${title2}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTitle(data.name);
-        setStepList(data.preparation_steps);
-        setIngredientsList(data.ingredients);
-        setPhoto(data.photo); // Ajoutez cette ligne
-      })
-      .catch((error) => console.error(error));
-  }, [title2]);
+    setCommentsData([]);
+    fetchingRecipe();
+    fetchingComments();
+  }, []);
 
   useEffect(() => {
     console.log(
@@ -124,19 +195,25 @@ function RecipeScreen3() {
                 <div style={{ width: "50%" }}>
                   <IngredientsList ingredientsList={ingredientsList} />
                 </div>
-                <div
-                  style={{
-                    width: "50%",
-                    marginLeft: "8px",
-                    alignSelf: "center",
-                  }}
-                >
-                  <img
-                    style={{ width: "90%", height: "auto", objectFit: "cover" }}
-                    src={photo}
-                    alt={title}
-                  />
-                </div>
+                {image.length !== 0 && (
+                  <div
+                    style={{
+                      width: "50%",
+                      marginLeft: "8px",
+                      alignSelf: "center",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "90%",
+                        height: "auto",
+                        objectFit: "cover",
+                      }}
+                      src={image}
+                      alt={title}
+                    />
+                  </div>
+                )}
               </div>
               <div
                 style={{ width: "50%", alignSelf: "center", marginTop: "16px" }}
@@ -159,28 +236,45 @@ function RecipeScreen3() {
               >
                 {`Commentaires`}
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  gap: "10px",
-                  marginTop: "16px",
-                  marginBottom: "16px",
-                  width: "100%",
-                }}
-              >
-                {commentsData.map((item, index) => (
-                  <div key={index} style={{ width: "311px" }}>
-                    <CommentCard2
-                      name={item.name}
-                      date={item.date}
-                      comment={item.comment}
-                      starRating={item.starRaiting}
-                    />
-                  </div>
-                ))}
-              </div>
+              {commentsData.length !== 0 ? (
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: "10px",
+                    marginTop: "16px",
+                    marginBottom: "16px",
+                    width: "100%",
+                  }}
+                >
+                  {commentsData.map((item, index) => (
+                    <div key={index} style={{ width: "311px" }}>
+                      <CommentCard2
+                        name={item.name}
+                        date={item.date}
+                        comment={item.comment}
+                        starRating={item.starRaiting}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className="montserrat_700"
+                  style={{
+                    color: C.greenLight,
+                    fontSize: "16px",
+                    textAlign: "center",
+                    width: "60%",
+                    marginTop: "16px",
+                    marginBottom: "16px",
+                    alignSelf: "center",
+                  }}
+                >
+                  {`Il n'y a aucun commentaire sur la recette pour le moment`}
+                </div>
+              )}
             </div>
           </div>
         </div>

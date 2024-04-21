@@ -17,7 +17,7 @@ const UserCard = ({imgsrc, name, onClick}) => {
                 {name}
             </div>
             <div style={{marginRight: '50px'}}>
-                <ButtonComponent type="tertiary" text="paramètres du profil" onClick={onClick}/>
+                <ButtonComponent type="tertiary" text="Paramètres du profil" onClick={onClick}/>
             </div>
         </div>
     )
