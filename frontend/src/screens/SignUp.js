@@ -29,7 +29,6 @@ function SignUp() {
       return;
     }
 
-
     signUp({
       name,
       lastname,
@@ -40,6 +39,8 @@ function SignUp() {
       if (result === "User created") {
         console.log(result);
         navigate("/"); // Redirigez l'utilisateur vers la page de connexion
+      } else if (result === "Email exist") {
+        console.log(result);
       } else {
         setModalVisible(true);
         setModalText(result);

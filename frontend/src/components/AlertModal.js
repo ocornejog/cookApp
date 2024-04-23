@@ -22,7 +22,7 @@ const AlertModal = ({ message, visible, textButton, onClickButton }) => {
                 <a href="#" dir="auto" style={{ textDecoration: 'none', width: '90%' }} 
                 onClick={() => {
                   onClickButton();
-                  if (message === "Utilisateur créé avec succès") {
+                  if (message === "Utilisateur créé avec succès" || message === "Email existant, veuillez vous connecter") {
                     navigate("/");
                   }
                 }}>

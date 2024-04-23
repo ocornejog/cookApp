@@ -198,7 +198,7 @@ const App = () => {
             .then(async (data) => {
               if (data === "User created") {
                 message = "Utilisateur créé avec succès";
-              } else if (data === "Email existant, veuillez vous connecter") {
+              } else if (data === "Email exist") {
                 message = "Email existant, veuillez vous connecter";
               } else {
                 message = "Erreur lors de la création de l'utilisateur";
