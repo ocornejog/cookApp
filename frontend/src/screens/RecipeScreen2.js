@@ -7,7 +7,6 @@ import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
 
 function RecipeScreen2() {
-
   // put here your constants
 
   const default_user_id = "65e31cf769050ff9bab2a6c1";
@@ -17,33 +16,37 @@ function RecipeScreen2() {
   const { category, buttonText } = useParams();
   const navigate = useNavigate();
 
-  const settingRecipesData = async(recipe, index) => {
-
-    let response = 
-    await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${default_user_id}/recipe/${recipe._id}`);
+  const settingRecipesData = async (recipe, index) => {
+    let response = await fetch(
+      `${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${default_user_id}/recipe/${recipe._id}`
+    );
     let myFavorite = await response.json();
 
     const newItem = {
-        id: recipe._id,
-        title: recipe.name,
-        description: recipe.description,
-        image: recipe.photo,
-        favorite: (myFavorite.length !== 0)? true : false
-    }
+      id: recipe._id,
+      title: recipe.name,
+      description: recipe.description,
+      image: recipe.photo,
+      favorite: myFavorite.length !== 0 ? true : false,
+    };
 
-    setData(prevRecipes => [...prevRecipes, newItem]);
+    setData((prevRecipes) => [...prevRecipes, newItem]);
   };
 
   useEffect(() => {
-    if((typeof(buttonText) === "string") && (buttonText.length !== 0) && (firstDeploy === true)){
+    if (
+      typeof buttonText === "string" &&
+      buttonText.length !== 0 &&
+      firstDeploy === true
+    ) {
       firstDeploy = false;
       fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
         .then((response) => response.json())
         .then(async (data) => {
           console.log(data);
           for (let index = 0; index < data.length; index++) {
-              const recipe = data[index];
-              await settingRecipesData(recipe, index);
+            const recipe = data[index];
+            await settingRecipesData(recipe, index);
           }
         })
         .catch((err) => console.error(err));
@@ -51,38 +54,43 @@ function RecipeScreen2() {
   }, [buttonText]);
 
   const handleClick = (title, recipeID) => {
-    navigate(`/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`);
+    navigate(
+      `/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`
+    );
   };
 
-  const onClickFavorite = async(e, favorite) => {
-    console.log('Clicked favorite button for card with id: ', e);
-    if(!favorite) {
-        await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userID: default_user_id,
-                recipeID: e
-            })
-        });
+  const onClickFavorite = async (e, favorite) => {
+    console.log("Clicked favorite button for card with id: ", e);
+    if (!favorite) {
+      await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: default_user_id,
+          recipeID: e,
+        }),
+      });
     } else {
-        await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${default_user_id}/recipe/${e}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+      await fetch(
+        `${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${default_user_id}/recipe/${e}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
-    setData(prevItems => (
-        prevItems.map(item => {
-            if (item.id === e) {
-                return { ...item, favorite: !item.favorite };
-            }
-            return item;
-        })
-    ));
+    setData((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === e) {
+          return { ...item, favorite: !item.favorite };
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -129,12 +137,14 @@ function RecipeScreen2() {
               <React.Fragment key={index}>
                 <>
                   <RecipeCard
-                    title={item.title} 
+                    title={item.title}
                     description={item.description}
-                    favorite={item.favorite} 
+                    favorite={item.favorite}
                     image={item.image}
                     onClick={() => handleClick(item.title, item.id)}
-                    onClickFavorite={() => onClickFavorite(item.id, item.favorite)}
+                    onClickFavorite={() =>
+                      onClickFavorite(item.id, item.favorite)
+                    }
                   />
                 </>
               </React.Fragment>

@@ -22,6 +22,7 @@ userCtrl.createUser = async (req, res) => {
   const { name, lastname, birthdate, email, password } = req.body;
   const hash = bcrypt.hashSync(password, 10);
 
+
   const newUser = new User({
     _id,
     name,
