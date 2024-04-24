@@ -80,7 +80,7 @@ function SecretCode() {
         {isValid ? <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',
       color:C.red, marginBottom:'20px', marginTop:'-10px'}}>&zwnj; </div>
       : <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',
-      color:C.red, marginBottom:'20px', marginTop:'-10px'}}> Aucun utilisateur associé à l'email saisi</div>}
+      color:C.red, marginBottom:'20px', marginTop:'-10px'}}>{"Le code secret que vous avez entré n'est pas valide"}</div>}
         <ButtonComponent className="confirm-secret-code-button" type="primary" onClick={handleSubmit} text="Valider le code secret" />
       </form>
       <p>Vous n'avez pas de compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/SignUp")}>Créer un compte</a></p>
