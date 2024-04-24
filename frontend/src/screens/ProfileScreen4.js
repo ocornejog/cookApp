@@ -10,6 +10,7 @@ import DropDownList from '../components/DropDownList';
 import { CheckBox } from '../components/CheckBox';
 import API from '../constants/Api';
 import { useNavigate, useLocation } from "react-router-dom";
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen4() {
   let titreD = "";
@@ -63,7 +64,11 @@ function ProfileScreen4() {
   const [photo, setPhoto] = React.useState(photoD);
 
   //récupérer l'id de l'utilisateur actuellement connecté
-  const testUserid = "65e31cf769050ff9bab2a6c1";
+  //const testUserid = "65e31cf769050ff9bab2a6c1";
+
+  const auth_context = React.useContext(AuthContext);
+
+  const userId = auth_context.id;
 
   const [checkComplete, setCheckComplet] = React.useState(true);
 
@@ -150,7 +155,7 @@ function ProfileScreen4() {
       'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        user_id:testUserid,
+        user_id:userId,
         recipe_id:newRecipeId
       })
     });
