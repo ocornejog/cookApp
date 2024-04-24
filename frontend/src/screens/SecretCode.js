@@ -56,7 +56,7 @@ function SecretCode() {
     if (validCode !== code) {
       setIsValid(false);
     } else {
-      navigate('/ResetPassword');
+      navigate('/ResetPassword', {state:email});
     }
   };
 
