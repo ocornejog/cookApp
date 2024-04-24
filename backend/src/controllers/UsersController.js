@@ -24,7 +24,7 @@ userCtrl.createUser = async (req, res) => {
 
   const existingUser = await User.findOne({ email: email });
   if (existingUser) {
-    return res.status(400).json("Email exist");
+    return res.json("Email exist");
   }
 
 

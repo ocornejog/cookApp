@@ -1,9 +1,9 @@
 .sign-up-container {
-  max-width: 400px;
+  width: 50%;
   margin: 0 auto;
   padding: 20px;
   border-radius: 5px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif; /* Utilisation de la police Montserrat */
   display: flex;
   flex-direction: column;
   align-items: center;
