@@ -6,9 +6,11 @@ import "../styles/ButtonRecipe.css";
 import { useNavigate } from "react-router-dom";
 import C from "../constants/colors";
 import API from "../constants/Api";
+import { AuthContext } from '../constants/Context';
+
 
 function RecipeScreen1() {
-  const default_user_id = "65e31cf769050ff9bab2a6c1";
+  const auth_context = React.useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleClick = (category, buttonText) => {
@@ -18,7 +20,7 @@ function RecipeScreen1() {
   const handleClickFavoris = async () => {
     console.log("fetching");
     const res = await fetch(
-      `${API.APIuri}/api/favoritesRecipes/user/${default_user_id}`,
+      `${API.APIuri}/api/favoritesRecipes/user/${auth_context.id}`,
       {
         method: "GET",
         headers: {
