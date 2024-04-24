@@ -17,20 +17,6 @@ function RecipeScreen1() {
     navigate(`/detail/${category}/${buttonText}`);
   };
 
-  const handleClickFavoris = async () => {
-    console.log("fetching");
-    const res = await fetch(
-      `${API.APIuri}/api/favoritesRecipes/user/${auth_context.id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let response = await res.json();
-    console.log(response);
-  };
   return (
     <div className="recipe-screen">
       <ImageComponent />
@@ -244,7 +230,7 @@ function RecipeScreen1() {
           <ButtonComponent
             type="primary"
             text="Voir mes favoris"
-            onClick={() => handleClickFavoris()}
+            onClick={() => handleClick("FAVORIS", "Favoris")}
             fontSize={"15px"}
           />
         </div>

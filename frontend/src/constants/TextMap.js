@@ -169,4 +169,16 @@ export default {
       "Cuisinez malin avec nos recettes anti-gaspi"
     </span>
   ),
+  "Favoris": (
+    <span
+      style={{
+        fontFamily: "Montaga",
+        fontSize: "32px",
+        color: "black",
+        fontWeight: "normal",
+      }}
+    >
+      "Plongez dans mon carnet de gourmandises, où chaque recette est une étoile dans le ciel de mes favoris."
+    </span>
+  ),
 };

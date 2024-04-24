@@ -7,33 +7,35 @@ import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
 import { AuthContext } from '../constants/Context';
 
-import { AuthContext } from "../constants/Context";
-
-
 function RecipeScreen2() {
   // put here your constants
 
-
   const auth_context = React.useContext(AuthContext);
-
-  //const default_user_id = "65e31cf769050ff9bab2a6c1";
   let firstDeploy = true;
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
   const navigate = useNavigate();
-  const auth_context = React.useContext(AuthContext);
+
+  const settingFavoritesRecipesData = async (recipe, index) => {
+    let response = await fetch(`${API.APIuri}/api/recipes/recipe/${recipe.recipe_id}`);
+    let recipeData = await response.json();
+
+    const newItem = {
+      id: recipeData[0]._id,
+      title: recipeData[0].name,
+      description: recipeData[0].description,
+      image: recipeData[0].photo,
+      favorite: true
+    };
+
+    setData((prevRecipes) => [...prevRecipes, newItem]);
+  };
 
   const settingRecipesData = async (recipe, index) => {
     let response = await fetch(
       `${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`
     );
-
-  const settingRecipesData = async(recipe, index) => {
-
-    let response = 
-    await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`);
-
     let myFavorite = await response.json();
 
     const newItem = {
@@ -47,6 +49,19 @@ function RecipeScreen2() {
     setData((prevRecipes) => [...prevRecipes, newItem]);
   };
 
+  const handleClickFavoris = async () => {
+    fetch(`${API.APIuri}/api/favoritesRecipes/favoritesRecipes/user/${auth_context.id}`)
+    .then((response) => response.json())
+    .then(async (data) => {
+      console.log(data);
+      for (let index = 0; index < data.length; index++) {
+        const favoris = data[index];
+        await settingFavoritesRecipesData(favoris, index);
+      }
+    })
+    .catch((err) => console.error(err));
+  };
+
   useEffect(() => {
     if (
       typeof buttonText === "string" &&
@@ -54,7 +69,10 @@ function RecipeScreen2() {
       firstDeploy === true
     ) {
       firstDeploy = false;
-      fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
+      if(buttonText === "Favoris"){
+        handleClickFavoris();
+      } else{
+        fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
         .then((response) => response.json())
         .then(async (data) => {
           console.log(data);
@@ -64,6 +82,7 @@ function RecipeScreen2() {
           }
         })
         .catch((err) => console.error(err));
+      }
     }
   }, [buttonText]);
 
@@ -72,7 +91,6 @@ function RecipeScreen2() {
       `/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`
     );
   };
-
 
   const onClickFavorite = async (e, favorite) => {
     console.log("Clicked favorite button for card with id: ", e);
@@ -97,28 +115,6 @@ function RecipeScreen2() {
           },
         }
       );
-
-  const onClickFavorite = async(e, favorite) => {
-    console.log('Clicked favorite button for card with id: ', e);
-    if(!favorite) {
-        await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userID: auth_context.id,
-                recipeID: e
-            })
-        });
-    } else {
-        await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
     }
     setData((prevItems) =>
       prevItems.map((item) => {
