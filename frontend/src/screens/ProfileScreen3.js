@@ -82,7 +82,7 @@ function ProfileScreen3() {
   };
 
   const handleSave = async() => {
-    if (passwordFormat && oldPasswordMatch) {
+    if (passwordFormat && oldPasswordMatch && passwordsMatch) {
       let res = await fetch(`${API.APIuri}/api/users/password`, {
         method: 'PUT',
         headers: {
@@ -90,7 +90,7 @@ function ProfileScreen3() {
         },
         body: JSON.stringify({
             _id: userId,
-            password: bcrypt.hashSync(newPassword1, 10)
+            password: newPassword1
         })
       })
       const data = await res.json();

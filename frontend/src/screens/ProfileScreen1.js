@@ -116,7 +116,7 @@ function ProfileScreen1() {
         <ion-icon name="log-out-outline"></ion-icon>
       </div>
       {(name.length !== 0) &&
-        <UserCard name={name} onClick={handleClickParametres}/>
+        <UserCard imgsrc={auth_context.photo} name={name} onClick={handleClickParametres}/>
       }
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>
