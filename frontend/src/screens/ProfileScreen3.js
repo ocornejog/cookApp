@@ -7,10 +7,10 @@ import C from "../constants/colors"
 import { useNavigate, useLocation } from "react-router-dom";
 import bcrypt from "bcryptjs-react";
 import API from '../constants/Api';
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen3() {
   const location = useLocation();
-  const currentPassword = "motdepasse";
   const [newPassword1, setNewPassword1] = React.useState('');
   const [newPassword2, setNewPassword2] = React.useState('');
 
@@ -18,18 +18,18 @@ function ProfileScreen3() {
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
   const [oldPasswordMatch, setOldPasswordMatch] = React.useState(false);
 
-  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
+  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"}; 
 
-  //récupérer l'id de l'utilisateur connecté actuellement
-  const testUserid = "65e31cf769050ff9bab2a6c1";
+  const auth_context = React.useContext(AuthContext);
+  
+  const currentPassword = auth_context.password1.concat(auth_context.password2);
 
-  //récupérer le mot de passe dans la base de donnée associé a l'utilisateur conecté
-  const oldHash = bcrypt.hashSync(currentPassword, 10);
+  const userId = auth_context.id;
 
   const navigate = useNavigate();
 
   const checkOldPasword = (e) => {
-    bcrypt.compare(e, oldHash, function(err, isValid){
+    bcrypt.compare(e, currentPassword, function(err, isValid){
       if (isValid) {
         setOldPasswordMatch(true);
       } else {
@@ -86,7 +86,7 @@ function ProfileScreen3() {
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            _id: testUserid,
+            _id: userId,
             password: bcrypt.hashSync(newPassword1, 10)
         })
       });

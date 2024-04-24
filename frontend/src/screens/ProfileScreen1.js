@@ -12,16 +12,12 @@ function ProfileScreen1() {
   const navigate = useNavigate();
   const {signOut} = React.useContext(AuthContext);
   const auth_context = React.useContext(AuthContext);
+  const userId = auth_context.id;
 
   let firstDeploy = true;
 
-  let retrieved = false;
-
   const [recettes, setRecettes] = React.useState([]);
   const [name, setName] = React.useState("");
-  
-  //récupérer l'id de l'utilisateur actuellement connecté
-  const testUserid = "65e31cf769050ff9bab2a6c1";
 
   const getRecipeInfo = async(id_recette) => {
     let res = await fetch(`${API.APIuri}/api/recipes/recipe/${id_recette}`, {
@@ -82,7 +78,7 @@ function ProfileScreen1() {
       const recipeFectch = async () => {
         firstDeploy = false;
         setRecettes([]);
-        const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${testUserid}`,{
+        const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${userId}`,{
         method: 'GET',
         headers: {
         'Content-Type': 'application/json'

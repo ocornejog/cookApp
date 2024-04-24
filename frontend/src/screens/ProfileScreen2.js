@@ -6,15 +6,18 @@ import "../styles/ButtonComponent.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from '../constants/Api';
 import C from '../constants/colors'
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen2() {
   const regex = /^([0-9][0-2])\/([0-9][0-2])\/\d{4}$/;
-  //gather here the context instead of these testVars
-  const testUserid = "65e31cf769050ff9bab2a6c1";
-  const testBirthDate = "22/12/2001";
-  const testName = "Thomas";
-  const testLastName = "Joly";
-  const testMail = "thomasjoly04@gmail.com";
+
+  const auth_context = React.useContext(AuthContext);
+
+  const userId = auth_context.id;
+  const userBirthDate = auth_context.birthdate;
+  const userName = auth_context.name;
+  const userLastName = auth_context.lastName;
+  const userMail = auth_context.mail;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,9 +43,9 @@ function ProfileScreen2() {
   const handleSaveChanges = async() => {
     checkDateFormat();
     if ((validFormat) || (birthDate.length==0)) {
-      let postName = testName;
-      let postBirth = testBirthDate;
-      let postLastName = testLastName;
+      let postName = userName;
+      let postBirth = userBirthDate;
+      let postLastName = userLastName;
       if (name.length != 0) {
         postName = name;
       }
@@ -58,7 +61,7 @@ function ProfileScreen2() {
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            _id: testUserid,
+            _id: userId,
             name: postName,
             lastName: postLastName,
             birthDate: postBirth
@@ -82,28 +85,28 @@ function ProfileScreen2() {
           fontWeight:'330',display:'flex'}}>
         Nom
         <div style={{marginLeft:'100px', width:'42.5%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={testName} text={e => setLastName(e)}/>
+          <StyledTextInput placeholder={userName} text={e => setLastName(e)}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'53px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Prénom
         <div style={{marginLeft:'90px', width:'42%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={testLastName} text={e => setName(e)}/>
+          <StyledTextInput placeholder={userLastName} text={e => setName(e)}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'73px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Mail
         <div style={{marginLeft:'110px', width:'42.5%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={testMail}/>
+          <StyledTextInput placeholder={userMail}/>
         </div>
       </div>
       <div style ={{textAlign:'left', marginTop:'61px',marginLeft:'10px', fontSize: '20px', fontFamily:"Montserrat",
           fontWeight:'330',display:'flex'}}>
         Date de naissance
         <div style={{marginLeft:'33px', width:'41%',marginTop:'-10px'}}>
-          <StyledTextInput placeholder={testBirthDate} text={e => setBirthDate(e)}/>
+          <StyledTextInput placeholder={userBirthDate} text={e => setBirthDate(e)}/>
           {validFormat ? <p></p>
           : <p style={{marginBottom:'0px', marginTop:'0px', fontSize:'16px', fontFamily:"Montserrat",
             color:C.red}}>Format invalide (DD/MM/YYYY)</p>}
