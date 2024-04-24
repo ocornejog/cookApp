@@ -1,6 +1,7 @@
 import * as React from 'react';
 import UserCard from "../components/UserCard";
 import ButtonComponent from "../components/ButtonComponent";
+import AlertModal from '../components/AlertModal';
 import { StyledTextInput } from '../components/StyledTextInput';
 import "../styles/ButtonComponent.css";
 import C from "../constants/colors"
@@ -17,11 +18,13 @@ function ProfileScreen3() {
   const [passwordFormat, setPasswordFormat] = React.useState(false);
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
   const [oldPasswordMatch, setOldPasswordMatch] = React.useState(false);
+  const [modalText, setModalText] = React.useState("");
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
 
   //récupérer l'id de l'utilisateur connecté actuellement
-  const testUserid = "65e31cf769050ff9bab2a6c1";
+  const testUserid = "662033d3622593fd2dc37173";
 
   //récupérer le mot de passe dans la base de donnée associé a l'utilisateur conecté
   const oldHash = bcrypt.hashSync(currentPassword, 10);
@@ -81,20 +84,31 @@ function ProfileScreen3() {
   const handleSave = async() => {
     if (passwordFormat && oldPasswordMatch) {
       let res = await fetch(`${API.APIuri}/api/users/password`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            _id: testUserid,
-            password: bcrypt.hashSync(newPassword1, 10)
+          _id: testUserid,
+          password: newPassword1
         })
-      });
+      })
+      const data = await res.json();
+      if (data === "User updated") {
+        setModalText("Le mot de passe a été mis a jour avec succès");
+        setModalVisible(true);
+      } else {
+        setModalText("Il y avait une erreur. Veuillez reesayer.");
+        setModalVisible(true);
+      }
+
     }
   }
 
   return (
     <div>
+      <AlertModal message={modalText} visible={modalVisible} 
+      textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
       <UserCard onClick={handleClickParametres}/>
       {oldPasswordMatch ? <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',marginTop:'113px',
       color:C.white}}>

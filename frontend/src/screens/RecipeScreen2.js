@@ -7,20 +7,33 @@ import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
 import { AuthContext } from '../constants/Context';
 
+import { AuthContext } from "../constants/Context";
+
+
 function RecipeScreen2() {
   // put here your constants
 
+
   const auth_context = React.useContext(AuthContext);
+
+  //const default_user_id = "65e31cf769050ff9bab2a6c1";
   let firstDeploy = true;
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
   const navigate = useNavigate();
+  const auth_context = React.useContext(AuthContext);
 
   const settingRecipesData = async (recipe, index) => {
     let response = await fetch(
       `${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`
     );
+
+  const settingRecipesData = async(recipe, index) => {
+
+    let response = 
+    await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`);
+
     let myFavorite = await response.json();
 
     const newItem = {
@@ -60,6 +73,7 @@ function RecipeScreen2() {
     );
   };
 
+
   const onClickFavorite = async (e, favorite) => {
     console.log("Clicked favorite button for card with id: ", e);
     if (!favorite) {
@@ -83,6 +97,28 @@ function RecipeScreen2() {
           },
         }
       );
+
+  const onClickFavorite = async(e, favorite) => {
+    console.log('Clicked favorite button for card with id: ', e);
+    if(!favorite) {
+        await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userID: auth_context.id,
+                recipeID: e
+            })
+        });
+    } else {
+        await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
     }
     setData((prevItems) =>
       prevItems.map((item) => {
