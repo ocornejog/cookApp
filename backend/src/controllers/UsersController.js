@@ -22,6 +22,12 @@ userCtrl.createUser = async (req, res) => {
   const { name, lastname, birthdate, email, password } = req.body;
   const hash = bcrypt.hashSync(password, 10);
 
+  const existingUser = await User.findOne({ email: email });
+  if (existingUser) {
+    return res.json("Email exist");
+  }
+
+
   const newUser = new User({
     _id,
     name,
@@ -88,15 +94,14 @@ userCtrl.updateUser = async (req, res) => {
 
 userCtrl.updatePass = async (req, res) => {
   const { _id, password } = req.body;
-  const updatedUser = await User.updateOne(
-    { _id: _id },
-    {
-      $set: {
-        password: password,
-      },
-    }
-  );
-  res.json("User updated");
+  const hash = bcrypt.hashSync(password, 10);
+  await User.findByIdAndUpdate(_id, { 
+    password: hash 
+  })
+  .then(() => {
+    res.json("User updated");
+  })
+  .catch((err) => console.log(err));
 };
 
 module.exports = userCtrl;
