@@ -48,4 +48,10 @@ favoriteRecipeCtrl.deleteFromFavorites = async(req, res) => {
     })
 };
 
+
+favoriteRecipeCtrl.getUserFavoritesRecipes = async (req, res) => {
+    const userFavoritesRecipes = await FavoriteRecipe.find({ 'user_id': req.params.userID });
+    res.json(userFavoritesRecipes);
+};
+
 module.exports = favoriteRecipeCtrl;

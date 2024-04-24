@@ -5,18 +5,48 @@ import ButtonComponent from "../components/ButtonComponent";
 import "../styles/ButtonRecipe.css";
 import { useNavigate } from "react-router-dom";
 import C from "../constants/colors";
+import API from "../constants/Api";
+import { AuthContext } from '../constants/Context';
+
 
 function RecipeScreen1() {
+  const auth_context = React.useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleClick = (category, buttonText) => {
     navigate(`/detail/${category}/${buttonText}`);
   };
+
+  const handleClickFavoris = async () => {
+    console.log("fetching");
+    const res = await fetch(
+      `${API.APIuri}/api/favoritesRecipes/user/${auth_context.id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    let response = await res.json();
+    console.log(response);
+  };
   return (
     <div className="recipe-screen">
       <ImageComponent />
-      <div className="button-catégorie" style={{ textAlign: "center", marginTop: '8px' }}>
-        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+      <div
+        className="button-catégorie"
+        style={{ textAlign: "center", marginTop: "8px" }}
+      >
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.black,
+            fontSize: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+          }}
+        >
           {`CATEGORIES`}
         </div>
         <div>
@@ -45,8 +75,19 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-ingrédient" style={{ textAlign: "center", marginTop: '8px' }}>
-        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+      <div
+        className="button-ingrédient"
+        style={{ textAlign: "center", marginTop: "8px" }}
+      >
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.black,
+            fontSize: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+          }}
+        >
           {`INGREDIENT`}
         </div>
         <div>
@@ -83,8 +124,19 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-classique" style={{ textAlign: "center", marginTop: '8px' }}>
-        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+      <div
+        className="button-classique"
+        style={{ textAlign: "center", marginTop: "8px" }}
+      >
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.black,
+            fontSize: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+          }}
+        >
           {`LES CLASSIQUES`}
         </div>
         <div>
@@ -117,8 +169,19 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-fête" style={{ textAlign: "center", marginTop: '8px' }}>
-        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+      <div
+        className="button-fête"
+        style={{ textAlign: "center", marginTop: "8px" }}
+      >
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.black,
+            fontSize: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+          }}
+        >
           {`SPECIALE FÊTE`}
         </div>
         <div>
@@ -155,11 +218,22 @@ function RecipeScreen1() {
         </div>
       </div>
       <div className="rectangle"></div>
-      <div className="button-Favoris" style={{ textAlign: "center", marginTop: '8px' }}>
-        <div className="montserrat_700" style={{ color: C.black, fontSize: '20px', textAlign: 'center', textDecoration: "underline"}}>
+      <div
+        className="button-Favoris"
+        style={{ textAlign: "center", marginTop: "8px" }}
+      >
+        <div
+          className="montserrat_700"
+          style={{
+            color: C.black,
+            fontSize: "20px",
+            textAlign: "center",
+            textDecoration: "underline",
+          }}
+        >
           {`FAVORIS`}
         </div>
-        <div 
+        <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -170,8 +244,7 @@ function RecipeScreen1() {
           <ButtonComponent
             type="primary"
             text="Voir mes favoris"
-            // onClick={() => handleClick()}
-            onClick={() => console.log("My favorites button was pressed")}
+            onClick={() => handleClickFavoris()}
             fontSize={"15px"}
           />
         </div>

@@ -22,6 +22,12 @@ userCtrl.createUser = async (req, res) => {
   const { name, lastname, birthdate, email, password } = req.body;
   const hash = bcrypt.hashSync(password, 10);
 
+  const existingUser = await User.findOne({ email: email });
+  if (existingUser) {
+    return res.status(400).json("Email exist");
+  }
+
+
   const newUser = new User({
     _id,
     name,
