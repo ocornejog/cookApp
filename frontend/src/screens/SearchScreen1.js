@@ -110,7 +110,7 @@ function SearchScreen1() {
                     backgroundColor: C.white, padding: '20px', borderRadius: '10px' }}>
                         {`Qu’est-ce que je veux cuisiner aujourd’hui ?`}
                     </div>
-                    <div style={{width: '75%', alignSelf: 'center', marginBottom: '20px'}}>
+                    <div style={{width: '75%', alignSelf: 'center', marginBottom: '20px', position: 'relative'}}>
                         <ExploreCard placeholder={'Rechercher un plat spécifique'} 
                         buttonText={(advancedSearch)? 'Chercher' : 'Recherche avancée'} 
                         type={advancedSearch? 'advanced' : 'basic'}
@@ -123,6 +123,20 @@ function SearchScreen1() {
                         }}
                         onClickLupe={(e) => onSearchByText(e)}
                         annotation={(e) => handleAnnotation(e)}/>
+                        {(advancedSearch) &&
+                        <ion-icon
+                            name={"chevron-up-outline"}
+                            style={{
+                                position: 'absolute',
+                                top: '20px',
+                                right: '20px',
+                                cursor: 'pointer',
+                                color: '#337D74',
+                                fontSize: '30px',
+                            }}
+                            onClick={() => setAdvancedSearch(!advancedSearch)}
+                        ></ion-icon>
+                        }
                     </div>
                 </div>
             </div>      
