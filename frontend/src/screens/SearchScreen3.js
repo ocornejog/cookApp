@@ -54,7 +54,8 @@ function SearchScreen3() {
     const onSubmitComment = async(myComment, myStarRaiting) => {
         setComment(myComment);
         setStarRaiting(myStarRaiting);
-        if(myComment.length !== 0){
+        setCommentsData([]);
+        if(((myComment.length !== 0) && (myStarRaiting !== 0)) || (myStarRaiting !== 0)){
             await fetch(`${API.APIuri}/api/comments/create`, {
                 method: 'POST',
                 headers: {
@@ -70,6 +71,7 @@ function SearchScreen3() {
             })
             .then(response => response.json())
             .then(async (data) => {
+                fetchingComments();
                 if(data === 'Comment created'){
                     setModalText("Commentaire enregistré avec succès");
                     setModalVisible(true);
@@ -79,6 +81,7 @@ function SearchScreen3() {
                 }     
             })
             .catch(error => {
+                fetchingComments();
                 setModalText("Une erreur s'est produite, veuillez réessayer");
                 setModalVisible(true);
             });
