@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ButtonComponent from '../components/ButtonComponent';
 import AlertModal from '../components/AlertModal';
 import { StyledTextInput } from '../components/StyledTextInput';
@@ -14,6 +14,26 @@ function Password() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [passwordFormatError, setPasswordFormatError] = useState(false);
+  const [previousPassword, setPreviousPassword] = useState('');
+
+  useEffect(() => {
+    const fetchPreviousPassword = async () => {
+      try {
+        const email = location.state;
+        const response = await fetch(`${API.APIuri}/api/users/${email}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const userData = await response.json();
+        setPreviousPassword(userData.password);
+      } catch (error) {
+        console.error('Erreur lors de la récupération de l\'ancien mot de passe:', error);
+      }
+    };
+    fetchPreviousPassword();
+  }, [location.state]);
 
   const handlePasswordChange = (value) => {
     setPassword(value);
@@ -33,6 +53,10 @@ function Password() {
     }
     if (passwordFormatError) {
       setError('Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.');
+      return;
+    }
+    if (password === previousPassword) {
+      setError('Le nouveau mot de passe ne peut pas être identique à l\'ancien.');
       return;
     }
 
@@ -88,7 +112,8 @@ function Password() {
         </div>
         {passwordFormatError && (
           <p style={{ color: "red" }}>
-            Recommandation : Minimum 8 caractères, une lettre majuscule, un chiffre et un caractère spécial (@$!%*?&¿.#-)
+            Recommandation : Minimum 8 caractères, une lettre majuscule, un
+            chiffre et un caractère spécial (@$!%*?&¿.#-)
           </p>
         )}
         <div className="montserrat_700" style={{ fontSize: '20px', color: C.green, textAlign: 'left',
