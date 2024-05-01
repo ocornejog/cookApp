@@ -23,7 +23,7 @@ function ProfileScreen1() {
     let res = await fetch(`${API.APIuri}/api/recipes/recipe/${id_recette}`, {
       method: 'GET',
       headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json' 
       }
     });
     let rec = await res.json();
@@ -67,7 +67,14 @@ function ProfileScreen1() {
       body: JSON.stringify({
         _id:idRecette
       })
-    })
+    });
+    let tmp = []
+    for (let i = 0; i < recettes.length; i++) {
+      if (recettes[i]._id !== idRecette) {
+        tmp.push(recettes[i])
+      }
+    }
+    setRecettes(tmp);
   }
 
 
@@ -98,6 +105,8 @@ function ProfileScreen1() {
     }
   }, [])
 
+  console.log(recettes);
+
   React.useEffect(() => {
     const myName = auth_context.name.toUpperCase();
     const myLastname = auth_context.lastName.toUpperCase();
@@ -116,7 +125,7 @@ function ProfileScreen1() {
         <ion-icon name="log-out-outline"></ion-icon>
       </div>
       {(name.length !== 0) &&
-        <UserCard name={name} onClick={handleClickParametres}/>
+        <UserCard name={name} onClick={handleClickParametres} imgsrc={auth_context.photo}/>
       }
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>

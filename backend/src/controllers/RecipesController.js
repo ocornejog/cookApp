@@ -126,8 +126,9 @@ recipeCtrl.searchingTags = async (req, res) => {
 recipeCtrl.updateRecipe = async (req, res) => {
   const {_id, name, description, type_of_cuisine, type_of_dishes, specific_regime, preparation_time, culinary_skill_level, 
     nutritional_value, preparation_steps, photo, ingredients, quantity_ingredients, tags } = req.body;
-  const updateRecipe = await Recipe.updateOne({'_id':_id}, 
-  {$set:{
+  const updateRecipe = await Recipe.findByIdAndUpdate(
+    _id, 
+  {
     name,
     description, 
     type_of_cuisine, 
@@ -141,8 +142,11 @@ recipeCtrl.updateRecipe = async (req, res) => {
     ingredients, 
     quantity_ingredients, 
     tags
-  }});
-  res.json('Recipe updated');
+  }).then(() => {
+    res.json('Recipe updated');
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
 recipeCtrl.deleteRecipe = async(req,res) => {
