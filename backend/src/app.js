@@ -13,9 +13,11 @@ app.set('default_port', 3001);
 app.use(morgan('dev'));
 app.use(cors(
     {
-        origin: ["https://cook-app-cyan.vercel.app"],
-        methods: ["POST","GET","PUT","DELETE"],
-        credentials: true
+        origin: ["https://cook-app-cyan.vercel.app", "https://cook-app-cyan.vercel.app/"],
+        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+        credentials: true,
+        optionsSuccessStatus: 200,
+        headers: "*"
     }
 ));
 app.use(express.json({limit: '10mb'}));
