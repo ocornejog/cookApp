@@ -67,7 +67,12 @@ function ProfileScreen1() {
       body: JSON.stringify({
         _id:idRecette
       })
-    })
+    });
+    let deleteRecipeFavorites = await fetch(`${API.APIuri}/api/favoritesRecipes/deleteRecipeFavorites/recipe/${idRecette}`, {
+      method: 'DELETE',
+      headers: {
+      'Content-Type': 'application/json'
+    }});   
   }
 
 

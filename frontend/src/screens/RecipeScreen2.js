@@ -234,7 +234,6 @@ function RecipeScreen2() {
                 width: "100%",
                 marginTop: "56px",
                 marginBottom: "16px",
-                color: "white",
               }}
             >
               {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
