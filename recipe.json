@@ -1,0 +1,224 @@
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a71"
+  },
+  "name": "Lentil Soup",
+  "description": "A hearty and comforting soup made from lentils, vegetables, and aromatic spices, perfect for breaking the fast during Ramadan.",
+  "type_of_cuisine": 2,
+  "type_of_dishes": 1,
+  "specific_regime": 0,
+  "preparation_time": 2,
+  "culinary_skill_level": 2,
+  "nutritional_value": [false, false, true, true, false, false, false, false],
+  "preparation_steps": [
+      "In a large pot, sauté onions, carrots, and celery until softened.",
+      "Add lentils, broth, and spices. Bring to a boil, then reduce heat and simmer until lentils are tender.",
+      "Season with salt and pepper to taste. Serve hot with a squeeze of lemon juice."
+  ],
+  "photo": "https://www.inspiredtaste.net/wp-content/uploads/2019/01/Lentil-Soup-1200.jpg",
+  "ingredients": ["lentils", "onions", "carrots", "celery", "vegetable broth", "spices", "lemon"],
+  "quantity_ingredients": ["1 cup", "1 large", "2", "2 stalks", "4 cups", "to taste", "1"],
+  "tags": ["soup", "comfort food", "Ramadan", "vegetarian"]
+}
+
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a72"
+  },
+  "name": "Chicken Shawarma Wraps",
+  "description": "Delicious and flavorful chicken shawarma wrapped in warm pita bread with fresh veggies and tahini sauce, a perfect dish for iftar during Ramadan.",
+  "type_of_cuisine": 6,
+  "type_of_dishes": 3,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [false, false, false, true, true, false, false, false],
+  "preparation_steps": [
+      "Marinate chicken with shawarma spices and yogurt, then grill until cooked through.",
+      "Warm pita bread and prepare fresh vegetables.",
+      "Assemble wraps with chicken, veggies, and tahini sauce. Serve immediately."
+  ],
+  "photo": "https://www.spendwithpennies.com/wp-content/uploads/2020/01/Chicken-Shawarma-Recipe-SpendWithPennies-2.jpg",
+  "ingredients": ["chicken", "pita bread", "vegetables", "tahini sauce", "yogurt", "shawarma spices"],
+  "quantity_ingredients": ["500g", "6", "assorted", "to taste", "200g", "to taste"],
+  "tags": ["shawarma", "wraps", "Ramadan", "main dish"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a73"
+  },
+  "name": "Dates and Nuts Smoothie",
+  "description": "A nutritious and energy-boosting smoothie made from dates, nuts, milk, and honey, perfect for suhoor during Ramadan.",
+  "type_of_cuisine": 1,
+  "type_of_dishes": 4,
+  "specific_regime": 0,
+  "preparation_time": 1,
+  "culinary_skill_level": 1,
+  "nutritional_value": [true, true, false, false, false, false, false, false],
+  "preparation_steps": [
+      "Soak dates and nuts in milk overnight.",
+      "Blend the soaked mixture with honey until smooth.",
+      "Pour into glasses and serve chilled."
+  ],
+  "photo": "https://www.vegrecipesofindia.com/wp-content/uploads/2017/07/dates-almond-smoothie-recipe.jpg",
+  "ingredients": ["dates", "nuts", "milk", "honey"],
+  "quantity_ingredients": ["5", "handful", "2 cups", "to taste"],
+  "tags": ["smoothie", "dates", "nuts", "Ramadan"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a74"
+  },
+  "name": "Fattoush Salad",
+  "description": "A refreshing salad made with crispy pita chips, fresh vegetables, and a tangy sumac dressing, perfect for iftar during Ramadan.",
+  "type_of_cuisine": 6,
+  "type_of_dishes": 6,
+  "specific_regime": 0,
+  "preparation_time": 2,
+  "culinary_skill_level": 1,
+  "nutritional_value": [false, true, true, true, false, false, false, false],
+  "preparation_steps": [
+      "Toast pita bread until crispy, then break into bite-sized pieces.",
+      "Combine chopped vegetables and herbs in a large bowl.",
+      "Whisk together olive oil, lemon juice, and sumac to make the dressing.",
+      "Toss the salad with the dressing and pita chips. Serve immediately."
+  ],
+  "photo": "https://www.inspiredtaste.net/wp-content/uploads/2019/01/Fattoush-Salad-1200.jpg",
+  "ingredients": ["pita bread", "tomatoes", "cucumbers", "lettuce", "sumac", "olive oil", "lemon juice"],
+  "quantity_ingredients": ["2", "2", "2", "1 head", "to taste", "¼ cup", "2 tablespoons"],
+  "tags": ["salad", "Mediterranean", "Ramadan", "appetizer"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a75"
+  },
+  "name": "Ramadan Chicken Tagine",
+  "description": "A fragrant and flavorful Moroccan chicken stew cooked in a traditional tagine pot with spices, preserved lemons, and olives, perfect for breaking the fast during Ramadan.",
+  "type_of_cuisine": 5,
+  "type_of_dishes": 2,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [false, false, false, true, true, false, false, false],
+  "preparation_steps": [
+      "Marinate chicken with spices, preserved lemons, and olives.",
+      "Heat oil in a tagine pot and brown chicken on all sides.",
+      "Add onions, garlic, and vegetables. Cook until softened.",
+      "Pour in broth, cover, and simmer until chicken is cooked through."
+  ],
+  "photo": "https://www.olivemagazine.com/wp-content/uploads/2019/07/Chicken-tagine-with-lemon-and-olives.jpg",
+  "ingredients": ["chicken", "preserved lemons", "olives", "onions", "garlic", "vegetables", "broth"],
+  "quantity_ingredients": ["1kg", "2", "handful", "2", "4 cloves", "assorted", "1 liter"],
+  "tags": ["tagine", "Moroccan", "Ramadan", "main dish"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a76"
+  },
+  "name": "Ramadan Lentil and Rice Pilaf",
+  "description": "A fragrant and hearty dish made from lentils, rice, and aromatic spices, perfect for iftar during Ramadan.",
+  "type_of_cuisine": 1,
+  "type_of_dishes": 2,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [true, true, false, false, false, false, false, false],
+  "preparation_steps": [
+      "Rinse lentils and rice under cold water until water runs clear.",
+      "Sauté onions, garlic, and spices until fragrant.",
+      "Add lentils, rice, and broth. Bring to a boil, then reduce heat and simmer until rice is cooked through.",
+      "Fluff with a fork and serve hot."
+  ],
+  "photo": "https://www.simplyrecipes.com/thmb/AuXObpxH6OMOuI7C2bHcVPYUPeU=/2000x1333/smart/filters:no_upscale()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2014__05__rice-lentils-ht-3-2000-1583828c1ce34ab69868e6be96c8eefa.jpg",
+  "ingredients": ["lentils", "rice", "onions", "garlic", "spices", "broth"],
+  "quantity_ingredients": ["1 cup", "1 cup", "1", "2 cloves", "to taste", "2 cups"],
+  "tags": ["pilaf", "vegetarian", "Ramadan", "main dish"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a77"
+  },
+  "name": "Ramadan Dates and Almond Balls",
+  "description": "Delicious and healthy energy balls made from dates, almonds, and coconut, perfect for a quick snack during Ramadan.",
+  "type_of_cuisine": 1,
+  "type_of_dishes": 5,
+  "specific_regime": 0,
+  "preparation_time": 1,
+  "culinary_skill_level": 1,
+  "nutritional_value": [true, true, true, false, false, false, false, false],
+  "preparation_steps": [
+      "Pit dates and blend with almonds until mixture forms a paste.",
+      "Roll mixture into small balls and coat with shredded coconut.",
+      "Refrigerate until firm. Serve chilled."
+  ],
+  "photo": "https://www.vegrecipesofindia.com/wp-content/uploads/2017/07/dates-almond-coconut-ladoo-recipe.jpg",
+  "ingredients": ["dates", "almonds", "coconut"],
+  "quantity_ingredients": ["1 cup", "½ cup", "½ cup"],
+  "tags": ["snack", "healthy", "Ramadan", "dessert"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a78"
+  },
+  "name": "Ramadan Chickpea and Spinach Curry",
+  "description": "A nutritious and flavorful curry made from chickpeas, spinach, and aromatic spices, perfect for breaking the fast during Ramadan.",
+  "type_of_cuisine": 1,
+  "type_of_dishes": 2,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [true, true, false, false, false, false, false, false],
+  "preparation_steps": [
+      "Sauté onions, garlic, and spices until fragrant.",
+      "Add chickpeas, tomatoes, and coconut milk. Simmer until chickpeas are tender.",
+      "Stir in spinach and cook until wilted. Season with salt and pepper to taste."
+  ],
+  "photo": "https://www.cookwithmanali.com/wp-content/uploads/2017/09/Chana-Palak-1.jpg",
+  "ingredients": ["chickpeas", "spinach", "onions", "garlic", "spices", "tomatoes", "coconut milk"],
+  "quantity_ingredients": ["2 cups", "2 cups", "1", "2 cloves", "to taste", "2", "1 can"],
+  "tags": ["curry", "vegetarian", "Ramadan", "main dish"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a79"
+  },
+  "name": "Ramadan Harira Soup",
+  "description": "A traditional Moroccan soup made with lamb, lentils, chickpeas, and tomatoes, flavored with spices and herbs, perfect for iftar during Ramadan.",
+  "type_of_cuisine": 5,
+  "type_of_dishes": 1,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [false, false, true, true, false, false, false, false],
+  "preparation_steps": [
+      "Sauté onions, garlic, and lamb until browned.",
+      "Add spices, lentils, chickpeas, and tomatoes. Stir well.",
+      "Pour in broth and simmer until meat is tender and flavors are melded."
+  ],
+  "photo": "https://www.inspiredtaste.net/wp-content/uploads/2021/01/Harira-Soup-1200.jpg",
+  "ingredients": ["lamb", "lentils", "chickpeas", "onions", "garlic", "spices", "tomatoes", "broth"],
+  "quantity_ingredients": ["500g", "1 cup", "1 cup", "1", "3 cloves", "to taste", "2", "1 liter"],
+  "tags": ["soup", "Moroccan", "Ramadan", "main dish"]
+}
+{
+  "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a7a"
+  },
+  "name": "Ramadan Semolina Cake (Basbousa)",
+  "description": "A sweet and moist cake made from semolina, coconut, and yogurt, soaked in a fragrant syrup, perfect for dessert during Ramadan.",
+  "type_of_cuisine": 1,
+  "type_of_dishes": 5,
+  "specific_regime": 0,
+  "preparation_time": 3,
+  "culinary_skill_level": 2,
+  "nutritional_value": [false, true, false, false, false, false, false, false],
+  "preparation_steps": [
+      "Mix semolina, coconut, sugar, yogurt, and baking powder in a bowl.",
+      "Spread mixture into a greased baking dish and bake until golden.",
+      "Prepare sugar syrup with water, sugar, and lemon juice. Pour over the warm cake and let it soak."
+  ],
+  "photo": "https://www.olivemagazine.com/wp-content/uploads/2019/08/Classic-basbousa-cake-920x605.jpg",
+  "ingredients": ["semolina", "coconut", "sugar", "yogurt", "baking powder", "water", "lemon juice"],
+  "quantity_ingredients": ["1 cup", "1 cup", "1 cup", "1 cup", "1 teaspoon", "1 cup", "1 tablespoon"],
+  "tags": ["dessert", "sweet", "Ramadan", "cake"]
+}

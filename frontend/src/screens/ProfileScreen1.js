@@ -68,6 +68,13 @@ function ProfileScreen1() {
         _id:idRecette
       })
     });
+
+    let deleteRecipeFavorites = await fetch(`${API.APIuri}/api/favoritesRecipes/deleteRecipeFavorites/recipe/${idRecette}`, {
+      method: 'DELETE',
+      headers: {
+      'Content-Type': 'application/json'
+    }});   
+
     let tmp = []
     for (let i = 0; i < recettes.length; i++) {
       if (recettes[i]._id !== idRecette) {
@@ -75,6 +82,7 @@ function ProfileScreen1() {
       }
     }
     setRecettes(tmp);
+
   }
 
 

@@ -10,6 +10,8 @@ router.route("/checkFavoriteRecipe/user/:userID/recipe/:recipeID").get(favoriteR
 
 router.route("/deleteFromFavorites/user/:userID/recipe/:recipeID").delete(favoriteRecipeCtrl.deleteFromFavorites);
 
+router.route("/deleteRecipeFavorites/recipe/:recipeID").delete(favoriteRecipeCtrl.deleteRecipeFavorites);
+
 router.route("/favoritesRecipes/user/:userID").get(favoriteRecipeCtrl.getUserFavoritesRecipes);
 
 

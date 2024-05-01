@@ -1,0 +1,210 @@
+[
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b97"
+    },
+    "name": "Saumon grillé au citron et à l'aneth",
+    "description": "Un délicieux saumon grillé assaisonné avec du citron frais et de l'aneth, parfait pour un repas léger et savoureux.",
+    "type_of_cuisine": 1,
+    "type_of_dishes": 7,
+    "specific_regime": 0,
+    "preparation_time": 20,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Préchauffer le gril à feu moyen-élevé.",
+      "Assaisonner les filets de saumon avec du sel, du poivre, du jus de citron frais et de l'aneth.",
+      "Placer les filets de saumon sur le gril chaud et cuire pendant environ 4-5 minutes de chaque côté, jusqu'à ce qu'ils soient bien cuits et légèrement dorés.",
+      "Servir chaud avec des quartiers de citron supplémentaires et garnir d'aneth frais."
+    ],
+    "photo": "https://m1.zeste.ca/serdy-m-dia-inc/image/upload/f_auto/fl_lossy/q_auto:eco/x_1,y_2885,w_3838,h_2159,c_crop/w_1200,h_630,c_fill/v1526311533/foodlavie/prod/recettes/saumon-au-citron-et-a-laneth-puree-de-pommes-de-terre-7086ab8a.jpg",
+    "ingredients": ["filets de saumon", "citron", "aneth frais", "sel", "poivre"],
+    "quantity_ingredients": ["4", "2", "2 cuillères à soupe", "au goût", "au goût"],
+    "tags": ["saumon", "grillé", "Poissons"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b99"
+    },
+    "name": "Poisson en papillote aux légumes",
+    "description": "Un plat de poisson léger cuit dans du papier sulfurisé avec des légumes colorés et des herbes aromatiques, une option saine et délicieuse pour le dîner.",
+    "type_of_cuisine": 4,
+    "type_of_dishes": 7,
+    "specific_regime": 0,
+    "preparation_time": 30,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Préchauffer le four à 200°C.",
+      "Couper des feuilles de papier sulfurisé en grands rectangles.",
+      "Déposer un filet de poisson sur chaque rectangle de papier sulfurisé.",
+      "Ajouter des légumes coupés en dés autour du poisson. Utiliser des légumes tels que des carottes, des courgettes, des poivrons et des tomates cerises.",
+      "Assaisonner avec du sel, du poivre, du jus de citron, de l'ail émincé et des herbes fraîches comme du thym et du persil.",
+      "Fermer les papillotes en repliant les bords et en les scellant bien.",
+      "Placer les papillotes sur une plaque de cuisson et cuire au four pendant environ 15-20 minutes, jusqu'à ce que le poisson soit cuit et les légumes soient tendres.",
+      "Servir chaud directement dans les papillotes pour conserver les saveurs."
+    ],
+    "photo": "https://img.static-rmg.be/a/food/image/q75/w1280/h720/1086342/cabillaud-papillotte.jpg",
+    "ingredients": ["filets de poisson blanc", "carottes", "courgettes", "poivrons", "tomates cerises", "jus de citron", "ail", "thym", "persil", "sel", "poivre"],
+    "quantity_ingredients": ["4", "2", "2", "2", "8", "2 cuillères à soupe", "2 gousses", "quelques branches", "quelques branches", "au goût", "au goût"],
+    "tags": ["Poissons", "papillote"]
+  },
+ 
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b90"
+    },
+    "name": "Brochettes de crevettes marinées à l'ail et au citron",
+    "description": "Des crevettes juteuses marinées dans une sauce à base de jus de citron, d'ail, de paprika et d'herbes fraîches, puis grillées pour une saveur délicieuse et un plat idéal pour les repas en plein air.",
+    "type_of_cuisine": 1,
+    "type_of_dishes": 7,
+    "specific_regime": 0,
+    "preparation_time": 20,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Dans un bol, mélanger du jus de citron frais, de l'ail émincé, du paprika, du sel, du poivre et des herbes fraîches hachées comme du persil et de l'aneth.",
+      "Ajouter les crevettes décortiquées et déveinées dans le bol avec la marinade et mélanger pour bien enrober.",
+      "Laisser mariner au réfrigérateur pendant au moins 15-20 minutes pour permettre aux saveurs de se développer.",
+      "Enfiler les crevettes marinées sur des brochettes en bois préalablement trempées dans l'eau pour éviter qu'elles ne brûlent sur le gril.",
+      "Préchauffer le gril à feu moyen-élevé et faire griller les brochettes de crevettes pendant environ 2-3 minutes de chaque côté, jusqu'à ce qu'elles soient roses et bien cuites.",
+      "Servir chaud avec des quartiers de citron pour arroser."
+    ],
+    "photo": "https://platetrecette.com/wp-content/uploads/2018/08/Brochettes-de-crevettes-avec-marinade-citron.jpg",
+    "ingredients": ["crevettes décortiquées", "jus de citron frais", "ail", "paprika", "sel", "poivre", "persil frais", "aneth frais"],
+    "quantity_ingredients": ["500 g", "1/4 tasse", "3 gousses", "1 cuillère à café", "au goût", "au goût", "2 cuillères à soupe", "2 cuillères à soupe"],
+    "tags": ["crevettes", "brochettes", "Poissons", "grillé"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b91"
+    },
+    "name": "Poisson cuit à la vapeur avec sauce au gingembre et à la sauce soja",
+    "description": "Des filets de poisson délicatement cuits à la vapeur et servis avec une sauce légère à base de gingembre frais, de sauce soja et de jus de citron, un plat sain et savoureux.",
+    "type_of_cuisine": 1,
+    "type_of_dishes": 7,
+    "specific_regime": 0,
+    "preparation_time": 25,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Préparer la sauce en mélangeant du gingembre frais râpé, de la sauce soja, du jus de citron, de l'ail émincé et du miel dans un petit bol. Réserver.",
+      "Placer les filets de poisson dans un panier vapeur et les assaisonner légèrement de sel et de poivre.",
+      "Faire chauffer de l'eau dans le bas d'un couscoussier ou d'un grand faitout et porter à ébullition.",
+      "Placer le panier vapeur sur le dessus et couvrir avec un couvercle. Laisser cuire à la vapeur pendant environ 10-12 minutes, jusqu'à ce que le poisson soit cuit à travers.",
+      "Retirer le poisson cuit à la vapeur du panier et le transférer dans un plat de service.",
+      "Verser la sauce au gingembre et à la sauce soja sur le poisson cuit à la vapeur et garnir de quartiers de citron et de ciboulette hachée avant de servir."
+    ],
+    "photo": "https://i.ytimg.com/vi/u-u4uYPYrZw/maxresdefault.jpg",
+    "ingredients": ["filets de poisson blanc", "gingembre frais", "sauce soja", "jus de citron", "ail", "miel", "sel", "poivre", "ciboulette"],
+    "quantity_ingredients": ["4", "2 cuillères à soupe", "1/4 tasse", "2 cuillères à soupe", "2 gousses", "1 cuillère à soupe", "au goût", "au goût", "pour garnir"],
+    "tags": ["Poissons", "vapeur", "sauce au gingembre"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b92"
+    },
+    "name": "Poisson en croûte de sel",
+    "description": "Un filet de poisson entier enrobé d'une croûte de sel marin, puis cuit au four pour une saveur et une texture incroyables, un plat impressionnant et délicieux pour les occasions spéciales.",
+    "type_of_cuisine": 1,
+    "type_of_dishes": 7,
+    "specific_regime": 0,
+    "preparation_time": 30,
+    "culinary_skill_level": 3,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Préchauffer le four à 200°C.",
+      "Dans un grand bol, mélanger du gros sel marin avec des blancs d'œufs jusqu'à obtenir une consistance de pâte.",
+      "Étaler une couche de cette pâte de sel sur un plat de cuisson pour former une base pour le poisson.",
+      "Placer le filet de poisson sur la couche de sel et recouvrir complètement de la pâte de sel restante, en s'assurant qu'il est complètement scellé.",
+      "Cuire au four pendant environ 20-25 minutes, jusqu'à ce que la croûte de sel soit dorée et dure.",
+      "Retirer le poisson du four et casser délicatement la croûte de sel à l'aide d'un couteau.",
+      "Servir chaud avec des quartiers de citron pour arroser."
+    ],
+    "photo": "https://www.geantcasino.fr/wp-content/uploads/2023/03/Loup-en-croute-de-sel.png",
+    "ingredients": ["filet de poisson entier", "gros sel marin", "blancs d'œufs", "citron"],
+    "quantity_ingredients": ["1", "2 kg", "6", "pour servir"],
+    "tags": ["Poissons", "croûte de sel", "cuisson au four"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b93"
+    },
+    "name": "Tacos au poisson croustillant",
+    "description": "Des tacos remplis de filets de poisson croustillants, de la sauce crémeuse au chipotle et de la salsa fraîche, un plat amusant et délicieux pour une soirée entre amis.",
+    "type_of_cuisine": 2,
+    "type_of_dishes": 2,
+    "specific_regime": 0,
+    "preparation_time": 40,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Préparer la sauce en mélangeant de la crème sure avec de la sauce chipotle en adobo, du jus de citron vert, du sel et du poivre. Réserver.",
+      "Préparer la salsa en mélangeant des tomates coupées en dés, des oignons rouges, du piment jalapeño, de la coriandre fraîche, du jus de citron vert, du sel et du poivre. Réserver.",
+      "Préparer les filets de poisson en les trempant d'abord dans de la farine assaisonnée, puis dans des œufs battus, et enfin dans de la chapelure.",
+      "Faire chauffer de l'huile dans une poêle à feu moyen et faire frire les filets de poisson jusqu'à ce qu'ils soient croustillants et dorés des deux côtés, environ 3-4 minutes de chaque côté.",
+      "Réchauffer des tortillas de maïs dans une poêle chaude.",
+      "Assembler les tacos en garnissant chaque tortilla avec un filet de poisson croustillant, de la sauce chipotle, de la salsa fraîche et des tranches d'avocat.",
+      "Servir chaud avec des quartiers de citron vert pour arroser."
+    ],
+    "photo": "https://www.hervecuisine.com/wp-content/uploads/2021/10/whatsapp-image-2021-09-30-at-103400-730x520.jpeg.webp",
+    "ingredients": ["filets de poisson blanc", "farine", "œufs", "chapelure", "crème sure", "sauce chipotle en adobo", "jus de citron vert", "tomates", "oignons rouges", "piment jalapeño", "coriandre fraîche", "avocat", "tortillas de maïs", "huile", "sel", "poivre"],
+    "quantity_ingredients": ["500 g", "1 tasse", "2", "1 tasse", "1/2 tasse", "2 cuillères à soupe", "2 cuillères à soupe", "2", "1/4 tasse", "1", "1/4 tasse", "2", "8", "pour frire", "au goût", "au goût"],
+    "tags": ["tacos", "poisson croustillant", "sauce chipotle", "Poissons"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0b94"
+    },
+    "name": "Soupe de poisson méditerranéenne",
+    "description": "Une soupe riche et savoureuse à base de poisson, de tomates, de poivrons, de fenouil et d'herbes méditerranéennes, un plat réconfortant et nourrissant pour les journées fraîches.",
+    "type_of_cuisine": 3,
+    "type_of_dishes": 1,
+    "specific_regime": 0,
+    "preparation_time": 45,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Dans une grande casserole, faire chauffer de l'huile d'olive à feu moyen.",
+      "Ajouter des oignons finement hachés, des poivrons rouges et verts coupés en dés et du fenouil tranché. Faire revenir jusqu'à ce que les légumes soient tendres.",
+      "Ajouter de l'ail émincé et faire revenir pendant 1 minute de plus.",
+      "Verser du bouillon de poisson et des tomates concassées dans la casserole. Porter à ébullition, puis réduire le feu et laisser mijoter pendant environ 20 minutes.",
+      "Ajouter des filets de poisson coupés en morceaux dans la casserole et laisser mijoter pendant encore 10 minutes, jusqu'à ce que le poisson soit cuit à travers.",
+      "Incorporer des olives noires tranchées, des câpres, du jus de citron, du persil frais et du basilic frais dans la soupe.",
+      "Rectifier l'assaisonnement avec du sel et du poivre selon votre goût.",
+      "Servir chaud, garni de croûtons à l'ail et de fromage râpé si désiré."
+    ],
+    "photo": "https://www.nicolebernard.fr/8148-large_default/soupe-de-poissons-de-mediterranee-concentree.jpg",
+    "ingredients": ["filets de poisson blanc", "tomates concassées", "poivrons rouges", "poivrons verts", "fenouil", "oignons", "ail", "bouillon de poisson", "olives noires", "câpres", "jus de citron", "persil frais", "basilic frais", "huile d'olive", "sel", "poivre", "croûtons à l'ail", "fromage râpé"],
+    "quantity_ingredients": ["500 g", "1 boîte", "1", "1", "1 bulbe", "2", "4 gousses", "1 litre", "1/2 tasse", "2 cuillères à soupe", "2 cuillères à soupe", "1/4 tasse", "1/4 tasse", "2 cuillères à soupe", "au goût", "au goût", "pour servir", "pour servir"],
+    "tags": ["soupe", "Poissons", "méditerranéen", "dîner"]
+  },
+  {
+    "_id": {
+      "$oid": "6052ae3b2ac91f4bc93b0a8a"
+    },
+    "name": "Pâtes aux fruits de mer",
+    "description": "Des pâtes fraîches cuites al dente et garnies de fruits de mer mélangés, de tomates cerises, d'ail, de vin blanc et de persil, un plat délicieux et facile à préparer pour un repas en famille.",
+    "type_of_cuisine": 1,
+    "type_of_dishes": 3,
+    "specific_regime": 0,
+    "preparation_time": 30,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, true, true, true, true, false, false, false],
+    "preparation_steps": [
+      "Faire cuire des pâtes fraîches dans une grande casserole d'eau bouillante salée jusqu'à ce qu'elles soient al dente. Égoutter et réserver.",
+      "Dans une grande poêle, faire chauffer de l'huile d'olive à feu moyen.",
+      "Ajouter des fruits de mer mélangés, des tomates cerises coupées en deux et de l'ail émincé dans la poêle. Faire revenir jusqu'à ce que les fruits de mer soient cuits.",
+      "Déglacer la poêle avec du vin blanc et laisser mijoter jusqu'à ce que le liquide soit réduit de moitié.",
+      "Ajouter les pâtes cuites dans la poêle avec les fruits de mer et mélanger pour bien enrober.",
+      "Incorporer du persil frais haché dans la poêle et mélanger pour combiner.",
+      "Rectifier l'assaisonnement avec du sel et du poivre selon votre goût.",
+      "Servir chaud, garni de parmesan râpé et de quartiers de citron pour arroser."
+    ],
+    "photo": "https://www.laylita.com/recettes/wp-content/uploads/2014/08/Spaghetti-aux-fruits-de-mer.jpg",
+    "ingredients": ["pâtes fraîches", "fruits de mer mélangés (crevettes, moules, calmars)", "tomates cerises", "ail", "vin blanc", "persil frais", "huile d'olive", "sel", "poivre", "parmesan râpé", "citron"],  
+    "quantity_ingredients": ["400 g", "500 g", "1 tasse", "4 gousses", "1/2 tasse", "1/4 tasse", "2 cuillères à soupe", "au goût", "au goût", "pour servir", "pour servir"],
+    "tags": ["pâtes", "fruits de mer", "Poissons","Plats"]
+  }
+]
+ 
