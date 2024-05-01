@@ -54,7 +54,9 @@ function SearchScreen2() {
     const [annotation, setAnnotation] = useState({});
     const [showIndicator, setShowIndicator] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalText, setModalText] = useState(""); 
+    const [modalText, setModalText] = useState("");
+    const [currentPage, setCurrentPage] = useState(0);
+    const pageSize = 5; 
 
     // put here your functions and handlers
 
@@ -248,6 +250,14 @@ function SearchScreen2() {
         };
     }, [modalVisible]);
 
+    const nextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
+    
+    const prevPage = () => {
+        setCurrentPage((prevPage) => prevPage - 1);
+    };
+
     //---------------------------------------------------------
     // Render your screen here
     return (
@@ -271,22 +281,68 @@ function SearchScreen2() {
                 <Spinner/>
             </div> 
             }
-            {(recipesData.length !== 0)?
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
-            marginTop: '16px', marginBottom: '16px' }}>
-            {recipesData.map((item, index) => (
-                <div key={index}>
-                    <RecipeCard title={item.title} description={item.description} favorite={item.favorite} image={item.image}
-                    onClick={() => onClickCard(item.id)} onClickFavorite={() => onClickFavorite(item.id, item.favorite)}/>
+            {/* Render recipes */}
+            <div
+                style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                }}
+            >
+                {(currentPage !== 0) && (recipesData.length !== 0) && (
+                <button
+                    onClick={prevPage}
+                    disabled={currentPage === 0}
+                    style={{
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    margin: "8px",
+                    backgroundColor: "#337D74",
+                    border: "1px solid white",
+                    color: "white",
+                    }}
+                >
+                    Prev
+                </button>
+                )}
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
+                marginTop: '16px', marginBottom: '16px' }}>
+                {recipesData.length !== 0 &&
+                    recipesData
+                    .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+                    .map((item, index) => (
+                    <div key={index}>
+                        <RecipeCard title={item.title} description={item.description} favorite={item.favorite} image={item.image}
+                        onClick={() => onClickCard(item.id)} onClickFavorite={() => onClickFavorite(item.id, item.favorite)}/>
+                    </div>
+                ))}
+                {recipesData.length === 0 && (
+                    <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
+                    marginTop: '56px', marginBottom: '16px' }}>
+                        {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+                    </div>  
+                )}
                 </div>
-            ))}
+                {currentPage !== Math.ceil(recipesData.length / pageSize) - 1 && (recipesData.length !== 0) && (
+                <button
+                    onClick={nextPage}
+                    disabled={currentPage === Math.ceil(recipesData.length / pageSize) - 1}
+                    style={{
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    margin: "20px",
+                    backgroundColor: "#337D74",
+                    border: "1px solid white",
+                    color: "white",
+                    }}
+                >
+                    Next
+                </button>
+                )}
             </div>
-            :
-            <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
-            marginTop: '56px', marginBottom: '16px' }}>
-                {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
-            </div>  
-            }
 
 
         </div>
