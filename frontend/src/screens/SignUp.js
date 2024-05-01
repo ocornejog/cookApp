@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { useState } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import { useNavigate } from "react-router-dom";
 import { StyledTextInput } from "../components/StyledTextInput";
-import AlertModal from "../components/AlertModal"; // Assurez-vous d'importer AlertModal
+import AlertModal from "../components/AlertModal";
 import "../styles/SignUp.css";
 import { AuthContext } from "../constants/Context";
 
@@ -18,6 +18,34 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [modalText, setModalText] = React.useState("");
+  const [passwordStrong, setPasswordStrong] = useState(false); // État pour suivre si le mot de passe est fort
+  const [minLengthMet, setMinLengthMet] = useState(false);
+  const [containsUppercase, setContainsUppercase] = useState(false);
+  const [containsNumber, setContainsNumber] = useState(false);
+  const [containsSpecialChar, setContainsSpecialChar] = useState(false);
+
+  // Fonction pour vérifier si le mot de passe est fort
+  const checkPasswordStrength = (newPassword) => {
+    // Vérifier la longueur minimale
+    setMinLengthMet(newPassword.length >= 8);
+
+    // Vérifier s'il contient une lettre majuscule
+    setContainsUppercase(/[A-Z]/.test(newPassword));
+
+    // Vérifier s'il contient un chiffre
+    setContainsNumber(/\d/.test(newPassword));
+
+    // Vérifier s'il contient un caractère spécial
+    setContainsSpecialChar(/[@$!%*?&¿.#-]/.test(newPassword));
+
+    // Vérifier si toutes les conditions sont respectées
+    const isStrongPassword =
+      newPassword.length >= 8 &&
+      /[A-Z]/.test(newPassword) &&
+      /\d/.test(newPassword) &&
+      /[@$!%*?&¿.#-]/.test(newPassword);
+    setPasswordStrong(isStrongPassword);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,7 +66,7 @@ function SignUp() {
     }).then((result) => {
       if (result === "User created") {
         console.log(result);
-        navigate("/"); // Redirigez l'utilisateur vers la page de connexion
+        navigate("/");
       } else if (result === "Email exist") {
         console.log(result);
       } else {
@@ -91,10 +119,48 @@ function SignUp() {
         <div className="input-group">
           <label htmlFor="password">Mot de passe:</label>
           <StyledTextInput
-            text={(e) => setPassword(e)}
+            text={(e) => {
+              setPassword(e);
+              checkPasswordStrength(e); // Vérifiez la force du mot de passe à chaque changement
+            }}
             placeholder="Entrez votre mot de passe"
             passwordInput
           />
+          {!minLengthMet && (
+            <p style={{ color: "red", fontSize: "0.8rem", marginTop: "5px" }}>
+              Minimum 8 caractères
+            </p>
+          )}
+          {!containsUppercase && (
+            <p style={{ color: "red", fontSize: "0.8rem", marginTop: "5px" }}>
+              Une lettre majuscule
+            </p>
+          )}
+          {!containsNumber && (
+            <p style={{ color: "red", fontSize: "0.8rem", marginTop: "5px" }}>
+              Un chiffre
+            </p>
+          )}
+          {!containsSpecialChar && (
+            <p style={{ color: "red", fontSize: "0.8rem", marginTop: "5px" }}>
+              Un caractère spécial (@$!%*?&¿.#-)
+            </p>
+          )}
+
+          {minLengthMet &&
+            containsUppercase &&
+            containsNumber &&
+            containsSpecialChar && (
+              <p
+                style={{
+                  color: "#337D74",
+                  fontSize: "0.8rem",
+                  marginTop: "5px",
+                }}
+              >
+                Mot de passe fort
+              </p>
+            )}
         </div>
         <div className="input-group">
           <label htmlFor="confirmPassword">Confirmation mot de passe:</label>
@@ -104,6 +170,19 @@ function SignUp() {
             passwordInput
           />
         </div>
+        {/* affichage du message si les mots de passe ne correspondent pas  */}
+        {password !== confirmPassword && (
+          <p style={{ color: "red", fontSize: "0.8rem", marginTop: "5px" }}>
+            Les mots de passe ne correspondent pas
+          </p>
+        )}
+
+        {/* Affichage du message si les mots de passe correspondent */}
+        {password === confirmPassword && (
+          <p style={{ color: "#337D74", fontSize: "0.8rem", marginTop: "5px" }}>
+            Les mots de passe correspondent
+          </p>
+        )}
         <ButtonComponent
           type="primary"
           onClick={handleSubmit}
