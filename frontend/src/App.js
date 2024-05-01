@@ -59,7 +59,14 @@ const App = () => {
         case "CHANGE_DATA":
           return {
             ...prevState,
+            userId: action.userId,
+            userName: action.userName,
+            userLastName: action.userLastName,
+            userMail: action.userMail,
             userPhoto: action.userPhoto,
+            userBirthdate: action.userBirthdate,
+            userPassword1: action.password1,
+            userPassword2: action.password2,
             // Ready to add other changed parameters
           };
       }
@@ -221,6 +228,26 @@ const App = () => {
       
       changeData: async (data) => {
         //To be fulfilled with changing data logic to change auth context
+        const info = await fetch(`${API.APIuri}/api/users/userID/${data.userId}`,{
+          method: 'GET',
+          headers: {
+          'Content-Type': 'application/json'
+          }});
+        let response = await info.json();
+        dispatch({
+          type: "CHANGE_DATA",
+          userId: response._id,
+          userName: response.name,
+          userLastName: response.lastname,
+          userMail: response.email,
+          userPhoto: response.photo,
+          userBirthdate: response.birthdate,
+          password1: response.password.substring(0, 7),
+          password2: response.password.substring(
+            7,
+            response.password.length
+          )
+        })
       },
     }),
     [state]
