@@ -183,7 +183,7 @@ function RecipeScreen2() {
           width: "100%",
         }}
       >
-        {currentPage !== 0 && (
+        {currentPage !== 0 && (data.length !== 0) && (
           <button
             onClick={prevPage}
             disabled={currentPage === 0}
@@ -240,7 +240,7 @@ function RecipeScreen2() {
             </div>
           )}
         </div>
-        {currentPage !== Math.ceil(data.length / pageSize) - 1 && (
+        {currentPage !== Math.ceil(data.length / pageSize) - 1 && (data.length !== 0) && (
           <button
             onClick={nextPage}
             disabled={currentPage === Math.ceil(data.length / pageSize) - 1}
