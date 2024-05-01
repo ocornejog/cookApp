@@ -100,31 +100,32 @@ function RecipeScreen2() {
   };
 
   const onClickFavorite = async (e, favorite) => {
-    console.log("Clicked favorite button for card with id: ", e);
-    if (!favorite) {
-      await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userID: auth_context.id,
-          recipeID: e,
-        }),
-      });
-    } else {
-      // Ouvrir la popup si le favori est vrai
-      setShowPopup(true);
-    }
-    setData((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === e) {
-          return { ...item, favorite: !item.favorite };
-        }
-        return item;
-      })
-    );
-  };
+  console.log("Clicked favorite button for card with id: ", e);
+  if (!favorite) {
+    await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: auth_context.id,
+        recipeID: e,
+      }),
+    });
+  } else {
+    setShowPopup(true); // Ouvrir la popup si le favori est vrai
+    return; // Sortez de la fonction sans modifier l'état de favorite
+  }
+  setData((prevItems) =>
+    prevItems.map((item) => {
+      if (item.id === e) {
+        return { ...item, favorite: !item.favorite };
+      }
+      return item;
+    })
+  );
+};
+
 
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -132,6 +133,11 @@ function RecipeScreen2() {
 
   const prevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNonClick = () => {
+    // Ne rien faire pour maintenir l'état actuel des favoris
+    setShowPopup(false); // Fermer la popup
   };
 
   return (
@@ -265,11 +271,7 @@ function RecipeScreen2() {
           setShowPopup(false); // Fermer la popup
           // Ajoutez ici la logique pour supprimer la recette des favoris
         }}
-        onClickButton2={() => {
-          // Actions à effectuer lors du clic sur le bouton "Non" dans la popup
-          // Par exemple, juste fermer la popup
-          setShowPopup(false); // Fermer la popup
-        }}
+        onClickButton2={handleNonClick}
       />
     </div>
   );
