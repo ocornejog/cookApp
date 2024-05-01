@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "nodemon index.js"
+        "dev": "nodemon index.js",
+        "start": "node index.js",
+        "build": "cd client && npm install && npm run build"
     },
     "repository": {
         "type": "git",
@@ -26,11 +28,15 @@
         "morgan": "^1.10.0",
         "mysql2": "^1.6.5",
         "nodemailer": "^6.9.3",
+        "path": "^0.12.7",
         "platformsh-config": "^2.0.0",
         "pug": "^3.0.2",
         "resize-base64": "^1.0.12"
     },
     "devDependencies": {
         "nodemon": "^3.1.0"
+    },
+    "engines": {
+        "node": "20.x"
     }
 }
