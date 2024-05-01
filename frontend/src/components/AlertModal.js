@@ -19,7 +19,7 @@ const AlertModal = ({ message, visible, textButton, onClickButton }) => {
             </div>
             <div style={{ flexDirection: 'row', display: 'flex', width: '100%', marginTop: '32px', 
             alignContent: "center", justifyContent: "center" }}>
-                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '90%' }} 
+                <a dir="auto" style={{ textDecoration: 'none', width: '90%' }} 
                 onClick={() => {
                   onClickButton();
                   if (message === "Utilisateur créé avec succès" || message === "Email existant, veuillez vous connecter") {
