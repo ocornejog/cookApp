@@ -12,7 +12,7 @@ app.set('default_port', 3001);
 app.use(morgan('dev'));
 app.use(cors(
     {
-        origin: [""],
+        origin: ["https://cook-app-cyan.vercel.app"],
         methods: ["POST","GET","PUT","DELETE"],
         credentials: true
     }
