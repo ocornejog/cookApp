@@ -1,4 +1,4 @@
 export default {
-    APIuri: 'http://localhost:3000'
+    APIuri: process.env.API_URL
 };
 
