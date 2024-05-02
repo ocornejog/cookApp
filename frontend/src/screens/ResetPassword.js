@@ -20,6 +20,14 @@ function Password() { // Renommez votre composant en utilisant une majuscule pou
     setConfirmPassword(event.target.value);
   };
 
+  const passwordEquals = () => {
+    if(password !== confirmPassword){
+      setError('Les mots de passe ne correspondent pas.');
+    } else{
+      setError(null);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (password !== confirmPassword) {
@@ -47,6 +55,16 @@ function Password() { // Renommez votre composant en utilisant une majuscule pou
       setError('Une erreur s\'est produite lors de la réinitialisation du mot de passe. Veuillez réessayer.');
     }
   };
+
+  React.useEffect(() => {
+    if((password.length !== 0)){
+      handlePasswordChange();
+    }
+  }, [password]);
+
+  React.useEffect(() => {
+    passwordEquals();
+  }, [password, confirmPassword]);
 
   return (
     <div className="reset-password-container">
