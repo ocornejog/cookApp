@@ -33,6 +33,21 @@ favoriteRecipeCtrl.checkUserFavoriteRecipe = async (req, res) => {
     res.json(userFavoriteRecipe);
 };
 
+favoriteRecipeCtrl.deleteRecipeFavorites = async(req, res) => {
+    await FavoriteRecipe.deleteMany({ 'recipe_id': req.params.recipeID })
+    .then(result=>{
+        res.status(200).json({
+            message:"Recipe favorites deleted successfully",
+            result:result
+        })
+    })
+    .catch(err=>{
+        res.status(500).json({
+            error:err
+        })
+    })
+};
+
 favoriteRecipeCtrl.deleteFromFavorites = async(req, res) => {
     await FavoriteRecipe.deleteMany({ 'user_id': req.params.userID, 'recipe_id': req.params.recipeID })
     .then(result=>{
@@ -46,6 +61,12 @@ favoriteRecipeCtrl.deleteFromFavorites = async(req, res) => {
             error:err
         })
     })
+};
+
+
+favoriteRecipeCtrl.getUserFavoritesRecipes = async (req, res) => {
+    const userFavoritesRecipes = await FavoriteRecipe.find({ 'user_id': req.params.userID });
+    res.json(userFavoritesRecipes);
 };
 
 module.exports = favoriteRecipeCtrl;

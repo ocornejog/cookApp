@@ -5,12 +5,14 @@ import { useEffect, useState, useContext } from 'react';
 import C from '../constants/colors';
 import API from '../constants/Api';
 import { useNavigate } from 'react-router-dom';
-//import { AuthContext } from '../constants/Context'; Context to be created
+import { AuthContext } from '../constants/Context';
 
 /*
 Import your components and constants here
 */
 import RecipeCard from '../components/recipeCard';
+import Spinner from '../components/Spinner';
+import AlertModal from '../components/AlertModal';
 import { useDispatch, Provider, useSelector } from 'react-redux';
 import { setCuisine, selectCuisine, setCuisineComplement, selectCuisineComplement, setDish, selectDish, setDiet, selectDiet, 
 setPreparationTime, selectPreparationTime, setCulinaryProficiency, selectCulinaryProficiency, setPopularity, selectPopularity, 
@@ -24,9 +26,8 @@ Import your used redux here
 //---------------------------------------------------------------------
 
 function SearchScreen2() {
-    // put here your constants
 
-    const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
+    // put here your constants
 
     const dispatch = useDispatch();
     const selectedCuisine = useSelector(selectCuisine);
@@ -42,13 +43,20 @@ function SearchScreen2() {
     const selectedSearchText = useSelector(selectSearchText);
     const navigate = useNavigate();
 
+    const auth_context = useContext(AuthContext);
+
     //const auth_context = useContext(AuthContext); Constant to be used later
 
     // put here your states
 
     const [recipesData, setRecipesData] = useState([]);
     const [searchText, setSearchText] = useState("");
-    const [annotation, setAnnotation] = useState({}); 
+    const [annotation, setAnnotation] = useState({});
+    const [showIndicator, setShowIndicator] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalText, setModalText] = useState("");
+    const [currentPage, setCurrentPage] = useState(0);
+    const pageSize = 5; 
 
     // put here your functions and handlers
 
@@ -67,33 +75,69 @@ function SearchScreen2() {
                 'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    userID: default_user_id,
+                    userID: auth_context.id,
                     recipeID: e
                 })
+            })
+            .then(response => response.json())
+            .then(async (data) => {
+                if(data === 'Favorite recipe created'){
+                    setModalText("Recette enregistrée parmi vos favoris");
+                    setModalVisible(true);
+                    setRecipesData(prevItems => (
+                        prevItems.map(item => {
+                            if (item.id === e) {
+                                return { ...item, favorite: !item.favorite };
+                            }
+                            return item;
+                        })
+                    ));
+                } else {
+                    setModalText("Une erreur s'est produite, veuillez réessayer");
+                    setModalVisible(true);
+                }     
+            })
+            .catch(error => {
+                setModalText("Une erreur s'est produite, veuillez réessayer");
+                setModalVisible(true);
             });
         } else {
             // http://localhost:3000/api/favoritesRecipes/deleteFromFavorites/user/:userID/recipe/:recipeID
-            await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${default_user_id}/recipe/${e}`, {
+            await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-        }
-        setRecipesData(prevItems => (
-            prevItems.map(item => {
-                if (item.id === e) {
-                    return { ...item, favorite: !item.favorite };
-                }
-                return item;
+            .then(response => response.json())
+            .then(async (data) => {
+                if(data.message === "Favorite recipe deleted successfully"){
+                    setModalText("Recette supprimée de vos favoris");
+                    setModalVisible(true);
+                    setRecipesData(prevItems => (
+                        prevItems.map(item => {
+                            if (item.id === e) {
+                                return { ...item, favorite: !item.favorite };
+                            }
+                            return item;
+                        })
+                    ));
+                } else {
+                    setModalText("Une erreur s'est produite, veuillez réessayer");
+                    setModalVisible(true);
+                }     
             })
-        ));
+            .catch(error => {
+                setModalText("Une erreur s'est produite, veuillez réessayer");
+                setModalVisible(true);
+            });
+        }
     };
 
     const settingRecipesData = async(recipe, index) => {
 
         let response = 
-        await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${default_user_id}/recipe/${recipe._id}`);
+        await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`);
         let myFavorite = await response.json();
 
         const newItem = {
@@ -127,10 +171,12 @@ function SearchScreen2() {
             .then(response => response.json())
             .then(async (data) => {
                 console.log(data);
+                setShowIndicator(true);
                 for (let index = 0; index < data.length; index++) {
                     const recipe = data[index];
                     await settingRecipesData(recipe, index);
                 }
+                setShowIndicator(false);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -159,10 +205,12 @@ function SearchScreen2() {
             .then(response => response.json())
             .then(async (data) => {
                 console.log(data);
+                setShowIndicator(true);
                 for (let index = 0; index < data.length; index++) {
                     const recipe = data[index];
                     await settingRecipesData(recipe, index);
                 }
+                setShowIndicator(false);
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -190,6 +238,26 @@ function SearchScreen2() {
         }
     }, []);
 
+    useEffect(() => {
+        let timeoutId;
+        if (modalVisible) {
+          timeoutId = setTimeout(() => {
+            setModalVisible(false);
+          }, 2000);
+        }
+        return () => {
+          clearTimeout(timeoutId);
+        };
+    }, [modalVisible]);
+
+    const nextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
+    
+    const prevPage = () => {
+        setCurrentPage((prevPage) => prevPage - 1);
+    };
+
     //---------------------------------------------------------
     // Render your screen here
     return (
@@ -200,29 +268,81 @@ function SearchScreen2() {
         >
             {/* put your content here */}
 
-
+            <AlertModal message={modalText} visible={modalVisible} 
+            textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
             <div className='montserrat_700' style={{fontSize: '11px', color: C.grey, textAlign: 'left', width: '100%'}}>
                 {`Chercher > Résultats de votre recherche`}
             </div>
             <div className='montserrat_700' style={{fontSize: '20px', color: C.green, textAlign: 'center', width: '100%'}}>
                 {`Résultats de votre recherche`}
             </div>
-            {(recipesData.length !== 0)?
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
-            marginTop: '16px', marginBottom: '16px' }}>
-            {recipesData.map((item, index) => (
-                <div key={index}>
-                    <RecipeCard title={item.title} description={item.description} favorite={item.favorite} image={item.image}
-                    onClick={() => onClickCard(item.id)} onClickFavorite={() => onClickFavorite(item.id, item.favorite)}/>
-                </div>
-            ))}
-            </div>
-            :
-            <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
-            marginTop: '56px', marginBottom: '16px' }}>
-                {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
-            </div>  
+            {(showIndicator) &&
+            <div style={{marginTop: "8px", marginBottom: "8px"}}>
+                <Spinner/>
+            </div> 
             }
+            {/* Render recipes */}
+            <div
+                style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                }}
+            >
+                {(currentPage !== 0) && (recipesData.length !== 0) && (
+                <button
+                    onClick={prevPage}
+                    disabled={currentPage === 0}
+                    style={{
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    margin: "8px",
+                    backgroundColor: "#337D74",
+                    border: "1px solid white",
+                    color: "white",
+                    }}
+                >
+                    Prev
+                </button>
+                )}
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
+                marginTop: '16px', marginBottom: '16px' }}>
+                {recipesData.length !== 0 &&
+                    recipesData
+                    .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+                    .map((item, index) => (
+                    <div key={index}>
+                        <RecipeCard title={item.title} description={item.description} favorite={item.favorite} image={item.image}
+                        onClick={() => onClickCard(item.id)} onClickFavorite={() => onClickFavorite(item.id, item.favorite)}/>
+                    </div>
+                ))}
+                {recipesData.length === 0 && (
+                    <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
+                    marginTop: '56px', marginBottom: '16px' }}>
+                        {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+                    </div>  
+                )}
+                </div>
+                {currentPage !== Math.ceil(recipesData.length / pageSize) - 1 && (recipesData.length !== 0) && (
+                <button
+                    onClick={nextPage}
+                    disabled={currentPage === Math.ceil(recipesData.length / pageSize) - 1}
+                    style={{
+                    borderRadius: "50%",
+                    width: "40px",
+                    height: "40px",
+                    margin: "20px",
+                    backgroundColor: "#337D74",
+                    border: "1px solid white",
+                    color: "white",
+                    }}
+                >
+                    Next
+                </button>
+                )}
+            </div>
 
 
         </div>

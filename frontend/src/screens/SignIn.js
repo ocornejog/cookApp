@@ -20,7 +20,7 @@ function SignIn() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Logique de connexion à implémenter ici
+    // Logique de connexion à implémenter ici.
     console.log('Email:', email);
     console.log('Password:', password);
     signIn({

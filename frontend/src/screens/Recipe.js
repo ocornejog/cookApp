@@ -12,6 +12,7 @@ import { APIuri } from "../constants/Api";
 import RecipeScreen1 from "./RecipeScreen1";
 import RecipeScreen2 from "./RecipeScreen2";
 import RecipeScreen3 from "./RecipeScreen3";
+import FavoriteRecipesScreen from "./FavoriteRecipesScreen";
 
 //import { AuthContext } from '../constants/Context'; Context to be created
 
@@ -68,6 +69,7 @@ function Recipe() {
           path="/detail/:category/:buttonText"
           element={<RecipeScreen2 />}
         />
+        <Route path="/favorites" element={<FavoriteRecipesScreen />} />
         <Route
           path="/detail/:category/:buttonText/recipe/:title2/recipeID/:recipeID"
           element={<RecipeScreen3 />}

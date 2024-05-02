@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ButtonComponent from "../components/ButtonComponent";
 import { StyledTextInput } from '../components/StyledTextInput';
+import AlertModal from '../components/AlertModal';
 import "../styles/ButtonComponent.css";
 import C from "../constants/colors"
 import L from '../constants/listLabels';
@@ -10,8 +11,11 @@ import DropDownList from '../components/DropDownList';
 import { CheckBox } from '../components/CheckBox';
 import API from '../constants/Api';
 import { useNavigate, useLocation } from "react-router-dom";
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen4() {
+  const navigate = useNavigate();
+
   let titreD = "";
   let descriptionD = "";
   let cuisineD = 0;
@@ -61,9 +65,17 @@ function ProfileScreen4() {
   const [ingredients, setIngredients] = React.useState(ingredientsD);
   const [quantite, setQuantite] = React.useState(quantiteD);
   const [photo, setPhoto] = React.useState(photoD);
+  const [modalText, setModalText] = React.useState("");
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  const [recipePublished, setRecipePublished] = React.useState(false);
 
   //récupérer l'id de l'utilisateur actuellement connecté
-  const testUserid = "65e31cf769050ff9bab2a6c1";
+  //const testUserid = "65e31cf769050ff9bab2a6c1";
+
+  const auth_context = React.useContext(AuthContext);
+
+  const userId = auth_context.id;
 
   const [checkComplete, setCheckComplet] = React.useState(true);
 
@@ -111,6 +123,10 @@ function ProfileScreen4() {
     setEtapes(newData);
   };
 
+  const handleCancel = () => {
+    navigate(`/`);
+  }
+
   const handleSubmit = () => {
     if ((titre !== "") & (cuisine !== dish !== diet !== time !== level) & (etapes.length > 0) & (ingredients.length > 0)) {
       setCheckComplet(true);
@@ -150,15 +166,21 @@ function ProfileScreen4() {
       'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        user_id:testUserid,
+        user_id:userId,
         recipe_id:newRecipeId
       })
     });
+    const reponse = await res2.json();
+    if (reponse === 'Recipe added') {
+        setModalText("La recette a bien été publiée !");
+        setModalVisible(true);
+        setRecipePublished(true);
+    }
   };
 
   const handelUpdate = async() => {
     let res = await fetch(`${API.APIuri}/api/recipes/updateRecipe`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
       'Content-Type': 'application/json'
       },
@@ -179,13 +201,28 @@ function ProfileScreen4() {
         tags:[]
       })
     });
+    const reponse = await res.json();
+    if (reponse === 'Recipe updated') {
+      setModalText("La recette a bien été mis à jour !");
+      setModalVisible(true);
+      setRecipePublished(true);
+    }
   }
+
+  React.useEffect(() => {
+    if (recipePublished && modalVisible === false) {
+      navigate(`/`);
+    }
+
+  }, [modalVisible])
 
   return (
     <div>
+      <AlertModal message={modalText} visible={modalVisible} 
+      textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
       <div style={{display:'flex', flexDirection:'row', maxWidth:'100%', gap:'1rem', margin: '2rem auto', alignItems:'center'}}>
         <div style ={{color:C.green, textAlign: 'left', flex: 1, display: 'flex', flexDirection: 'column',
-        fontSize: '24px', fontFamily: "Montserrat", fontWeight:'330', marginTop:'-40px', marginLeft:'14px'}}>
+        fontSize: '22px', fontFamily: "Montserrat", fontWeight:'330', marginTop:'-40px', marginLeft:'14px'}}>
           <div style={{marginTop:'50px', marginLeft:'10px', display: 'flex', flexDirection: 'row', marginRight: '32px'}}>
             <div style={{width:'25%'}}>
               * Intitulé de la recette
@@ -256,7 +293,7 @@ function ProfileScreen4() {
         marginLeft:'26px'}}>
         <div style={{flex:1}}>
           <div style ={{color:C.green, textAlign: 'left',
-            fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px'}}>
+            fontSize: '22px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px'}}>
               Valeur nutritionelle
           </div>
           <CheckBox listLabels={['Equilibré','Faible en calories','Riche en protéines','Faible en gras']} onSelect={(e) => setListLabels1(e)}
@@ -268,7 +305,7 @@ function ProfileScreen4() {
         </div>
         <div style={{flex:1}}>
           <div style ={{color:C.green, textAlign: 'left',
-              fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px',  marginLeft:'159px'}}>
+              fontSize: '22px', fontFamily:"Montserrat", fontWeight:'330', marginBottom:'19px',  marginLeft:'159px'}}>
                 *Ingrédients nécessaires
             </div>
             {ingredients.length === 0 ? <p></p>
@@ -287,7 +324,7 @@ function ProfileScreen4() {
         </div>
       </div>
       <div style ={{display:'flex',color:C.green, textAlign: 'left',
-              fontSize: '24px', fontFamily:"Montserrat", fontWeight:'330', marginTop:'73px', marginLeft:'13px'}}>
+              fontSize: '22px', fontFamily:"Montserrat", fontWeight:'330', marginTop:'73px', marginLeft:'13px'}}>
                 *Etapes de préparation
       </div>
       {etapes.length === 0 ? <p></p>
@@ -317,7 +354,7 @@ function ProfileScreen4() {
       </div>
       <div style={{display:'flex', flexWrap:'wrap', maxWidth:'40%', gap:'178px', margin:'auto', marginBottom:'32px'}}>
         <div style={{flex:1}}>
-          <ButtonComponent type={'primary'} text={'Annuler'} onClick={() => console.log('Pressed cancel')}/>
+          <ButtonComponent type={'primary'} text={'Annuler'} onClick={() => handleCancel()}/>
         </div>
         <div style={{flex:1}}>
           <ButtonComponent type={'primary'} text={recetteGiven ? 'Enregistrer les modifications' : 'Publier la recette'}

@@ -4,19 +4,28 @@ import { useParams } from "react-router-dom";
 
 import C from "../constants/colors";
 import API from "../constants/Api";
-//import { AuthContext } from '../constants/Context'; Context to be created
+import { AuthContext } from '../constants/Context';
 
 import PreparationSteps from "../components/PreparationSteps";
 import IngredientsList from "../components/IngredientsList";
 import { CommentCard1 } from "../components/CommentCards";
 import CommentCard2 from "../components/CommentCard2";
+import AlertModal from "../components/AlertModal";
+import Spinner from "../components/Spinner";
+
+/*
+Import your used redux here
+*/
+
+//---------------------------------------------------------------------
 
 function RecipeScreen3() {
   const { category, buttonText, title, recipeID } = useParams();
 
   // put here your constants
 
-  const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
+  const auth_context = useContext(AuthContext);
+  let firstDeploy = true;
 
   //const auth_context = useContext(AuthContext); Constant to be used later
 
@@ -29,25 +38,45 @@ function RecipeScreen3() {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
   const [image, setImage] = useState("");
+  const [showIndicator, setShowIndicator] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalText, setModalText] = useState("");
 
   // put here your functions and handlers
 
   const onSubmitComment = async (myComment, myStarRaiting) => {
     setComment(myComment);
     setStarRaiting(myStarRaiting);
-    if (myComment.length !== 0) {
+    setCommentsData([]);
+    if(((myComment.length !== 0) && (myStarRaiting !== 0)) || (myStarRaiting !== 0)){
       await fetch(`${API.APIuri}/api/comments/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: default_user_id,
+          user_id: auth_context.id, 
           recipe_id: recipeID,
           comment: myComment,
           raiting: myStarRaiting,
           date_of_publication: new Date(Date.now()).toDateString().toString(),
         }),
+      })
+      .then(response => response.json())
+      .then(async (data) => {
+        fetchingComments();
+        if(data === 'Comment created'){
+          setModalText("Commentaire enregistré avec succès");
+          setModalVisible(true);
+        } else {
+          setModalText("Une erreur s'est produite, veuillez réessayer");
+          setModalVisible(true);
+        }     
+      })
+      .catch(error => {
+        fetchingComments();
+        setModalText("Une erreur s'est produite, veuillez réessayer");
+        setModalVisible(true);
       });
     }
   };
@@ -94,18 +123,24 @@ function RecipeScreen3() {
         `${API.APIuri}/api/comments/recipe/${recipeID}`
       );
       const comments = await response2.json();
-      comments.map((comment, index) => {
+      setShowIndicator(true);
+      const commentsCopy = [...comments];
+      commentsCopy.forEach((comment, index) => {
         settingCommentsData(comment, index);
       });
+      setShowIndicator(false);
     }
   };
 
   //put here your permanent operations
 
   useEffect(() => {
-    setCommentsData([]);
-    fetchingRecipe();
-    fetchingComments();
+    if(firstDeploy){
+      firstDeploy = false;
+      setCommentsData([]);
+      fetchingRecipe();
+      fetchingComments();
+    }
   }, []);
 
   useEffect(() => {
@@ -117,12 +152,29 @@ function RecipeScreen3() {
     );
   }, [comment, starRaiting]);
 
+  useEffect(() => {
+    let timeoutId;
+    if (modalVisible) {
+      timeoutId = setTimeout(() => {
+        setModalVisible(false);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [modalVisible]);
+
+  //---------------------------------------------------------
+  // Render your screen here
   return (
     <div className="screen-view-1" style={{ backgroundColor: C.white }}>
       <div
         className="screen-view-1"
         style={{ width: "95%", backgroundColor: C.white }}
       >
+        {/* put your content here */}
+        <AlertModal message={modalText} visible={modalVisible} 
+        textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
         <div
           className="montserrat_700"
           style={{
@@ -236,6 +288,11 @@ function RecipeScreen3() {
               >
                 {`Commentaires`}
               </div>
+              {(showIndicator) &&
+                <div style={{marginTop: "8px", marginBottom: "8px"}}>
+                  <Spinner/>
+                </div> 
+              }
               {commentsData.length !== 0 ? (
                 <div
                   style={{

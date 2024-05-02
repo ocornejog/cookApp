@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 
 import C from '../constants/colors';
 import API from '../constants/Api';
-//import { AuthContext } from '../constants/Context'; Context to be created
+import { AuthContext } from '../constants/Context';
 
 /*
 Import your components and constants here
@@ -12,6 +12,8 @@ import PreparationSteps from '../components/PreparationSteps';
 import IngredientsList from '../components/IngredientsList';
 import { CommentCard1 } from '../components/CommentCards';
 import CommentCard2 from '../components/CommentCard2';
+import Spinner from '../components/Spinner';
+import AlertModal from '../components/AlertModal';
 
 import { useDispatch, Provider, useSelector } from 'react-redux';
 import { setSpecificRecipe, selectSpecificRecipe, setAmountPeople, selectAmountPeople } from '../constants/searchConfig/slices/navSlice';
@@ -26,12 +28,11 @@ function SearchScreen3() {
 
     // put here your constants
 
-    const default_user_id = "65e31cf769050ff9bab2a6c1"; //Oscar Cornejo
-
-
     const dispatch = useDispatch();
     const selectedSpecificRecipe = useSelector(selectSpecificRecipe);
     const selectedAmountPeople = useSelector(selectAmountPeople);
+    const auth_context = useContext(AuthContext);
+    let firstDeploy = true;
 
     //const auth_context = useContext(AuthContext); Constant to be used later
 
@@ -44,26 +45,45 @@ function SearchScreen3() {
     const [ingredientsList, setIngredientsList] = useState([]);
     const [commentsData, setCommentsData] = useState([]);
     const [image, setImage] = useState("");
-
+    const [showIndicator, setShowIndicator] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [modalText, setModalText] = useState(""); 
 
     // put here your functions and handlers
 
     const onSubmitComment = async(myComment, myStarRaiting) => {
         setComment(myComment);
         setStarRaiting(myStarRaiting);
-        if(myComment.length !== 0){
+        setCommentsData([]);
+        if(((myComment.length !== 0) && (myStarRaiting !== 0)) || (myStarRaiting !== 0)){
             await fetch(`${API.APIuri}/api/comments/create`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    user_id: default_user_id, 
+                    user_id: auth_context.id, 
                     recipe_id: selectedSpecificRecipe, 
                     comment: myComment, 
                     raiting: myStarRaiting, 
                     date_of_publication: (new Date(Date.now()).toDateString()).toString()
                 })
+            })
+            .then(response => response.json())
+            .then(async (data) => {
+                fetchingComments();
+                if(data === 'Comment created'){
+                    setModalText("Commentaire enregistré avec succès");
+                    setModalVisible(true);
+                } else {
+                    setModalText("Une erreur s'est produite, veuillez réessayer");
+                    setModalVisible(true);
+                }     
+            })
+            .catch(error => {
+                fetchingComments();
+                setModalText("Une erreur s'est produite, veuillez réessayer");
+                setModalVisible(true);
             });
         }
     };
@@ -115,23 +135,59 @@ function SearchScreen3() {
         if((selectedSpecificRecipe !== null) && (selectedSpecificRecipe !== "")){
             const response2 = await fetch(`${API.APIuri}/api/comments/recipe/${selectedSpecificRecipe}`);
             const comments = await response2.json();
+            console.log("My comments are:", comments);
+            setShowIndicator(true);
+            /*
             comments.map((comment, index) => {
                 settingCommentsData(comment, index);
             });
+            */
+            /*
+            for (let index = 0; index < comments.length; index++) {
+                const comment = comments[index];
+                settingCommentsData(comment, index);
+            }
+            */
+            const commentsCopy = [...comments];
+            commentsCopy.forEach((comment, index) => {
+                settingCommentsData(comment, index);
+            });
+            setShowIndicator(false);
         }
     };
 
     //put here your permanent operations
 
     useEffect(() => {
-        setCommentsData([]);
-        fetchingRecipe();
-        fetchingComments();
-    }, [selectedSpecificRecipe]);
+        if(firstDeploy){
+            firstDeploy = false;
+            setCommentsData([]);
+            fetchingRecipe();
+            fetchingComments();
+        }
+    }, []);
 
+    /*
     useEffect(() => {
         console.log('My creative comment is:', comment, 'and my raiting of this dish is:', starRaiting);
     }, [comment, starRaiting]);
+
+    useEffect(() => {
+        console.log('My comments data is', commentsData);
+    }, [commentsData]);
+    */
+
+    useEffect(() => {
+        let timeoutId;
+        if (modalVisible) {
+          timeoutId = setTimeout(() => {
+            setModalVisible(false);
+          }, 2000);
+        }
+        return () => {
+          clearTimeout(timeoutId);
+        };
+    }, [modalVisible]);
 
     //---------------------------------------------------------
     // Render your screen here
@@ -143,7 +199,8 @@ function SearchScreen3() {
         >
             {/* put your content here */}
 
-
+            <AlertModal message={modalText} visible={modalVisible} 
+            textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
             <div className='montserrat_700' style={{fontSize: '11px', color: C.grey, textAlign: 'left', width: '100%'}}>
                 {`Chercher > Résultats de votre recherche > ${title}`}
             </div>
@@ -179,6 +236,11 @@ function SearchScreen3() {
                         marginTop: '16px', width: '100%'}}>
                             {`Commentaires`}
                         </div>
+                        {(showIndicator) &&
+                        <div style={{marginTop: "8px", marginBottom: "8px"}}>
+                            <Spinner/>
+                        </div> 
+                        }
                         {(commentsData.length !== 0)?
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', 
                         marginTop: '16px', marginBottom: '16px', width: '100%' }}>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import C from '../constants/colors';
 import "../styles/ConfirmationModal.css";
 
-const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClickButton1, onClickButton2 }) => {
+const AlertModalFavoris = ({ message, visible, textButton1, textButton2, onClickButton1, onClickButton2 }) => {
+  const navigate = useNavigate();
+
   return (
     <>
     {visible ? 
@@ -14,10 +17,11 @@ const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClick
             <div className='text1' style={{ color: C.white }}>
                 {`${message}`}
             </div>
-            <div style={{ flexDirection: 'row', display: 'flex', width: '100%', marginTop: '32px' }}>
-                <a dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
-                onClick={() => onClickButton1()}>
-                    <div tabIndex="0" className="css-view-175oi2r" style={{ width: '95%', height: '60px', 
+            <div style={{ flexDirection: 'row', display: 'flex', width: '100%', marginTop: '32px', 
+            alignContent: "center", justifyContent: "space-between" }}>
+                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
+                onClick={onClickButton1}>
+                    <div tabIndex="0" className="css-view-175oi2r" style={{ width: '100%', height: '60px', 
                     backgroundColor: C.white, borderRadius: '40px', display: 'flex', alignItems: 'center', 
                     justifyContent: 'center' }}>
                         <div className='text2' style={{ color: C.green }}>
@@ -25,10 +29,9 @@ const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClick
                         </div>
                     </div>
                 </a>
-                <div style={{flex: 1}}></div>
-                <a dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
-                onClick={() => onClickButton2()}>
-                    <div tabIndex="0" className="css-view-175oi2r" style={{ width: '95%', height: '60px', 
+                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
+                onClick={onClickButton2}>
+                    <div tabIndex="0" className="css-view-175oi2r" style={{ width: '100%', height: '60px', 
                     backgroundColor: C.white, borderRadius: '40px', display: 'flex', alignItems: 'center', 
                     justifyContent: 'center' }}>
                         <div className='text2' style={{ color: C.green }}>
@@ -47,14 +50,4 @@ const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClick
   );
 };
 
-export default ConfirmationModal;
-//-------------------------------------------------------------------
-// Default props for the component
-ConfirmationModal.defaultProps = {
-    message: 'Voulez-vous supprimez la recette definitivement ?',
-    visible: false,
-    textButton1: 'Non',
-    textButton2: 'Oui', 
-    onClickButton1: () => {},
-    onClickButton2: () => {},
-};
+export default AlertModalFavoris;

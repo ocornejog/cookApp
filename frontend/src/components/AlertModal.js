@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 import C from '../constants/colors';
 import "../styles/ConfirmationModal.css";
 
 const AlertModal = ({ message, visible, textButton, onClickButton }) => {
+  const navigate = useNavigate(); // Utilisez le hook useNavigate
+
   return (
     <>
     {visible ? 
@@ -16,8 +19,13 @@ const AlertModal = ({ message, visible, textButton, onClickButton }) => {
             </div>
             <div style={{ flexDirection: 'row', display: 'flex', width: '100%', marginTop: '32px', 
             alignContent: "center", justifyContent: "center" }}>
-                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '90%' }} 
-                onClick={() => onClickButton()}>
+                <a dir="auto" style={{ textDecoration: 'none', width: '90%' }} 
+                onClick={() => {
+                  onClickButton();
+                  if (message === "Utilisateur créé avec succès" || message === "Email existant, veuillez vous connecter") {
+                    navigate("/");
+                  }
+                }}>
                     <div tabIndex="0" className="css-view-175oi2r" style={{ width: '95%', height: '60px', 
                     backgroundColor: C.white, borderRadius: '40px', display: 'flex', alignItems: 'center', 
                     justifyContent: 'center' }}>

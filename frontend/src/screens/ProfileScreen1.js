@@ -12,22 +12,18 @@ function ProfileScreen1() {
   const navigate = useNavigate();
   const {signOut} = React.useContext(AuthContext);
   const auth_context = React.useContext(AuthContext);
+  const userId = auth_context.id;
 
   let firstDeploy = true;
 
-  let retrieved = false;
-
   const [recettes, setRecettes] = React.useState([]);
   const [name, setName] = React.useState("");
-  
-  //récupérer l'id de l'utilisateur actuellement connecté
-  const testUserid = "65e31cf769050ff9bab2a6c1";
 
   const getRecipeInfo = async(id_recette) => {
     let res = await fetch(`${API.APIuri}/api/recipes/recipe/${id_recette}`, {
       method: 'GET',
       headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json' 
       }
     });
     let rec = await res.json();
@@ -71,7 +67,22 @@ function ProfileScreen1() {
       body: JSON.stringify({
         _id:idRecette
       })
-    })
+    });
+
+    let deleteRecipeFavorites = await fetch(`${API.APIuri}/api/favoritesRecipes/deleteRecipeFavorites/recipe/${idRecette}`, {
+      method: 'DELETE',
+      headers: {
+      'Content-Type': 'application/json'
+    }});   
+
+    let tmp = []
+    for (let i = 0; i < recettes.length; i++) {
+      if (recettes[i]._id !== idRecette) {
+        tmp.push(recettes[i])
+      }
+    }
+    setRecettes(tmp);
+
   }
 
 
@@ -82,7 +93,7 @@ function ProfileScreen1() {
       const recipeFectch = async () => {
         firstDeploy = false;
         setRecettes([]);
-        const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${testUserid}`,{
+        const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${userId}`,{
         method: 'GET',
         headers: {
         'Content-Type': 'application/json'
@@ -102,6 +113,8 @@ function ProfileScreen1() {
     }
   }, [])
 
+  console.log(recettes);
+
   React.useEffect(() => {
     const myName = auth_context.name.toUpperCase();
     const myLastname = auth_context.lastName.toUpperCase();
@@ -120,7 +133,7 @@ function ProfileScreen1() {
         <ion-icon name="log-out-outline"></ion-icon>
       </div>
       {(name.length !== 0) &&
-        <UserCard name={name} onClick={handleClickParametres}/>
+        <UserCard imgsrc={auth_context.photo} name={name} onClick={handleClickParametres}/>
       }
       <div style={{width:'100%', display:'flex', 
       alignItems: 'center', justifyContent: 'center'}}>

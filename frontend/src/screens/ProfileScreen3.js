@@ -1,35 +1,41 @@
 import * as React from 'react';
 import UserCard from "../components/UserCard";
 import ButtonComponent from "../components/ButtonComponent";
+import AlertModal from '../components/AlertModal';
 import { StyledTextInput } from '../components/StyledTextInput';
 import "../styles/ButtonComponent.css";
 import C from "../constants/colors"
 import { useNavigate, useLocation } from "react-router-dom";
 import bcrypt from "bcryptjs-react";
 import API from '../constants/Api';
+import { AuthContext } from '../constants/Context';
 
 function ProfileScreen3() {
-  const location = useLocation();
-  const currentPassword = "motdepasse";
+  const {changeData} = React.useContext(AuthContext);
+
   const [newPassword1, setNewPassword1] = React.useState('');
   const [newPassword2, setNewPassword2] = React.useState('');
 
   const [passwordFormat, setPasswordFormat] = React.useState(false);
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
   const [oldPasswordMatch, setOldPasswordMatch] = React.useState(false);
+  const [modalText, setModalText] = React.useState("");
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [name, setName] = React.useState("");
+  const [userUpdated, setUserUpdated] = React.useState(false);
 
-  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"};
+  const datasend = {prenom:"Oscar", nom:"CORNEJO", mail:"oscarcornejo@gmail.com", date:"22/12/2001"}; 
 
-  //récupérer l'id de l'utilisateur connecté actuellement
-  const testUserid = "65e31cf769050ff9bab2a6c1";
+  const auth_context = React.useContext(AuthContext);
+  
+  const currentPassword = auth_context.password1.concat(auth_context.password2);
 
-  //récupérer le mot de passe dans la base de donnée associé a l'utilisateur conecté
-  const oldHash = bcrypt.hashSync(currentPassword, 10);
+  const userId = auth_context.id;
 
   const navigate = useNavigate();
 
   const checkOldPasword = (e) => {
-    bcrypt.compare(e, oldHash, function(err, isValid){
+    bcrypt.compare(e, currentPassword, function(err, isValid){
       if (isValid) {
         setOldPasswordMatch(true);
       } else {
@@ -79,31 +85,52 @@ function ProfileScreen3() {
   };
 
   const handleSave = async() => {
-    if (passwordFormat && oldPasswordMatch) {
+
+    if (passwordFormat && oldPasswordMatch && passwordsMatch) {
       let res = await fetch(`${API.APIuri}/api/users/password`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            _id: testUserid,
-            password: bcrypt.hashSync(newPassword1, 10)
+            _id: userId,
+            password: newPassword1
         })
-      });
+      })
+      const data = await res.json();
+      if (data === "User updated") {
+
+        setModalText("Le mot de passe a été mis a jour avec succès");
+        setModalVisible(true);
+        setUserUpdated(true);
+        let hashed = bcrypt.hashSync(newPassword1, 10);
+        changeData({
+          userId: userId,
+        })
+      }
+    } else if (oldPasswordMatch === false) {
+      setModalText("Il y avait une erreur. Veuillez reesayer.");
+      setModalVisible(true);
     }
   }
 
+  React.useEffect(() => {
+    const myName = auth_context.name.toUpperCase();
+    const myLastname = auth_context.lastName.toUpperCase();
+    setName(`${myName} ${myLastname}`);
+  }, [])
+
+  React.useEffect(() => {
+    if (userUpdated && modalVisible === false) {
+      navigate(`/`);
+    }
+  }, [modalVisible])
+
   return (
     <div>
-      <UserCard onClick={handleClickParametres}/>
-      {oldPasswordMatch ? <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',marginTop:'113px',
-      color:C.white}}>
-        &zwnj;
-      </div>
-      : <div style ={{fontSize: '14px', fontFamily:"Montserrat", fontWeight:'330',marginTop:'113px',
-      color:C.red}}>
-        Mot de passe actuelle incorect
-      </div>}
+      <AlertModal message={modalText} visible={modalVisible} 
+      textButton={"Ok"} onClickButton={() => setModalVisible(false)}/>
+      <UserCard onClick={handleClickParametres} imgsrc={auth_context.photo} name={name}/>
       <div style ={{display:'flex', textAlign: 'center', textAlignVertical: 'center', justifyContent: 'center',
        fontSize: '20px', fontFamily:"Montserrat", fontWeight:'330',marginTop:'53px'}}>
         Entrez votre mot de passe actuelle
