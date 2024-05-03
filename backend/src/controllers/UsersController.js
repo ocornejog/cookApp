@@ -51,7 +51,7 @@ userCtrl.verifyUser = async (req, res) => {
     if (bcrypt.compareSync(myPassword, foundUser.password)) {
       const token = jwt.sign(
         { userId: foundUser._id }, 
-        "myEncryptionKey",
+        process.env.TOKEN_KEY,
         { expiresIn: '24h' }
       );
       res.json({
@@ -78,18 +78,20 @@ userCtrl.findById = async (req, res) => {
 };
 
 userCtrl.updateUser = async (req, res) => {
-  const { _id, name, lastName, birthDate } = req.body;
-  const updatedUser = await User.updateOne(
-    { _id: _id },
+  const { _id, name, lastName, birthDate, photo } = req.body;
+  await User.findByIdAndUpdate(
+    _id,
     {
-      $set: {
-        name: name,
-        lastname: lastName,
-        birthdate: birthDate,
-      },
+      name: name,
+      lastname: lastName,
+      birthdate: birthDate,
+      photo: photo
     }
-  );
-  res.json("User updated");
+  ).then(() => {
+    res.json("User updated");
+  }).catch((err) => {
+    console.log(err);
+  });
 };
 
 userCtrl.updatePass = async (req, res) => {

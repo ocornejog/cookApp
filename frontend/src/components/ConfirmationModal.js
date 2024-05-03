@@ -15,7 +15,7 @@ const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClick
                 {`${message}`}
             </div>
             <div style={{ flexDirection: 'row', display: 'flex', width: '100%', marginTop: '32px' }}>
-                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
+                <a dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
                 onClick={() => onClickButton1()}>
                     <div tabIndex="0" className="css-view-175oi2r" style={{ width: '95%', height: '60px', 
                     backgroundColor: C.white, borderRadius: '40px', display: 'flex', alignItems: 'center', 
@@ -26,7 +26,7 @@ const ConfirmationModal = ({ message, visible, textButton1, textButton2, onClick
                     </div>
                 </a>
                 <div style={{flex: 1}}></div>
-                <a href="#" dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
+                <a dir="auto" style={{ textDecoration: 'none', width: '45%' }} 
                 onClick={() => onClickButton2()}>
                     <div tabIndex="0" className="css-view-175oi2r" style={{ width: '95%', height: '60px', 
                     backgroundColor: C.white, borderRadius: '40px', display: 'flex', alignItems: 'center', 
