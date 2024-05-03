@@ -5,20 +5,24 @@ import RecipeCard from "../components/recipeCard";
 import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
-import { AuthContext } from '../constants/Context';
+import { AuthContext } from "../constants/Context";
+import AlertModalFavoris from "../components/AlertModalFavoris"; // Importez AlertModal
 
 function RecipeScreen2() {
-  // put here your constants
-
   const auth_context = React.useContext(AuthContext);
   let firstDeploy = true;
+  const [showPopup, setShowPopup] = useState(false);
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
+  const [currentPage, setCurrentPage] = useState(0);
+  const pageSize = 5;
   const navigate = useNavigate();
 
   const settingFavoritesRecipesData = async (recipe, index) => {
-    let response = await fetch(`${API.APIuri}/api/recipes/recipe/${recipe.recipe_id}`);
+    let response = await fetch(
+      `${API.APIuri}/api/recipes/recipe/${recipe.recipe_id}`
+    );
     let recipeData = await response.json();
 
     const newItem = {
@@ -26,10 +30,14 @@ function RecipeScreen2() {
       title: recipeData[0].name,
       description: recipeData[0].description,
       image: recipeData[0].photo,
-      favorite: true
+      favorite: true,
     };
 
     setData((prevRecipes) => [...prevRecipes, newItem]);
+  };
+  const handleNonClick = () => {
+    // Ne rien faire pour maintenir l'état actuel des favoris
+    setShowPopup(false); // Fermer la popup
   };
 
   const settingRecipesData = async (recipe, index) => {
@@ -49,19 +57,6 @@ function RecipeScreen2() {
     setData((prevRecipes) => [...prevRecipes, newItem]);
   };
 
-  const handleClickFavoris = async () => {
-    fetch(`${API.APIuri}/api/favoritesRecipes/favoritesRecipes/user/${auth_context.id}`)
-    .then((response) => response.json())
-    .then(async (data) => {
-      console.log(data);
-      for (let index = 0; index < data.length; index++) {
-        const favoris = data[index];
-        await settingFavoritesRecipesData(favoris, index);
-      }
-    })
-    .catch((err) => console.error(err));
-  };
-
   useEffect(() => {
     if (
       typeof buttonText === "string" &&
@@ -69,19 +64,19 @@ function RecipeScreen2() {
       firstDeploy === true
     ) {
       firstDeploy = false;
-      if(buttonText === "Favoris"){
+      if (buttonText === "Favoris") {
         handleClickFavoris();
-      } else{
+      } else {
         fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
-        .then((response) => response.json())
-        .then(async (data) => {
-          console.log(data);
-          for (let index = 0; index < data.length; index++) {
-            const recipe = data[index];
-            await settingRecipesData(recipe, index);
-          }
-        })
-        .catch((err) => console.error(err));
+          .then((response) => response.json())
+          .then(async (data) => {
+            console.log(data);
+            for (let index = 0; index < data.length; index++) {
+              const recipe = data[index];
+              await settingRecipesData(recipe, index);
+            }
+          })
+          .catch((err) => console.error(err));
       }
     }
   }, [buttonText]);
@@ -90,6 +85,21 @@ function RecipeScreen2() {
     navigate(
       `/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`
     );
+  };
+
+  const handleClickFavoris = async () => {
+    fetch(
+      `${API.APIuri}/api/favoritesRecipes/favoritesRecipes/user/${auth_context.id}`
+    )
+      .then((response) => response.json())
+      .then(async (data) => {
+        console.log(data);
+        for (let index = 0; index < data.length; index++) {
+          const favoris = data[index];
+          await settingFavoritesRecipesData(favoris, index);
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   const onClickFavorite = async (e, favorite) => {
@@ -106,15 +116,8 @@ function RecipeScreen2() {
         }),
       });
     } else {
-      await fetch(
-        `${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      setShowPopup(true); // Ouvrir la popup si le favori est vrai
+      return; // Sortez de la fonction sans modifier l'état de favorite
     }
     setData((prevItems) =>
       prevItems.map((item) => {
@@ -149,57 +152,133 @@ function RecipeScreen2() {
         >
           {category} {">"} {buttonText}
         </div>
-        <h2 style={{ textAlign: "center", fontSize: 20, marginTop: "24px" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: 20,
+            marginTop: "24px",
+            color: "white",
+          }}
+        >
           {TextMap[buttonText]}
         </h2>
       </div>
-      {data.length !== 0 ? (
-        <div
+      {/* Render recipes */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        {data
+          .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+          .map((item, index) => (
+            <RecipeCard
+              key={index}
+              title={item.title}
+              description={item.description}
+              favorite={item.favorite}
+              image={item.image}
+              onClick={() => handleClick(item.title, item.id)}
+              onClickFavorite={() => onClickFavorite(item.id, item.favorite)}
+              style={{ margin: "8px" }}
+            />
+          ))}
+        {data.length === 0 && (
+          <div
+            className="montserrat_700"
+            style={{
+              color: C.greenLight,
+              fontSize: "20px",
+              textAlign: "center",
+              width: "100%",
+              marginTop: "56px",
+              marginBottom: "16px",
+            }}
+          >
+            {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+          </div>
+        )}
+      </div>
+      {/* Pagination */}
+      <div style={{ marginTop: "20px", textAlign: "center", width: "100%" }}>
+        {/* Flèche gauche */}
+        <button
+          onClick={() =>
+            setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
+          }
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "10px",
-            padding: "10px",
-            marginTop: "16px",
-            marginBottom: "16px",
+            margin: "0 5px",
+            padding: "5px 10px",
+            backgroundColor: "#337D74",
+            color: "#FFFFFF",
+            border: "1px solid #337D74",
+            borderRadius: "5px",
+            cursor: "pointer",
           }}
         >
-          {data.map((item, index) => {
-            return (
-              <React.Fragment key={index}>
-                <>
-                  <RecipeCard
-                    title={item.title}
-                    description={item.description}
-                    favorite={item.favorite}
-                    image={item.image}
-                    onClick={() => handleClick(item.title, item.id)}
-                    onClickFavorite={() =>
-                      onClickFavorite(item.id, item.favorite)
-                    }
-                  />
-                </>
-              </React.Fragment>
-            );
-          })}
-        </div>
-      ) : (
-        <div
-          className="montserrat_700"
+          {"<"}
+        </button>
+        {Array.from(
+          { length: Math.ceil(data.length / pageSize) },
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
+              style={{
+                margin: "0 5px",
+                padding: "5px 10px",
+                backgroundColor: currentPage === index ? "#337D74" : "#FFFFFF",
+                color: currentPage === index ? "#FFFFFF" : "#337D74",
+                border: "1px solid #337D74",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
+        {/* Flèche droite */}
+        <button
+          onClick={() =>
+            setCurrentPage(
+              currentPage === Math.ceil(data.length / pageSize) - 1
+                ? currentPage
+                : currentPage + 1
+            )
+          }
           style={{
-            color: C.greenLight,
-            fontSize: "20px",
-            textAlign: "center",
-            width: "100%",
-            marginTop: "56px",
-            marginBottom: "16px",
+            margin: "0 5px",
+            padding: "5px 10px",
+            backgroundColor: "#337D74",
+            color: "#FFFFFF",
+            border: "1px solid #337D74",
+            borderRadius: "5px",
+            cursor: "pointer",
           }}
         >
-          {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
-        </div>
-      )}
+          {">"}
+        </button>
+      </div>
+      {/* Affichage de la popup */}
+      <AlertModalFavoris
+        visible={showPopup}
+        message="Voulez-vous supprimer cette recette de vos favoris ?"
+        textButton1="Oui"
+        textButton2="Non"
+        onClickButton1={async () => {
+          // Actions à effectuer lors du clic sur le bouton "Oui" dans la popup
+          // Par exemple, supprimer la recette des favoris et fermer la popup
+          setShowPopup(false); // Fermer la popup
+          // Ajoutez ici la logique pour supprimer la recette des favoris
+        }}
+        onClickButton2={handleNonClick}
+      />
     </div>
   );
 }
+
 export default RecipeScreen2;
