@@ -51,7 +51,7 @@ userCtrl.verifyUser = async (req, res) => {
     if (bcrypt.compareSync(myPassword, foundUser.password)) {
       const token = jwt.sign(
         { userId: foundUser._id }, 
-        "@RvptBEg0^@9ctfZtdb0So*+Sr",
+        process.env.TOKEN_KEY,
         { expiresIn: '24h' }
       );
       res.json({
