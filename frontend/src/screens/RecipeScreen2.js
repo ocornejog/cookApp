@@ -6,18 +6,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
 import { AuthContext } from "../constants/Context";
-
 import AlertModalFavoris from "../components/AlertModalFavoris"; // Importez AlertModal
 
 function RecipeScreen2() {
   const auth_context = React.useContext(AuthContext);
   let firstDeploy = true;
+  const [showPopup, setShowPopup] = useState(false);
 
   const [data, setData] = React.useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [showPopup, setShowPopup] = useState(false); // Utilisez l'état pour contrôler la visibilité de la popup
-  const pageSize = 5;
   const { category, buttonText } = useParams();
+  const [currentPage, setCurrentPage] = useState(0);
+  const pageSize = 5;
   const navigate = useNavigate();
 
   const settingFavoritesRecipesData = async (recipe, index) => {
@@ -35,6 +34,10 @@ function RecipeScreen2() {
     };
 
     setData((prevRecipes) => [...prevRecipes, newItem]);
+  };
+  const handleNonClick = () => {
+    // Ne rien faire pour maintenir l'état actuel des favoris
+    setShowPopup(false); // Fermer la popup
   };
 
   const settingRecipesData = async (recipe, index) => {
@@ -100,44 +103,30 @@ function RecipeScreen2() {
   };
 
   const onClickFavorite = async (e, favorite) => {
-  console.log("Clicked favorite button for card with id: ", e);
-  if (!favorite) {
-    await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userID: auth_context.id,
-        recipeID: e,
-      }),
-    });
-  } else {
-    setShowPopup(true); // Ouvrir la popup si le favori est vrai
-    return; // Sortez de la fonction sans modifier l'état de favorite
-  }
-  setData((prevItems) =>
-    prevItems.map((item) => {
-      if (item.id === e) {
-        return { ...item, favorite: !item.favorite };
-      }
-      return item;
-    })
-  );
-};
-
-
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
-  const handleNonClick = () => {
-    // Ne rien faire pour maintenir l'état actuel des favoris
-    setShowPopup(false); // Fermer la popup
+    console.log("Clicked favorite button for card with id: ", e);
+    if (!favorite) {
+      await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: auth_context.id,
+          recipeID: e,
+        }),
+      });
+    } else {
+      setShowPopup(true); // Ouvrir la popup si le favori est vrai
+      return; // Sortez de la fonction sans modifier l'état de favorite
+    }
+    setData((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === e) {
+          return { ...item, favorite: !item.favorite };
+        }
+        return item;
+      })
+    );
   };
 
   return (
@@ -183,80 +172,96 @@ function RecipeScreen2() {
           width: "100%",
         }}
       >
-        {currentPage !== 0 && (data.length !== 0) && (
-          <button
-            onClick={prevPage}
-            disabled={currentPage === 0}
+        {data
+          .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
+          .map((item, index) => (
+            <RecipeCard
+              key={index}
+              title={item.title}
+              description={item.description}
+              favorite={item.favorite}
+              image={item.image}
+              onClick={() => handleClick(item.title, item.id)}
+              onClickFavorite={() => onClickFavorite(item.id, item.favorite)}
+              style={{ margin: "8px" }}
+            />
+          ))}
+        {data.length === 0 && (
+          <div
+            className="montserrat_700"
             style={{
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              margin: "8px",
-              backgroundColor: "#337D74",
-              border: "1px solid white",
-              color: "white",
+              color: C.greenLight,
+              fontSize: "20px",
+              textAlign: "center",
+              width: "100%",
+              marginTop: "56px",
+              marginBottom: "16px",
             }}
           >
-            Prev
-          </button>
+            {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
+          </div>
         )}
-        <div
+      </div>
+      {/* Pagination */}
+      <div style={{ marginTop: "20px", textAlign: "center", width: "100%" }}>
+        {/* Flèche gauche */}
+        <button
+          onClick={() =>
+            setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
+          }
           style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
+            margin: "0 5px",
+            padding: "5px 10px",
+            backgroundColor: "#337D74",
+            color: "#FFFFFF",
+            border: "1px solid #337D74",
+            borderRadius: "5px",
+            cursor: "pointer",
           }}
         >
-          {data.length !== 0 &&
-            data
-              .slice(currentPage * pageSize, (currentPage + 1) * pageSize)
-              .map((item, index) => (
-                <RecipeCard
-                  key={index}
-                  title={item.title}
-                  description={item.description}
-                  favorite={item.favorite}
-                  image={item.image}
-                  onClick={() => handleClick(item.title, item.id)}
-                  onClickFavorite={() =>
-                    onClickFavorite(item.id, item.favorite)
-                  }
-                  style={{ margin: "8px" }}
-                />
-              ))}
-          {data.length === 0 && (
-            <div
-              className="montserrat_700"
+          {"<"}
+        </button>
+        {Array.from(
+          { length: Math.ceil(data.length / pageSize) },
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
               style={{
-                color: C.greenLight,
-                fontSize: "20px",
-                textAlign: "center",
-                width: "100%",
-                marginTop: "56px",
-                marginBottom: "16px",
+                margin: "0 5px",
+                padding: "5px 10px",
+                backgroundColor: currentPage === index ? "#337D74" : "#FFFFFF",
+                color: currentPage === index ? "#FFFFFF" : "#337D74",
+                border: "1px solid #337D74",
+                borderRadius: "5px",
+                cursor: "pointer",
               }}
             >
-              {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
-            </div>
-          )}
-        </div>
-        {currentPage !== Math.ceil(data.length / pageSize) - 1 && (data.length !== 0) && (
-          <button
-            onClick={nextPage}
-            disabled={currentPage === Math.ceil(data.length / pageSize) - 1}
-            style={{
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              margin: "20px",
-              backgroundColor: "#337D74",
-              border: "1px solid white",
-              color: "white",
-            }}
-          >
-            Next
-          </button>
+              {index + 1}
+            </button>
+          )
         )}
+        {/* Flèche droite */}
+        <button
+          onClick={() =>
+            setCurrentPage(
+              currentPage === Math.ceil(data.length / pageSize) - 1
+                ? currentPage
+                : currentPage + 1
+            )
+          }
+          style={{
+            margin: "0 5px",
+            padding: "5px 10px",
+            backgroundColor: "#337D74",
+            color: "#FFFFFF",
+            border: "1px solid #337D74",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          {">"}
+        </button>
       </div>
       {/* Affichage de la popup */}
       <AlertModalFavoris
