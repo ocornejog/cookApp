@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "moncookapp@gmail.com",
-    pass: process.env.EMAIL_PASSWORD,
+    pass: "qzgc vnaj ysvb mhnz",
   },
   tls: {
     rejectUnauthorized: false
@@ -444,4 +444,4 @@ const sendEmail = async(req, res) => {
   });
 }
 
-module.exports = {sendEmail}
+module.exports = {sendEmail};
