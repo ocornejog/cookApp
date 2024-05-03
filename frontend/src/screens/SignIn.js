@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ButtonComponent from '../components/ButtonComponent';
 import { StyledTextInput } from '../components/StyledTextInput';
 import AlertModal from '../components/AlertModal';
@@ -17,15 +17,25 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [modalText, setModalText] = useState("");
+  const emailRef = useRef(email);
+  const passwordRef = useRef(password);
+
+  React.useEffect(() => {
+    emailRef.current = email;
+  }, [email]);
+
+  React.useEffect(() => {
+    passwordRef.current = password;
+  }, [password]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Logique de connexion à implémenter ici.
-    console.log('Email:', email);
-    console.log('Password:', password);
+    // Logique de connexion à implémenter ici
+    console.log('Email:', emailRef.current);
+    console.log('Password:', passwordRef.current);
     signIn({
-      email, 
-      password
+      email: emailRef.current, 
+      password: passwordRef.current
     })
     .then((result) => {
       if(result !== "correct password"){
@@ -48,6 +58,19 @@ function SignIn() {
       } 
     })
   };
+
+  React.useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') {
+        handleSubmit(event);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
 
   return (
     <div className="sign-in-container">
