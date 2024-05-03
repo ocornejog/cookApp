@@ -16,8 +16,8 @@ import AlertModal from '../components/AlertModal';
 import { useDispatch, Provider, useSelector } from 'react-redux';
 import { setCuisine, selectCuisine, setCuisineComplement, selectCuisineComplement, setDish, selectDish, setDiet, selectDiet, 
 setPreparationTime, selectPreparationTime, setCulinaryProficiency, selectCulinaryProficiency, setPopularity, selectPopularity, 
-setIngredients, selectIngredients, setNutritionalValue, selectNutritionalValue, setAmountPeople, selectAmountPeople, setSearchText,
-selectSearchText, setSpecificRecipe, selectSpecificRecipe } from '../constants/searchConfig/slices/navSlice';
+setIngredients, selectIngredients, setNutritionalValue, selectNutritionalValue, setAmountPeople, selectAmountPeople, 
+setSearchText, selectSearchText, setSpecificRecipe, selectSpecificRecipe } from '../constants/searchConfig/slices/navSlice';
 
 /*
 Import your used redux here
@@ -290,23 +290,6 @@ function SearchScreen2() {
                 width: "100%",
                 }}
             >
-                {(currentPage !== 0) && (recipesData.length !== 0) && (
-                <button
-                    onClick={prevPage}
-                    disabled={currentPage === 0}
-                    style={{
-                    borderRadius: "50%",
-                    width: "40px",
-                    height: "40px",
-                    margin: "8px",
-                    backgroundColor: "#337D74",
-                    border: "1px solid white",
-                    color: "white",
-                    }}
-                >
-                    Prev
-                </button>
-                )}
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', padding: '10px', 
                 marginTop: '16px', marginBottom: '16px' }}>
                 {recipesData.length !== 0 &&
@@ -319,29 +302,73 @@ function SearchScreen2() {
                     </div>
                 ))}
                 {recipesData.length === 0 && (
-                    <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', width: '100%',
-                    marginTop: '56px', marginBottom: '16px' }}>
+                    <div className='montserrat_700' style={{ color: C.greenLight, fontSize: '20px', textAlign: 'center', 
+                    width: '100%', marginTop: '56px', marginBottom: '16px' }}>
                         {`Aucun résultat n'a été trouvé, essayez d'autres critères de recherche`}
                     </div>  
                 )}
                 </div>
-                {currentPage !== Math.ceil(recipesData.length / pageSize) - 1 && (recipesData.length !== 0) && (
+            </div>
+            {/* Pagination */}
+            <div style={{ marginTop: "20px", textAlign: "center", width: "100%" }}>
+                {/* Flèche gauche */}
                 <button
-                    onClick={nextPage}
-                    disabled={currentPage === Math.ceil(recipesData.length / pageSize) - 1}
-                    style={{
-                    borderRadius: "50%",
-                    width: "40px",
-                    height: "40px",
-                    margin: "20px",
+                onClick={() =>
+                    setCurrentPage(currentPage === 0 ? 0 : currentPage - 1)
+                }
+                style={{
+                    margin: "0 5px",
+                    padding: "5px 10px",
                     backgroundColor: "#337D74",
-                    border: "1px solid white",
-                    color: "white",
-                    }}
+                    color: "#FFFFFF",
+                    border: "1px solid #337D74",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                }}
                 >
-                    Next
+                {"<"}
                 </button>
+                {Array.from(
+                { length: Math.ceil(recipesData.length / pageSize) },
+                (_, index) => (
+                    <button
+                    key={index}
+                    onClick={() => setCurrentPage(index)}
+                    style={{
+                        margin: "0 5px",
+                        padding: "5px 10px",
+                        backgroundColor: currentPage === index ? "#337D74" : "#FFFFFF",
+                        color: currentPage === index ? "#FFFFFF" : "#337D74",
+                        border: "1px solid #337D74",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                    }}
+                    >
+                    {index + 1}
+                    </button>
+                )
                 )}
+                {/* Flèche droite */}
+                <button
+                onClick={() =>
+                    setCurrentPage(
+                    currentPage === Math.ceil(recipesData.length / pageSize) - 1
+                        ? currentPage
+                        : currentPage + 1
+                    )
+                }
+                style={{
+                    margin: "0 5px",
+                    padding: "5px 10px",
+                    backgroundColor: "#337D74",
+                    color: "#FFFFFF",
+                    border: "1px solid #337D74",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                }}
+                >
+                {">"}
+                </button>
             </div>
 
 
