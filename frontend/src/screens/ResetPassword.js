@@ -8,6 +8,7 @@ import C from "../constants/colors";
 
 function Password() {
   const navigate = useNavigate();
+  const bcrypt = require('bcrypt');
   const location = useLocation();
   const [modalVisible, setModalVisible] = React.useState(false);
   const [password, setPassword] = useState('');
@@ -55,7 +56,7 @@ function Password() {
       setError('Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.');
       return;
     }
-    if (password === previousPassword) {
+    if (bcrypt.compare(password,previousPassword)) {
       setError('Le nouveau mot de passe ne peut pas être identique à l\'ancien.');
       return;
     }
