@@ -81,7 +81,7 @@ function ProfileScreen3() {
   }, [newPassword1,newPassword2]);
 
   const handleClickParametres = () => {
-    navigate(`/ProfileScreen2`, {state:datasend});
+    navigate(`/profile/ProfileScreen2`, {state:datasend});
   };
 
   const handleSave = async() => {
@@ -122,7 +122,7 @@ function ProfileScreen3() {
 
   React.useEffect(() => {
     if (userUpdated && modalVisible === false) {
-      navigate(`/`);
+      navigate(`/profile/`);
     }
   }, [modalVisible])
 

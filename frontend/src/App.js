@@ -8,6 +8,7 @@ import Recipe from "./screens/Recipe";
 import Profile from "./screens/Profile";
 import { AuthContext } from "./constants/Context";
 import API from "./constants/Api";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState("Chercher");
@@ -259,17 +260,9 @@ const App = () => {
         {!loggedIn ? (
           <LogIn />
         ) : (
-          <Tabs activeTab={activeTab} onTabChange={handleTabChange}>
-            <div label="Chercher">
-              <Search />
-            </div>
-            <div label="Recettes">
-              <Recipe />
-            </div>
-            <div label="Profil" icon="person-circle">
-              <Profile />
-            </div>
-          </Tabs>
+          <BrowserRouter>
+            <Tabs activeTab={activeTab} onTabChange={handleTabChange} />
+          </BrowserRouter>
         )}
       </div>
     </AuthContext.Provider>

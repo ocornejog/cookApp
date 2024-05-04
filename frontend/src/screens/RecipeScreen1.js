@@ -14,7 +14,7 @@ function RecipeScreen1() {
   const navigate = useNavigate();
 
   const handleClick = (category, buttonText) => {
-    navigate(`/detail/${category}/${buttonText}`);
+    navigate(`/recipe/detail/${category}/${buttonText}`);
   };
 
   return (

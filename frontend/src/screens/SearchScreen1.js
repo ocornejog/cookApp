@@ -65,7 +65,7 @@ function SearchScreen1() {
         dispatch(setAmountPeople(null));
         dispatch(setSearchText(e));
         dispatch(setSpecificRecipe(null));
-        navigate('/SearchScreen2');
+        navigate('/search/SearchScreen2');
     };
 
     const onSubmitForm = async() => {
@@ -82,7 +82,7 @@ function SearchScreen1() {
         dispatch(setAmountPeople(annotation.amountPeople));
         dispatch(setSearchText(null));
         dispatch(setSpecificRecipe(null));
-        navigate('/SearchScreen2');
+        navigate('/search/SearchScreen2');
     };
 
     //put here your permanent operations

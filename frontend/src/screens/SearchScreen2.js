@@ -63,7 +63,7 @@ function SearchScreen2() {
     const onClickCard = async(e) => {
         console.log('Trying to do something after clicking a card with id: ', e);
         dispatch(setSpecificRecipe(e));
-        navigate('/SearchScreen3');
+        navigate('/search/SearchScreen3');
     };
 
     const onClickFavorite = async(e, favorite) => {

@@ -10,7 +10,6 @@ import { AuthContext } from '../constants/Context';
 
 function ProfileScreen1() {
   const navigate = useNavigate();
-  const {signOut} = React.useContext(AuthContext);
   const auth_context = React.useContext(AuthContext);
   const userId = auth_context.id;
 
@@ -27,15 +26,15 @@ function ProfileScreen1() {
       }
     });
     let rec = await res.json();
-    navigate('/ProfileScreen4', {state:rec});
+    navigate('/profile/ProfileScreen4', {state:rec});
   };
 
   const handleClickParametres = () => {
-    navigate(`/ProfileScreen2`);
+    navigate(`/profile/ProfileScreen2`);
   };
 
   const handleClickPublish = () => {
-    navigate('/ProfileScreen4');
+    navigate('/profile/ProfileScreen4');
   };
 
   const handleClickModifyRecipie = (idRecette) => {
@@ -125,13 +124,6 @@ function ProfileScreen1() {
   return (
     <div style={{width:'100%', display:'flex', alignContent: 'center',
     alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-      <div style={{height: "30px", fontSize: "30px", color: C.green, cursor: 'pointer', 
-      marginBottom: '8px', marginRight: "16px", alignSelf: "flex-end"}} 
-      onClick={() => {
-        signOut();
-      }}>
-        <ion-icon name="log-out-outline"></ion-icon>
-      </div>
       {(name.length !== 0) &&
         <UserCard imgsrc={auth_context.photo} name={name} onClick={handleClickParametres}/>
       }

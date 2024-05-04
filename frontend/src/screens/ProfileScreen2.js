@@ -25,11 +25,11 @@ function ProfileScreen2() {
   const navigate = useNavigate();
 
   const handleClickPassword = () => {
-    navigate(`/ProfileScreen3`);
+    navigate(`/profile/ProfileScreen3`);
   };
 
   const handleClickParametres = () => {
-    navigate(`/ProfileScreen2`);
+    navigate(`/profile/ProfileScreen2`);
   };
  
   const handleNewPhoto = async(e) => {
@@ -55,7 +55,7 @@ function ProfileScreen2() {
       changeData({
         userId: userId,
       }).then(() => {
-        navigate(`/`);
+        navigate(`/profile/`);
       })
     }
   }

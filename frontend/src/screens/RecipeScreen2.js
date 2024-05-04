@@ -83,7 +83,7 @@ function RecipeScreen2() {
 
   const handleClick = (title, recipeID) => {
     navigate(
-      `/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`
+      `/recipe/detail/${category}/${buttonText}/recipe/${title}/recipeID/${recipeID}`
     );
   };
 
