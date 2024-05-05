@@ -71,23 +71,25 @@ function Password() {
       if (foundUserData !== null) {
         id = foundUserData._id;
         console.log(previousPassword)
-        if (bcrypt.compareSync(password, previousPassword)) {  setError('Votre nouveau mot de passe est le même que le mot de passe actuel.')  } else {     
-            // Le mot de passe actuel correspond
-            const response = await fetch(`${API.APIuri}/api/users/password`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ _id: id, password }),
-            });
-            const data = await response.json();
-            if (data === "User updated") {
-              setModalVisible(true);
-              navigate('/');
-            } else {
-              setError('Échec de la réinitialisation du mot de passe. Veuillez réessayer.');
-            }
+        if (bcrypt.compareSync(password, previousPassword)) {  
+          setError('Votre nouveau mot de passe est le même que le mot de passe actuel.')  
+        } else {     
+          // Le mot de passe actuel correspond
+          const response = await fetch(`${API.APIuri}/api/users/password`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ _id: id, password }),
+          });
+          const data = await response.json();
+          if (data === "User updated") {
+            setModalVisible(true);
+            navigate('/');
+          } else {
+            setError('Échec de la réinitialisation du mot de passe. Veuillez réessayer.');
           }
+        }
       } else {
         console.log("L'utilisateur n'existe pas");
       }
