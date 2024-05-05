@@ -195,7 +195,7 @@ function RecipeScreen2() {
         </h2>
       </div>
       {(showIndicator) &&
-      <div style={{marginTop: "8px", marginBottom: "8px"}}>
+      <div style={{marginTop: "8px", marginBottom: "8px", alignSelf: "center"}}>
         <Spinner/>
       </div> 
       }
