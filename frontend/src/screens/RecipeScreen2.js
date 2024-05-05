@@ -12,6 +12,8 @@ function RecipeScreen2() {
   const auth_context = React.useContext(AuthContext);
   let firstDeploy = true;
   const [showPopup, setShowPopup] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
@@ -116,6 +118,7 @@ function RecipeScreen2() {
         }),
       });
     } else {
+      setSelectedRecipeId(e); // Enregistrer l'ID de la recette sélectionnée
       setShowPopup(true); // Ouvrir la popup si le favori est vrai
       return; // Sortez de la fonction sans modifier l'état de favorite
     }
@@ -128,6 +131,30 @@ function RecipeScreen2() {
       })
     );
   };
+
+
+  const removeFromFavorites = async (recipeId) => {
+    console.log("Removing recipe from favorites with id: ", recipeId);
+    await fetch(
+      `${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${recipeId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    setDeleteSuccess(true);
+    setData((prevItems) =>
+      prevItems.map((item) => {
+        if (item.id === recipeId) {
+          return { ...item, favorite: !item.favorite };
+        }
+        return item;
+      })
+    ); // Indique que la suppression a réussi
+  };
+
 
   return (
     <div className="recipe-screen2">
@@ -270,10 +297,8 @@ function RecipeScreen2() {
         textButton1="Oui"
         textButton2="Non"
         onClickButton1={async () => {
-          // Actions à effectuer lors du clic sur le bouton "Oui" dans la popup
-          // Par exemple, supprimer la recette des favoris et fermer la popup
+          await removeFromFavorites(selectedRecipeId); // Appeler la fonction pour supprimer la recette des favoris
           setShowPopup(false); // Fermer la popup
-          // Ajoutez ici la logique pour supprimer la recette des favoris
         }}
         onClickButton2={handleNonClick}
       />
