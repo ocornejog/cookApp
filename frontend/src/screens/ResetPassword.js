@@ -5,11 +5,12 @@ import { StyledTextInput } from '../components/StyledTextInput';
 import { useNavigate, useLocation } from 'react-router-dom'; 
 import API from '../constants/Api';
 import C from "../constants/colors";
+import bcrypt from "bcryptjs-react";
 
 function Password() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
@@ -55,13 +56,9 @@ function Password() {
       setError('Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.');
       return;
     }
-    if (password === previousPassword) {
-      setError('Le nouveau mot de passe ne peut pas être identique à l\'ancien.');
-      return;
-    }
-
+  
     const email = location.state;
-
+  
     try {
       let id = "";
       const foundUser = await fetch(`${API.APIuri}/api/users/${email}`, {
@@ -73,20 +70,24 @@ function Password() {
       const foundUserData = await foundUser.json();
       if (foundUserData !== null) {
         id = foundUserData._id;
-        const response = await fetch(`${API.APIuri}/api/users/password`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ _id: id, password }),
-        });
-        const data = await response.json();
-        if (data === "User updated") {
-          setModalVisible(true);
-          navigate('/'); 
-        } else {
-          setError('Échec de la réinitialisation du mot de passe. Veuillez réessayer.');
-        }
+        console.log(previousPassword)
+        if (bcrypt.compareSync(password, previousPassword)) {  setError('Votre nouveau mot de passe est le même que le mot de passe actuel.')  } else {     
+            // Le mot de passe actuel correspond
+            const response = await fetch(`${API.APIuri}/api/users/password`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ _id: id, password }),
+            });
+            const data = await response.json();
+            if (data === "User updated") {
+              setModalVisible(true);
+              navigate('/');
+            } else {
+              setError('Échec de la réinitialisation du mot de passe. Veuillez réessayer.');
+            }
+          }
       } else {
         console.log("L'utilisateur n'existe pas");
       }
@@ -95,6 +96,7 @@ function Password() {
       setError('Une erreur s\'est produite lors de la réinitialisation du mot de passe. Veuillez réessayer.');
     }
   };
+  
 
   return (
     <div className="reset-password-container">
