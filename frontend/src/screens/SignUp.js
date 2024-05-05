@@ -61,7 +61,7 @@ function SignUp() {
       name,
       lastname,
       birthdate,
-      email,
+      email: email.toLowerCase(),
       password,
     }).then((result) => {
       if (result === "User created") {
