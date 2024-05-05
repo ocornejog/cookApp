@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import C from "../constants/colors";
 import TextMap from "../constants/TextMap";
 import { AuthContext } from "../constants/Context";
+import Spinner from "../components/Spinner";
 import AlertModalFavoris from "../components/AlertModalFavoris"; // Importez AlertModal
 
 function RecipeScreen2() {
@@ -14,6 +15,7 @@ function RecipeScreen2() {
   const [showPopup, setShowPopup] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [selectedRecipeId, setSelectedRecipeId] = useState(null);
+  const [showIndicator, setShowIndicator] = useState(false);
 
   const [data, setData] = React.useState([]);
   const { category, buttonText } = useParams();
@@ -73,10 +75,12 @@ function RecipeScreen2() {
           .then((response) => response.json())
           .then(async (data) => {
             console.log(data);
+            setShowIndicator(true);
             for (let index = 0; index < data.length; index++) {
               const recipe = data[index];
               await settingRecipesData(recipe, index);
             }
+            setShowIndicator(false);
           })
           .catch((err) => console.error(err));
       }
@@ -190,6 +194,11 @@ function RecipeScreen2() {
           {TextMap[buttonText]}
         </h2>
       </div>
+      {(showIndicator) &&
+      <div style={{marginTop: "8px", marginBottom: "8px"}}>
+        <Spinner/>
+      </div> 
+      }
       {/* Render recipes */}
       <div
         style={{

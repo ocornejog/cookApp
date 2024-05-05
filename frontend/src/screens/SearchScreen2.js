@@ -250,14 +250,6 @@ function SearchScreen2() {
         };
     }, [modalVisible]);
 
-    const nextPage = () => {
-        setCurrentPage((prevPage) => prevPage + 1);
-    };
-    
-    const prevPage = () => {
-        setCurrentPage((prevPage) => prevPage - 1);
-    };
-
     //---------------------------------------------------------
     // Render your screen here
     return (
