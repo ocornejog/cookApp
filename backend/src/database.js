@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 // Database string 
-const db = process.env.MONGO_DB_URI;
+// const db = process.env.MONGO_DB_URI;
+const db = "mongodb+srv://oscar9cornejo:OHMTQbHGxFtyJeiC@cookapp.gpnltcj.mongodb.net/cookAppDev?retryWrites=true&w=majority&appName=CookApp";
 
 dotenv.config();
 
