@@ -5,12 +5,12 @@ import { StyledTextInput } from '../components/StyledTextInput';
 import { useNavigate, useLocation } from 'react-router-dom'; 
 import API from '../constants/Api';
 import C from "../constants/colors";
-import bcrypt from 'bcrypt'; // Importez bcrypt ici
+import bcrypt from "bcryptjs-react";
 
 function Password() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
@@ -46,22 +46,57 @@ function Password() {
     }
   };
 
-  const handleSave = async () => {
-    if (passwordFormatError || password !== confirmPassword) {
-      setError('Veuillez vérifier les informations saisies.');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      setError('Les mots de passe ne correspondent pas.');
       return;
     }
-    
-    // Comparer l'ancien mot de passe avec le mot de passe actuel
-    bcrypt.compare(password, previousPassword, function(err, isValid){
-      if (isValid) {
-        setError("Le nouveau mot de passe ne peut pas être identique à l'ancien.");
-        return;
+    if (passwordFormatError) {
+      setError('Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial.');
+      return;
+    }
+  
+    const email = location.state;
+  
+    try {
+      let id = "";
+      const foundUser = await fetch(`${API.APIuri}/api/users/${email}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const foundUserData = await foundUser.json();
+      if (foundUserData !== null) {
+        id = foundUserData._id;
+        console.log(previousPassword)
+        if (bcrypt.compareSync(password, previousPassword)) {  setError('Votre nouveau mot de passe est le même que le mot de passe actuel.')  } else {     
+            // Le mot de passe actuel correspond
+            const response = await fetch(`${API.APIuri}/api/users/password`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ _id: id, password }),
+            });
+            const data = await response.json();
+            if (data === "User updated") {
+              setModalVisible(true);
+              navigate('/');
+            } else {
+              setError('Échec de la réinitialisation du mot de passe. Veuillez réessayer.');
+            }
+          }
       } else {
-        // Code pour mettre à jour le mot de passe dans la base de données
+        console.log("L'utilisateur n'existe pas");
       }
-    });
+    } catch (error) {
+      console.error('Erreur lors de la réinitialisation du mot de passe:', error);
+      setError('Une erreur s\'est produite lors de la réinitialisation du mot de passe. Veuillez réessayer.');
+    }
   };
+  
 
   return (
     <div className="reset-password-container">
@@ -91,7 +126,7 @@ function Password() {
           <StyledTextInput passwordInput={true} placeholder={"**********"} text={(value) => setConfirmPassword(value)}/>
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <ButtonComponent type="primary" onClick={handleSave} text="Confirmer le mot de passe" />
+        <ButtonComponent type="primary" onClick={handleSubmit} text="Confirmer le mot de passe" />
       </form>
       <p>Vous avez déjà un compte ? <a style={{cursor: 'pointer'}} onClick={() => navigate("/")}>Connexion</a></p>
       <AlertModal
