@@ -12,9 +12,10 @@ import { AuthContext } from '../constants/Context';
 function RecipeScreen1() {
   const auth_context = React.useContext(AuthContext);
   const navigate = useNavigate();
+  
 
   const handleClick = (category, buttonText) => {
-    navigate(`/detail/${category}/${buttonText}`);
+    navigate(`/recipe/detail/${category}/${buttonText}`);
   };
 
   return (

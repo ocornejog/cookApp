@@ -16,9 +16,9 @@ function ProfileScreen3() {
   const [newPassword1, setNewPassword1] = React.useState('');
   const [newPassword2, setNewPassword2] = React.useState('');
 
+  const [oldPassword, setOldPassword] = React.useState('');
   const [passwordFormat, setPasswordFormat] = React.useState(false);
   const [passwordsMatch, setPasswordsMatch] = React.useState(false);
-  const [oldPasswordMatch, setOldPasswordMatch] = React.useState(false);
   const [modalText, setModalText] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [name, setName] = React.useState("");
@@ -34,19 +34,8 @@ function ProfileScreen3() {
 
   const navigate = useNavigate();
 
-  const checkOldPasword = (e) => {
-    bcrypt.compare(e, currentPassword, function(err, isValid){
-      if (isValid) {
-        setOldPasswordMatch(true);
-      } else {
-        setOldPasswordMatch(false);
-      }
-    });
-    //setOldPasswordMatch(currentPassword===oldTest);
-  };
-
   const handleOldPassChange = (e) => {
-    checkOldPasword(e);
+    setOldPassword(e);
   };
 
   React.useEffect(() => {
@@ -81,36 +70,45 @@ function ProfileScreen3() {
   }, [newPassword1,newPassword2]);
 
   const handleClickParametres = () => {
-    navigate(`/ProfileScreen2`, {state:datasend});
+    navigate(`/profile/ProfileScreen2`, {state:datasend});
   };
 
   const handleSave = async() => {
-
-    if (passwordFormat && oldPasswordMatch && passwordsMatch) {
-      let res = await fetch(`${API.APIuri}/api/users/password`, {
-        method: 'PUT',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            _id: userId,
-            password: newPassword1
-        })
-      })
-      const data = await res.json();
-      if (data === "User updated") {
-
-        setModalText("Le mot de passe a été mis a jour avec succès");
-        setModalVisible(true);
-        setUserUpdated(true);
-        let hashed = bcrypt.hashSync(newPassword1, 10);
-        changeData({
-          userId: userId,
-        })
-      }
-    } else if (oldPasswordMatch === false) {
-      setModalText("Il y avait une erreur. Veuillez reesayer.");
-      setModalVisible(true);
+    if (passwordFormat && passwordsMatch) {
+      bcrypt.compare(oldPassword, currentPassword, async function(err, isValid){
+        if (isValid) {
+          bcrypt.compare(newPassword1, currentPassword, async function(diff, same) {
+            if (same) {
+              setModalText("Votre nouveau mot de passe est le même que le mot de passe actuel.");
+              setModalVisible(true);
+            } else {
+              let res = await fetch(`${API.APIuri}/api/users/password`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _id: userId,
+                    password: newPassword1
+                })
+              })
+              const data = await res.json();
+              if (data === "User updated") {
+        
+                setModalText("Le mot de passe a été mis a jour avec succès");
+                setModalVisible(true);
+                setUserUpdated(true);
+                let hashed = bcrypt.hashSync(newPassword1, 10);
+                changeData({
+                  userId: userId,
+                })
+              }
+            }
+          })
+        } else {
+          setModalText("Il y avait une erreur. Veuillez reesayer.");
+          setModalVisible(true);
+        }})
     }
   }
 
@@ -122,7 +120,7 @@ function ProfileScreen3() {
 
   React.useEffect(() => {
     if (userUpdated && modalVisible === false) {
-      navigate(`/`);
+      navigate(`/profile/`);
     }
   }, [modalVisible])
 

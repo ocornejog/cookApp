@@ -50,16 +50,23 @@ function Profile() {
     //---------------------------------------------------------
     // Render your screen here
     return (
-        <BrowserRouter>
-            {/*<Navigation/>*/}
-            <Routes>
-                <Route index element={<ProfileScreen1/>} />
-                <Route path="/ProfileScreen2" element={<ProfileScreen2/>} />
-                <Route path="/ProfileScreen3" element={<ProfileScreen3/>} />
-                <Route path="/ProfileScreen4" element={<ProfileScreen4/>} />
-            </Routes>
-        </BrowserRouter>
+      <Routes>
+        <Route path="/profile/*" element={<ProfileLayout />} />
+      </Routes>
     );
+}
+
+function ProfileLayout() {
+  return (
+    <div>
+      <Routes>
+        <Route index element={<ProfileScreen1/>} />
+        <Route path="/ProfileScreen2" element={<ProfileScreen2/>} />
+        <Route path="/ProfileScreen3" element={<ProfileScreen3/>} />
+        <Route path="/ProfileScreen4" element={<ProfileScreen4/>} />
+      </Routes>
+    </div>
+  );
 }
 
 export default Profile;

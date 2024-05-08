@@ -59,17 +59,25 @@ function Search() {
     //---------------------------------------------------------
     // Render your screen here
     return (
-    <Provider store={store}>
-        <BrowserRouter>
-            {/*<Navigation/>*/}
-            <Routes>
-                <Route index element={<SearchScreen1/>} />
-                <Route path="/SearchScreen2" element={<SearchScreen2/>} />
-                <Route path="/SearchScreen3" element={<SearchScreen3/>} />
-            </Routes>
-        </BrowserRouter>
-    </Provider>
+      <Provider store={store}> 
+        {/*<Navigation/>*/}
+        <Routes>
+          <Route path="/search/*" element={<SearchLayout />} />
+        </Routes>
+      </Provider>
     );
+}
+
+function SearchLayout() {
+  return (
+    <div>
+      <Routes>
+        <Route index element={<SearchScreen1 />} />
+        <Route path="/SearchScreen2" element={<SearchScreen2 />} />
+        <Route path="/SearchScreen3" element={<SearchScreen3 />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default Search;

@@ -16,7 +16,8 @@ import Spinner from '../components/Spinner';
 import AlertModal from '../components/AlertModal';
 
 import { useDispatch, Provider, useSelector } from 'react-redux';
-import { setSpecificRecipe, selectSpecificRecipe, setAmountPeople, selectAmountPeople } from '../constants/searchConfig/slices/navSlice';
+import { setSpecificRecipe, selectSpecificRecipe, setAmountPeople, 
+selectAmountPeople } from '../constants/searchConfig/slices/navSlice';
 
 /*
 Import your used redux here

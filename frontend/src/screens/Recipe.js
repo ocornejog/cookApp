@@ -61,8 +61,15 @@ function Recipe() {
   //---------------------------------------------------------
   // Render your screen here
   return (
-    <BrowserRouter>
-      {/*<Navigation/>*/}
+    <Routes>
+      <Route path="/recipe/*" element={<RecipeLayout />} />
+    </Routes>   
+  );
+}
+
+function RecipeLayout() {
+  return (
+    <div>
       <Routes>
         <Route index element={<RecipeScreen1 />} />
         <Route
@@ -75,7 +82,7 @@ function Recipe() {
           element={<RecipeScreen3 />}
         />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 

@@ -124,7 +124,7 @@ function ProfileScreen4() {
   };
 
   const handleCancel = () => {
-    navigate(`/`);
+    navigate(`/profile/`);
   }
 
   const handleSubmit = () => {
@@ -211,7 +211,7 @@ function ProfileScreen4() {
 
   React.useEffect(() => {
     if (recipePublished && modalVisible === false) {
-      navigate(`/`);
+      navigate(`/profile/`);
     }
 
   }, [modalVisible])

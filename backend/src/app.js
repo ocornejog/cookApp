@@ -11,15 +11,9 @@ app.set('default_port', 3001);
 
 //Middlewares
 app.use(morgan('dev'));
-app.use(cors(
-    {
-        origin: ["https://cook-app-cyan.vercel.app", "https://cook-app-cyan.vercel.app/"],
-        methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-        credentials: true,
-        optionsSuccessStatus: 200,
-        headers: "*"
-    }
-));
+// 
+
+app.use(cors());
 app.use(express.json({limit: '10mb'}));
 app.use(express.urlencoded({extended: false}));
 
