@@ -1,227 +1,179 @@
 [
+
   {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0b9b"
-    },
-    "name": "Crumble aux Fruits Rouges",
-    "description": "Un dessert croustillant et fruité, avec un mélange de fruits rouges acidulés et une délicieuse garniture croquante.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 50,
-    "culinary_skill_level": 2,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
-    "preparation_steps": [
-      "Préchauffer le four à 180°C.",
-      "Préparer les fruits rouges (fraises, framboises, mûres) en les lavant et en les coupant si nécessaire.",
-      "Mélanger les fruits avec du sucre et un peu de jus de citron, puis les disposer dans un plat allant au four.",
-      "Préparer la garniture en mélangeant de la farine, du beurre, du sucre et des flocons d'avoine jusqu'à obtenir une texture sableuse.",
-      "Répartir la garniture sur les fruits dans le plat.",
-      "Enfourner et cuire pendant environ 30 minutes, jusqu'à ce que la garniture soit dorée et les fruits bouillonnants.",
-      "Laisser refroidir légèrement avant de servir, accompagné de crème fouettée ou de glace à la vanille."
-    ],
-    "photo": "https://www.whereiskomess.com/wp-content/uploads/2022/04/CRUMBLE-FRUITS-ROUGES-scaled.jpg",
-    "ingredients": ["Fraises", "Framboises", "Mûres", "Sucre", "Jus de citron", "Farine", "Beurre", "Flocons d'avoine"],
-    "quantity_ingredients": ["Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence", "Quantité selon préférence"],
-    "tags": ["Fruit", "Desserts"]
-  },
-  {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0b9c"
-    },
-    "name": "Tarte aux Fraises et à la Crème Pâtissière",
-    "description": "Une tarte classique aux fraises garnie d'une onctueuse crème pâtissière, parfaite pour profiter des fraises fraîches de saison.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 60,
-    "culinary_skill_level": 3,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
-    "preparation_steps": [
-      "Préchauffer le four à 180°C.",
-      "Préparer la pâte à tarte et la foncer dans un moule à tarte, puis la cuire à blanc pendant environ 15 minutes jusqu'à ce qu'elle soit légèrement dorée.",
-      "Préparer la crème pâtissière en faisant chauffer du lait avec de la vanille jusqu'à ébullition, puis en mélangeant des jaunes d'œufs avec du sucre et de la maïzena.",
-      "Incorporer le lait chaud dans le mélange d'œufs tout en remuant, puis remettre sur le feu et faire épaissir la crème.",
-      "Étaler la crème pâtissière refroidie sur le fond de tarte cuit.",
-      "Disposer les fraises lavées et équeutées sur la crème pâtissière.",
-      "Réfrigérer pendant au moins 1 heure avant de servir."
-    ],
-    "photo": "https://cdn.chefclub.tools/uploads/recipes/cover-thumbnail/b00cb733-e286-445b-a7d6-c484a67ce22b_MjcZc4a.jpg",
-    "ingredients": ["Pâte à tarte", "Fraises", "Lait", "Jaunes d'œufs", "Sucre", "Maïzena", "Vanille"],
-    "quantity_ingredients": ["1", "Quantité selon préférence", "500ml", "4", "100g", "2 cuillères à soupe", "1 gousse"],
-    "tags": ["Fruit","Desserts"]
-  },
- 
-  {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0b9e"
-    },
-    "name": "Gaufres aux Fraises et Crème Chantilly",
-    "description": "Des gaufres légères et croustillantes servies avec des fraises fraîches et une généreuse portion de crème chantilly.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 30,
-    "culinary_skill_level": 2,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
-    "preparation_steps": [
-      "Préparer la pâte à gaufres selon votre recette préférée.",
-      "Faire chauffer le gaufrier et cuire les gaufres jusqu'à ce qu'elles soient dorées et croustillantes.",
-      "Pendant ce temps, préparer les fraises en les lavant, équeutant et coupant en tranches.",
-      "Monter la crème en chantilly en fouettant de la crème fraîche avec du sucre jusqu'à obtention de pics fermes.",
-      "Servir les gaufres chaudes avec les fraises fraîches et une généreuse portion de crème chantilly."
-    ],
-    "photo": "https://liliebakery.fr/wp-content/uploads/2021/03/Gaufres-bruxelles-legeres-chantilly-recette-Lilie-Bakery-500x375.jpg",
-    "ingredients": ["Pâte à gaufres", "Fraises", "Crème fraîche", "Sucre"],
-    "quantity_ingredients": ["Quantité selon recette", "Quantité selon préférence", "200ml", "50g"],
-    "tags": ["Fruit","Desserts"]
-  },
-  {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0b9f"
-    },
-    "name": "Pêches Rôties au Miel et à la Menthe",
-    "description": "Des pêches juteuses rôties au four avec du miel doré et des feuilles de menthe fraîches pour un dessert simple et élégant.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 25,
+    "_id": {"$oid": "47ca51b0e787c0f3a8bd4d6e"},
+    "name": "Soupe aux restes de légumes",
+    "description": "Une soupe simple et savoureuse utilisant les restes de légumes pour éviter le gaspillage alimentaire. Cette soupe est idéale pour réchauffer les jours froids ou comme repas léger à tout moment de l'année.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 1,
+    "specific_regime": 0,
+    "preparation_time": 2,
     "culinary_skill_level": 1,
     "nutritional_value": [true, true, true, true, false, false, false, false],
     "preparation_steps": [
-      "Préchauffer le four à 200°C.",
-      "Laver et couper les pêches en deux, en retirant les noyaux.",
-      "Disposer les moitiés de pêches sur une plaque de cuisson et les arroser généreusement de miel.",
-      "Cuire au four pendant environ 15 minutes, jusqu'à ce que les pêches soient tendres et légèrement dorées.",
-      "Parsemer de feuilles de menthe fraîche juste avant de servir."
+      "Couper les restes de légumes en morceaux de taille uniforme pour une cuisson uniforme.",
+      "Faire revenir les légumes dans une casserole avec un peu d'huile d'olive jusqu'à ce qu'ils soient tendres.",
+      "Ajouter de l'eau ou du bouillon de légumes pour couvrir les légumes.",
+      "Laisser mijoter pendant 20-30 minutes pour que les saveurs se mélangent et que les légumes soient bien cuits."
     ],
-    "photo": "https://cac.img.pmdstatic.net/fit/~1~cac~2023~08~09~e6ffe142-4963-4cbc-b5b1-170171b9b30b.jpeg/650x325/quality/80/crop-from/center/peches-roties-a-la-melisse.jpeg",
-    "ingredients": ["Pêches", "Miel", "Feuilles de menthe fraîche"],
-    "quantity_ingredients": ["Quantité selon préférence", "Au goût", "Au goût"],
-    "tags": ["Fruit","Desserts"]
+    "photo": "https://www.framboizeinthekitchen.com/wp-content/uploads/2014/11/soupe1-restes-ameliores-framboizeinthekitchen-687x640.jpg",
+    "ingredients": ["restes de légumes", "bouillon de légumes"],
+    "quantity_ingredients": ["400g", "500ml"],
+    "tags": ["soupe", "Recette anti-gaspillage", "végétarien"]
   },
   {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0ba0"
-    },
-    "name": "Smoothie Mangue-Passion",
-    "description": "Un smoothie tropical et rafraîchissant à base de mangue sucrée et de fruit de la passion acidulé, parfait pour un petit-déjeuner énergétique ou une collation saine.",
-    "type_of_cuisine": 8,
+    "_id": {"$oid": "24b8f29c9a0d164e9b3a6ec7"},
+    "name": "Croquettes aux restes de riz",
+    "description": "Une façon créative d'utiliser les restes de riz pour préparer des croquettes croustillantes et savoureuses. Ces croquettes peuvent être servies en accompagnement ou en tant que plat principal avec une salade fraîche.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 2,
+    "specific_regime": 0,
+    "preparation_time": 2,
+    "culinary_skill_level": 2,
+    "nutritional_value": [false, false, true, false, false, false, false, false],
+    "preparation_steps": [
+      "Mélanger les restes de riz avec des œufs battus, de la chapelure et du fromage râpé dans un grand bol.",
+      "Former des croquettes à partir du mélange en utilisant vos mains.",
+      "Faire chauffer de l'huile dans une poêle à feu moyen.",
+      "Faire frire les croquettes jusqu'à ce qu'elles soient dorées et croustillantes des deux côtés."
+    ],
+    "photo": "https://static.750g.com/images/1200-630/5bccd16b8835b8ecba86bd662ee3fd13/comment-faire-des-supplial-telefono-croquettes-de-riz-a-la-mozzarella-.jpg",
+    "ingredients": ["restes de riz", "œufs", "chapelure", "fromage râpé"],
+    "quantity_ingredients": ["400g", "2", "100g", "50g"],
+    "tags": ["Recette anti-gaspillage", "végétarien", "accompagnement"]
+  },
+  {
+    "_id": {"$oid": "b51f7e38e4479065b24a7c61"},
+    "name": "Tarte aux restes de légumes",
+    "description": "Une tarte rustique et savoureuse qui utilise les restes de légumes pour créer une délicieuse garniture. Cette tarte peut être servie chaude ou froide et est parfaite pour les pique-niques ou les déjeuners légers.",
+    "type_of_cuisine": 0,
     "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 5,
+    "specific_regime": 0,
+    "preparation_time": 3,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, false, true, true, false, false, false, false],
+    "preparation_steps": [
+      "Préchauffer le four à 180°C et préparer la pâte à tarte selon votre recette préférée.",
+      "Étaler la pâte dans un moule à tarte et piquer le fond avec une fourchette.",
+      "Répartir uniformément les restes de légumes sur le fond de tarte.",
+      "Battre les œufs avec la crème dans un bol et verser sur les légumes.",
+      "Cuire au four pendant 25-30 minutes ou jusqu'à ce que la tarte soit dorée et que la garniture soit prise."
+    ],
+    "photo": "https://mutti-parma.com/app/uploads/sites/17/2020/07/tarte-aux-legumes-grilles-jambon-pignons-origan-et-sauce-tomate-parmigiano-reggiano-e1599139616569.jpg",
+    "ingredients": ["pâte à tarte", "restes de légumes", "œufs", "crème"],
+    "quantity_ingredients": ["1", "400g", "3", "200ml"],
+    "tags": ["Recette anti-gaspillage", "végétarien", "plat principal"]
+  },
+  {
+    "_id": {"$oid": "c927db86057bbaa5df16a903"},
+    "name": "Pain perdu",
+    "description": "Une manière délicieuse d'utiliser le pain rassis en le trempant dans un mélange sucré d'œufs et de lait, puis en le faisant frire jusqu'à ce qu'il soit doré et croustillant. Le pain perdu peut être servi en dessert ou en brunch pour une touche réconfortante.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 4,
+    "specific_regime": 0,
+    "preparation_time": 2,
     "culinary_skill_level": 1,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
+    "nutritional_value": [false, false, true, true, false, false, false, false],
     "preparation_steps": [
-      "Éplucher la mangue et la couper en morceaux.",
-      "Couper le fruit de la passion en deux et récupérer la pulpe à l'aide d'une cuillère.",
-      "Placer la mangue, la pulpe de fruit de la passion et le yaourt dans un blender.",
-      "Mixer jusqu'à obtenir une consistance lisse et crémeuse.",
-      "Verser dans des verres et déguster immédiatement, éventuellement avec des glaçons."
+      "Battre les œufs avec le lait et la vanille dans un bol peu profond.",
+      "Tremper les tranches de pain dans le mélange d'œufs jusqu'à ce qu'elles soient bien imbibées.",
+      "Faire chauffer du beurre dans une poêle à feu moyen.",
+      "Faire cuire les tranches de pain trempées dans le mélange d'œufs jusqu'à ce qu'elles soient dorées et croustillantes des deux côtés."
     ],
-    "photo": "https://www.demotivateur.fr/images/cover_recette/1688027710-smoothie_mangue_passion.jpg",
-    "ingredients": ["Mangue", "Fruit de la passion", "Yaourt nature"],
-    "quantity_ingredients": ["1", "2", "1 pot"],
-    "tags": ["Fruit","Desserts"]
+    "photo": "https://cdn.chefclub.tools/uploads/recipes/cover-thumbnail/ca88b3ac-37c4-4972-97ea-d569783b75ad_cyuUcPl.jpg",
+    "ingredients": ["pain rassis", "œufs", "lait", "vanille"],
+    "quantity_ingredients": ["4 tranches", "2", "200ml", "1 cuillère à café"],
+    "tags": ["Recette anti-gaspillage", "dessert"]
   },
   {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0ba1"
-    },
-    "name": "Compote de Pommes Cannelle",
-    "description": "Une compote de pommes maison délicieusement parfumée à la cannelle, parfaite pour accompagner vos desserts ou pour une collation saine.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 30,
+    "_id": {"$oid": "e815cafd1f3eb1cd6a8b0f3e"},
+    "name": "Omelette aux restes de légumes",
+    "description": "Une omelette savoureuse et nutritive qui utilise les restes de légumes pour créer un repas rapide et sain. Cette omelette est parfaite pour le petit-déjeuner, le déjeuner ou le dîner et peut être personnalisée avec vos légumes préférés.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 2,
+    "specific_regime": 0,
+    "preparation_time": 2,
+    "culinary_skill_level": 2,
+    "nutritional_value": [true, false, true, true, false, false, false, false],
+    "preparation_steps": [
+      "Battre les œufs dans un bol jusqu'à ce qu'ils soient bien mélangés.",
+      "Faire revenir les restes de légumes dans une poêle avec un peu d'huile d'olive jusqu'à ce qu'ils soient tendres.",
+      "Verser les œufs battus sur les légumes dans la poêle et cuire jusqu'à ce que les œufs soient pris sur les bords.",
+      "Utiliser une spatule pour soulever les bords de l'omelette et laisser le liquide non cuit s'écouler sous les bords.",
+      "Lorsque l'omelette est presque prise mais encore légèrement baveuse au centre, saupoudrer de fromage râpé sur une moitié de l'omelette.",
+      "Plier l'autre moitié de l'omelette sur le fromage et laisser cuire encore quelques instants jusqu'à ce que le fromage soit fondu et que l'omelette soit complètement prise."
+    ],
+    "photo": "https://www.osezlessaveurs.ca/wp-content/uploads/OmelletteWithHave.jpg",
+    "ingredients": ["œufs", "restes de légumes", "fromage râpé"],
+    "quantity_ingredients": ["3", "400g", "50g"],
+    "tags": ["Recette anti-gaspillage", "végétarien", "plat principal"]
+  },
+  {
+    "_id": {"$oid": "3b19c4b5739771c7a1e22ac4"},
+    "name": "Salade de quinoa aux restes de légumes",
+    "description": "Une salade fraîche et saine qui utilise les restes de légumes et le quinoa pour créer un plat coloré et nutritif. Cette salade est parfaite pour un déjeuner léger ou comme accompagnement pour un dîner copieux.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 1,
+    "specific_regime": 0,
+    "preparation_time": 3,
     "culinary_skill_level": 1,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
+    "nutritional_value": [true, true, true, true, true, false, false, false],
     "preparation_steps": [
-      "Éplucher, épépiner et couper les pommes en morceaux.",
-      "Dans une casserole, mettre les morceaux de pommes avec un peu d'eau et de cannelle.",
-      "Faire cuire à feu moyen pendant environ 20 minutes, en remuant de temps en temps, jusqu'à ce que les pommes soient tendres.",
-      "Écraser les pommes à l'aide d'une fourchette ou d'un presse-purée pour obtenir la consistance désirée.",
-      "Laisser refroidir avant de servir, et réfrigérer les restes."
+      "Cuire le quinoa selon les instructions sur l'emballage.",
+      "Couper les restes de légumes en petits morceaux pour une texture uniforme dans la salade.",
+      "Mélanger le quinoa cuit et les légumes dans un grand saladier.",
+      "Assaisonner la salade avec de l'huile d'olive, du jus de citron, du sel et du poivre selon votre goût.",
+      "Mélanger tous les ingrédients jusqu'à ce qu'ils soient bien enrobés de vinaigrette.",
+      "Réfrigérer la salade pendant au moins une heure avant de servir pour permettre aux saveurs de se marier."
     ],
-    "photo": "https://www.recettesmania.com/images/recipe/l-ile-aux-epices/2022/03/l-ile-aux-epices-recette-compote-pomme-coing-a-la-cannelle-l-ile-aux-epices.jpg",
-    "ingredients": ["Pommes", "Cannelle"],
-    "quantity_ingredients": ["Quantité selon préférence", "Au goût"],
-    "tags": ["Fruit","Desserts"]
+    "photo": "https://i0.wp.com/les2quiches.com/wp-content/uploads/2022/08/salade-quinoa-legumes-rotis-3.jpg?fit=1536%2C2048&ssl=1",
+    "ingredients": ["quinoa", "restes de légumes", "huile d'olive", "jus de citron"],
+    "quantity_ingredients": ["200g", "400g", "2 cuillères à soupe", "1 cuillère à soupe"],
+    "tags": ["Recette anti-gaspillage", "végétarien", "salade"]
   },
   {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0ba2"
-    },
-    "name": "Pain Perdu aux Pommes Caramélisées",
-    "description": "Une version gourmande du pain perdu traditionnel, avec des tranches de pain trempées dans un mélange d'œufs et de lait, puis garnies de pommes caramélisées.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 25,
+    "_id": {"$oid": "5e7dcfd062865c54b56e26b4"},
+    "name": "Boulettes de viande aux restes de pain",
+    "description": "Des boulettes de viande tendres et savoureuses faites avec des restes de pain trempés dans du lait pour plus de moelleux. Ces boulettes peuvent être servies avec une sauce tomate pour un repas réconfortant ou utilisées comme garniture pour des sandwichs.",
+    "type_of_cuisine": 0,
+    "type_of_dishes": 2,
+    "specific_regime": 0,
+    "preparation_time": 2,
     "culinary_skill_level": 2,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
+    "nutritional_value": [false, false, true, true, false, false, false, false],
     "preparation_steps": [
-      "Éplucher, épépiner et couper les pommes en tranches fines.",
-      "Faire fondre du beurre dans une poêle et faire revenir les tranches de pommes jusqu'à ce qu'elles soient tendres et légèrement caramélisées.",
-      "Dans un bol, battre les œufs avec le lait et la vanille.",
-      "Tremper les tranches de pain dans le mélange d'œufs et de lait, en veillant à bien les enrober.",
-      "Faire chauffer un peu de beurre dans une autre poêle et y faire dorer les tranches de pain des deux côtés.",
-      "Servir les tranches de pain perdu chaudes, garnies des pommes caramélisées et saupoudrées de sucre glace."
+      "Tremper le pain dans du lait pour le ramollir et l'émietter dans un grand bol.",
+      "Ajouter la viande hachée, l'œuf battu, l'ail haché, le persil haché, le sel et le poivre dans le bol avec le pain.",
+      "Mélanger tous les ingrédients jusqu'à ce qu'ils soient bien combinés.",
+      "Former des boulettes de la taille d'une balle de golf avec le mélange.",
+      "Faire chauffer de l'huile dans une grande poêle à feu moyen.",
+      "Faire frire les boulettes de viande jusqu'à ce qu'elles soient dorées et cuites à cœur, environ 8 à 10 minutes par côté."
     ],
-    "photo": "https://img.mesrecettesfaciles.fr/2021-08/pain-perdu-aux-pommes-et-sauce-caramel-1.jpg",
-    "ingredients": ["Tranches de pain", "Pommes", "Œufs", "Lait", "Vanille", "Beurre"],
-    "quantity_ingredients": ["Quantité selon le nombre de portions", "Quantité selon préférence", "2", "100ml", "1 cuillère à café", "Quantité selon besoin"],
-    "tags": ["Fruit","Desserts"]
+    "photo": "https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/boulettes-juteuses-a-la-mie-de-pain-3147169/68751085-2-fre-FR/Boulettes-juteuses-a-la-mie-de-pain.jpeg",
+    "ingredients": ["restes de pain", "viande hachée", "œuf", "ail", "persil"],
+    "quantity_ingredients": ["200g", "500g", "1", "2 gousses", "2 cuillères à soupe"],
+    "tags": ["Recette anti-gaspillage", "viande", "plat principal"]
   },
   {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0ba3"
-    },
-    "name": "Gâteau aux Pommes et à la Cannelle",
-    "description": "Un délicieux gâteau moelleux aux pommes et parfumé à la cannelle, idéal pour le goûter ou le dessert.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 60,
+    "_id": {"$oid": "16a3a28cb0fa089e5d1bc928"},
+    "name": "Frittata aux restes de légumes",
+    "description": "Une frittata italienne délicieuse et rapide à préparer, parfaite pour utiliser les restes de légumes. Cette frittata est cuite à la poêle et finie sous le gril pour une texture dorée et un intérieur moelleux rempli de légumes savoureux.",
+    "type_of_cuisine": 2,
+    "type_of_dishes": 2,
+    "specific_regime": 0,
+    "preparation_time": 2,
     "culinary_skill_level": 2,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
+    "nutritional_value": [true, false, true, true, false, false, false, false],
     "preparation_steps": [
-      "Préchauffer le four à 180°C et beurrer et fariner un moule à gâteau.",
-      "Éplucher, épépiner et couper les pommes en tranches fines.",
-      "Dans un saladier, mélanger la farine, la cannelle, la levure et le sel.",
-      "Dans un autre saladier, fouetter les œufs avec le sucre jusqu'à ce que le mélange blanchisse.",
-      "Incorporer l'huile et la vanille au mélange d'œufs, puis ajouter progressivement le mélange de farine en remuant doucement.",
-      "Incorporer délicatement les tranches de pommes dans la pâte.",
-      "Verser la pâte dans le moule préparé et lisser le dessus.",
-      "Cuire au four pendant environ 40-45 minutes, jusqu'à ce qu'un cure-dent inséré au centre en ressorte propre.",
-      "Laisser refroidir avant de démouler et de servir."
+      "Faire revenir les restes de légumes dans une poêle avec de l'huile d'olive jusqu'à ce qu'ils soient tendres et légèrement dorés.",
+      "Battre les œufs dans un bol jusqu'à ce qu'ils soient bien mélangés.",
+      "Verser les œufs battus sur les légumes dans la poêle.",
+      "Cuire la frittata à feu doux jusqu'à ce que les œufs soient pris sur les bords mais encore légèrement baveux au centre.",
+      "Terminer la cuisson sous le gril pendant quelques minutes jusqu'à ce que le dessus de la frittata soit doré et légèrement gonflé."
     ],
-    "photo": "https://img.mesrecettesfaciles.fr/wp-content/uploads/2016/11/gateaupommescanelle.jpg",
-    "ingredients": ["Pommes", "Farine", "Cannelle", "Levure chimique", "Sel", "Œufs", "Sucre", "Huile", "Extrait de vanille"],
-    "quantity_ingredients": ["Quantité selon préférence", "200g", "2 cuillères à café", "1 cuillère à café", "1/2 cuillère à café", "3", "150g", "125ml", "1 cuillère à café"],
-    "tags": ["Fruit","Desserts"]
-  },
-  {
-    "_id": {
-      "$oid": "6052ae3b2ac91f4bc93b0ba4"
-    },
-    "name": "Sorbet aux Fruits de la Passion",
-    "description": "Un sorbet rafraîchissant et exotique, préparé avec de la pulpe de fruits de la passion et du sirop de sucre, parfait pour une pause dessert légère et fruitée.",
-    "type_of_cuisine": 8,
-    "type_of_dishes": 3,
-    "specific_regime": 8,
-    "preparation_time": 240,
-    "culinary_skill_level": 2,
-    "nutritional_value": [true, true, true, true, false, false, false, false],
-    "preparation_steps": [
-      "Mixer la pulpe de fruits de la passion avec le sirop de sucre jusqu'à obtention d'une texture lisse.",
-      "Passer le mélange au tamis pour retirer les graines.",
-      "Verser le mélange dans une sorbetière et turbiner selon les instructions du fabricant, jusqu'à ce que le sorbet soit pris.",
-      "Transférer le sorbet dans un récipient hermétique et placer au congélateur pendant au moins 4 heures avant de servir."
-    ],
-    "photo": "https://img.over-blog-kiwi.com/0/93/14/90/20191226/ob_0c3ffe_sorbet-passion.jpg",
-    "ingredients": ["Fruits de la passion", "Sirop de sucre"],
-    "quantity_ingredients": ["8-10", "200ml"],
-    "tags": ["Fruit","Desserts"]
+    "photo": "https://carrefour-reunion.uplink.re/glide/local/attachments/buz/p1d/4it/buzp1d4it6k5fvsx63sn74u8x.jpg?w=512&h=512&fit=crop&s=2cf7efaaef81bee3019f4a389a8679b3",
+    "ingredients": ["œufs", "restes de légumes", "fromage râpé"],
+    "quantity_ingredients": ["4", "400g", "50g"],
+    "tags": ["Recette anti-gaspillage", "végétarien", "plat principal"]
   }
 ]
