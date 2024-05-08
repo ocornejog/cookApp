@@ -1,6 +1,6 @@
 import React from 'react';
 
-const image = process.env.PUBLIC_URL + "/backgroud.png";
+const image = process.env.PUBLIC_URL + "/backgroud.jpeg";
 const ImageComponent = () => {
     return (
         <div className="image-container">
