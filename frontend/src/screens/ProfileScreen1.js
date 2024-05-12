@@ -21,8 +21,12 @@ function ProfileScreen1() {
   const getRecipeInfo = async(id_recette) => {
     let res = await fetch(`${API.APIuri}/api/recipes/recipe/${id_recette}`, {
       method: 'GET',
+      params: {
+        userId: auth_context.id
+      },
       headers: {
-          'Content-Type': 'application/json' 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       }
     });
     let rec = await res.json();
