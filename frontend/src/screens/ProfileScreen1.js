@@ -11,6 +11,7 @@ import { AuthContext } from '../constants/Context';
 function ProfileScreen1() {
   const navigate = useNavigate();
   const auth_context = React.useContext(AuthContext);
+  console.log('My context is: ', auth_context);
   const userId = auth_context.id;
 
   let firstDeploy = true;
