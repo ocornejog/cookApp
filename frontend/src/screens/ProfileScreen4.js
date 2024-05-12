@@ -141,7 +141,8 @@ function ProfileScreen4() {
     let res = await fetch(`${API.APIuri}/api/recipes/create`, {
       method: 'POST',
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
         name:titre,
@@ -156,18 +157,21 @@ function ProfileScreen4() {
         photo:photo,
         ingredients:ingredients,
         quantity_ingredients:ingredients,
-        tags:[]
+        tags:[],
+        userId: auth_context.id
       })
     });
     let newRecipeId = await res.json();
     let res2 = await fetch(`${API.APIuri}/api/appRecipes/addAppRecipe`, {
       method: 'POST',
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
         user_id:userId,
-        recipe_id:newRecipeId
+        recipe_id:newRecipeId,
+        userId: auth_context.id
       })
     });
     const reponse = await res2.json();
@@ -182,7 +186,8 @@ function ProfileScreen4() {
     let res = await fetch(`${API.APIuri}/api/recipes/updateRecipe`, {
       method: 'PUT',
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
         _id:location.state[0]._id,
@@ -198,7 +203,8 @@ function ProfileScreen4() {
         photo:photo,
         ingredients:ingredients,
         quantity_ingredients:ingredients,
-        tags:[]
+        tags:[],
+        userId: auth_context.id
       })
     });
     const reponse = await res.json();

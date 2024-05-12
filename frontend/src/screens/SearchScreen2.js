@@ -72,11 +72,13 @@ function SearchScreen2() {
             await fetch(`${API.APIuri}/api/favoritesRecipes/create`, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
                 },
                 body: JSON.stringify({
                     userID: auth_context.id,
-                    recipeID: e
+                    recipeID: e,
+                    userId: auth_context.id
                 })
             })
             .then(response => response.json())
@@ -105,8 +107,12 @@ function SearchScreen2() {
             // http://localhost:3000/api/favoritesRecipes/deleteFromFavorites/user/:userID/recipe/:recipeID
             await fetch(`${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${e}`, {
                 method: 'DELETE',
+                params: {
+                    userId: auth_context.id
+                },
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
                 }
             })
             .then(response => response.json())
@@ -137,7 +143,16 @@ function SearchScreen2() {
     const settingRecipesData = async(recipe, index) => {
 
         let response = 
-        await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`);
+        await fetch(`${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`, {
+            method: 'GET',
+            params: {
+              userId: auth_context.id
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${auth_context.token}`
+            }
+        });
         let myFavorite = await response.json();
 
         const newItem = {
@@ -164,8 +179,12 @@ function SearchScreen2() {
             setRecipesData([]);
             fetch(`${API.APIuri}/api/recipes/searchByTags/${searchText}`, {
                 method: 'GET',
+                params: {
+                    userId: auth_context.id
+                },
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
                 }
             })
             .then(response => response.json())
@@ -191,7 +210,8 @@ function SearchScreen2() {
             fetch(`${API.APIuri}/api/recipes/advancedSearch`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
                 },
                 body: JSON.stringify({
                     type_of_cuisine: annotation.type_of_cuisine, 
@@ -199,7 +219,8 @@ function SearchScreen2() {
                     specific_regime: annotation.specific_regime, 
                     preparation_time: annotation.preparation_time, 
                     culinary_skill_level: annotation.culinary_skill_level, 
-                    nutritional_value: annotation.nutritional_value
+                    nutritional_value: annotation.nutritional_value,
+                    userId: auth_context.id
                 })
             })
             .then(response => response.json())

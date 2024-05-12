@@ -14,12 +14,6 @@ const App = () => {
   const [activeTab, setActiveTab] = useState("Chercher");
   const [loggedIn, setLoggedIn] = useState(false);
 
-  React.useEffect(() => {
-    fetch(`${API.APIuri}/api`)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
-
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };

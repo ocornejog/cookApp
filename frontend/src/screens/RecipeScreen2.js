@@ -24,9 +24,16 @@ function RecipeScreen2() {
   const navigate = useNavigate();
 
   const settingFavoritesRecipesData = async (recipe, index) => {
-    let response = await fetch(
-      `${API.APIuri}/api/recipes/recipe/${recipe.recipe_id}`
-    );
+    let response = await fetch(`${API.APIuri}/api/recipes/recipe/${recipe.recipe_id}`,{
+      method: 'GET',
+      params: {
+        userId: auth_context.id
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
+      }
+    });
     let recipeData = await response.json();
 
     const newItem = {
@@ -46,8 +53,16 @@ function RecipeScreen2() {
 
   const settingRecipesData = async (recipe, index) => {
     let response = await fetch(
-      `${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`
-    );
+      `${API.APIuri}/api/favoritesRecipes/checkFavoriteRecipe/user/${auth_context.id}/recipe/${recipe._id}`, {
+        method: 'GET',
+        params: {
+          userId: auth_context.id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth_context.token}`
+        }
+    });
     let myFavorite = await response.json();
 
     const newItem = {
@@ -71,7 +86,16 @@ function RecipeScreen2() {
       if (buttonText === "Favoris") {
         handleClickFavoris();
       } else {
-        fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`, {})
+        fetch(`${API.APIuri}/api/recipes/recipesByTag/${buttonText}`,{
+          method: 'GET',
+          params: {
+            userId: auth_context.id
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_context.token}`
+          }
+        })
           .then((response) => response.json())
           .then(async (data) => {
             console.log(data);
@@ -95,7 +119,16 @@ function RecipeScreen2() {
 
   const handleClickFavoris = async () => {
     fetch(
-      `${API.APIuri}/api/favoritesRecipes/favoritesRecipes/user/${auth_context.id}`
+      `${API.APIuri}/api/favoritesRecipes/favoritesRecipes/user/${auth_context.id}`, {
+        method: 'GET',
+        params: {
+          userId: auth_context.id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth_context.token}`
+        }
+      }
     )
       .then((response) => response.json())
       .then(async (data) => {
@@ -115,10 +148,12 @@ function RecipeScreen2() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${auth_context.token}`
         },
         body: JSON.stringify({
           userID: auth_context.id,
           recipeID: e,
+          userId: auth_context.id
         }),
       });
     } else {
@@ -143,8 +178,12 @@ function RecipeScreen2() {
       `${API.APIuri}/api/favoritesRecipes/deleteFromFavorites/user/${auth_context.id}/recipe/${recipeId}`,
       {
         method: "DELETE",
+        params: {
+          userId: auth_context.id
+        },
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${auth_context.token}`
         },
       }
     );

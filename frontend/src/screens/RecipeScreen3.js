@@ -56,8 +56,10 @@ function RecipeScreen3() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${auth_context.token}`
         },
         body: JSON.stringify({
+          userId: auth_context.id,
           user_id: auth_context.id, 
           recipe_id: recipeID,
           comment: myComment,
@@ -86,7 +88,16 @@ function RecipeScreen3() {
 
   const settingCommentsData = async (comment, index) => {
     const response3 = await fetch(
-      `${API.APIuri}/api/users/userID/${comment.user_id}`
+      `${API.APIuri}/api/users/userID/${comment.user_id}`, {
+        method: 'GET',
+        params: {
+          userId: auth_context.id
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth_context.token}`
+        }
+      }
     );
     const foundUser = await response3.json();
 
@@ -106,7 +117,16 @@ function RecipeScreen3() {
   const fetchingRecipe = async () => {
     if (recipeID !== null && recipeID !== "") {
       const response = await fetch(
-        `${API.APIuri}/api/recipes/recipe/${recipeID}`
+        `${API.APIuri}/api/recipes/recipe/${recipeID}`, {
+          method: 'GET',
+          params: {
+            userId: auth_context.id
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_context.token}`
+          }
+        }
       );
       const recipe = await response.json();
       const recipeData = recipe[0];
@@ -123,7 +143,16 @@ function RecipeScreen3() {
   const fetchingComments = async () => {
     if (recipeID !== null && recipeID !== "") {
       const response2 = await fetch(
-        `${API.APIuri}/api/comments/recipe/${recipeID}`
+        `${API.APIuri}/api/comments/recipe/${recipeID}`, {
+          method: 'GET',
+          params: {
+            userId: auth_context.id
+          },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_context.token}`
+          }
+        }
       );
       const comments = await response2.json();
       setShowIndicator(true);

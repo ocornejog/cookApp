@@ -60,9 +60,11 @@ function SearchScreen3() {
             await fetch(`${API.APIuri}/api/comments/create`, {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
                 },
                 body: JSON.stringify({
+                    userId: auth_context.id,
                     user_id: auth_context.id, 
                     recipe_id: selectedSpecificRecipe, 
                     comment: myComment, 
@@ -90,7 +92,16 @@ function SearchScreen3() {
     };
 
     const settingCommentsData = async(comment, index) => {
-        const response3 = await fetch(`${API.APIuri}/api/users/userID/${comment.user_id}`);
+        const response3 = await fetch(`${API.APIuri}/api/users/userID/${comment.user_id}`, {
+            method: 'GET',
+            params: {
+                userId: auth_context.id
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${auth_context.token}`
+            }
+        });
         const foundUser = await response3.json();
 
         const newItem = {
@@ -108,7 +119,16 @@ function SearchScreen3() {
 
     const fetchingRecipe = async() => {
         if((selectedSpecificRecipe !== null) && (selectedSpecificRecipe !== "")){
-            const response = await fetch(`${API.APIuri}/api/recipes/recipe/${selectedSpecificRecipe}`);
+            const response = await fetch(`${API.APIuri}/api/recipes/recipe/${selectedSpecificRecipe}`, {
+                method: 'GET',
+                params: {
+                    userId: auth_context.id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
+                }
+            });
             const recipe = await response.json();
             const recipeData = recipe[0];
             setTitle(recipeData.name);
@@ -134,7 +154,16 @@ function SearchScreen3() {
 
     const fetchingComments = async() => {
         if((selectedSpecificRecipe !== null) && (selectedSpecificRecipe !== "")){
-            const response2 = await fetch(`${API.APIuri}/api/comments/recipe/${selectedSpecificRecipe}`);
+            const response2 = await fetch(`${API.APIuri}/api/comments/recipe/${selectedSpecificRecipe}`, {
+                method: 'GET',
+                params: {
+                    userId: auth_context.id
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${auth_context.token}`
+                }
+            });
             const comments = await response2.json();
             console.log("My comments are:", comments);
             setShowIndicator(true);

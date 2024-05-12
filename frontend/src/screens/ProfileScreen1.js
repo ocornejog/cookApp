@@ -11,7 +11,6 @@ import { AuthContext } from '../constants/Context';
 function ProfileScreen1() {
   const navigate = useNavigate();
   const auth_context = React.useContext(AuthContext);
-  console.log('My context is: ', auth_context);
   const userId = auth_context.id;
 
   let firstDeploy = true;
@@ -50,33 +49,45 @@ function ProfileScreen1() {
   const handelDelete = async(idRecette) => {
     let res = await fetch(`${API.APIuri}/api/appRecipes/getAppRecipeID/${idRecette}`, {
       method: 'GET',
+      params: {
+        userId: auth_context.id
+      },
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
     }});
     let appRecipeObject = await res.json();
     let delAppR = await fetch(`${API.APIuri}/api/appRecipes/deleteRecipe`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
-        _id:appRecipeObject[0]._id
+        _id: appRecipeObject[0]._id,
+        userId: auth_context.id
       })
     });
     let delRecipe = await fetch(`${API.APIuri}/api/recipes/delete`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
-        _id:idRecette
+        _id: idRecette,
+        userId: auth_context.id
       })
     });
 
     let deleteRecipeFavorites = await fetch(`${API.APIuri}/api/favoritesRecipes/deleteRecipeFavorites/recipe/${idRecette}`, {
       method: 'DELETE',
+      params: {
+        userId: auth_context.id
+      },
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
     }});   
 
     let tmp = []
@@ -99,8 +110,12 @@ function ProfileScreen1() {
         setRecettes([]);
         const recipes = await fetch(`${API.APIuri}/api/appRecipes/getRecipeUser/${userId}`,{
         method: 'GET',
+        params: {
+          userId: auth_context.id
+        },
         headers: {
-        'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${auth_context.token}`
         }});
         let l = await recipes.json();
         for (let i=0; i<l.length; i++) {

@@ -40,14 +40,16 @@ function ProfileScreen2() {
     let res = await fetch(`${API.APIuri}/api/users/update`, {
       method: 'PUT',
       headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_context.token}`
       },
       body: JSON.stringify({
           _id: userId,
           name: userName,
           lastName: userLastName,
           birthDate: birthDate,
-          photo: photo
+          photo: photo,
+          userId: auth_context.id
       })
     });
     let reponse = await res.json();
