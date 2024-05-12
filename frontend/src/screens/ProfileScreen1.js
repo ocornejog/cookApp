@@ -106,8 +106,12 @@ function ProfileScreen1() {
         for (let i=0; i<l.length; i++) {
           const recipe = await fetch(`${API.APIuri}/api/recipes/recipe/${l[i].recipe_id}`,{
           method: 'GET',
+          params: {
+            userId: auth_context.id
+          },
           headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth_context.token}`
           }});
           let r = await recipe.json();
           setRecettes(prev => [...prev, r[0]]);
